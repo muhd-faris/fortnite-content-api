@@ -7,6 +7,14 @@
     "port": 8181,
     "local_protocol": "http"
   },
+   "env": {
+    "staging": {
+      "name": "fortnite-content-api-staging"
+    },
+    "production": {
+      "name": "fortnite-content-api-production"
+    }
+  },
   "observability": {
     "enabled": true,
     "head_sampling_rate": 1
