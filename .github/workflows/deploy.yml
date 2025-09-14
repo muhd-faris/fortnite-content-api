@@ -1,0 +1,37 @@
+name: Deploy Production
+
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Wrangler
+        run: npm install -g wrangler
+
+      - name: Inject Wrangler Production Config
+        run: |
+          jq '.env.production = {
+            "name": "api-production",
+            "vars": {
+              "DATABASE_URL": "${{ secrets.DATABASE_URL }}"
+            }
+          }' wrangler.jsonc > wrangler.jsonc.tmp && mv wrangler.jsonc.tmp wrangler.jsonc
+
+      - name: Deploy to Cloudflare Workers (Production)
+        run: wrangler deploy --minify src/index.ts --env production
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
