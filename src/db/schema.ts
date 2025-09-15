@@ -1,0 +1,34 @@
+import { relations } from 'drizzle-orm';
+import {
+    pgTable,
+    pgEnum,
+    varchar,
+    integer,
+    boolean,
+    timestamp,
+    uuid
+} from 'drizzle-orm/pg-core';
+
+export const SeasonHistoryTable = pgTable('season_history', {
+    id: uuid('id').primaryKey().defaultRandom(),
+    chapter: integer('chapter').notNull(),
+    // Season is basically the season code number. (ex 31)
+    season: integer('season').notNull(),
+    season_in_chapter: integer('season_in_chapter').notNull(),
+    start_date: timestamp('start_date').notNull(),
+    end_date: timestamp('end_date').notNull(),
+    created_at: timestamp('created_at').defaultNow().notNull(),
+    updated_at: timestamp('updated_at').notNull().$onUpdate(() => new Date())
+});
+
+export const FortniteCrewTable = pgTable('fortnite_crew', {
+    id: uuid('id').primaryKey().defaultRandom(),
+    // Typically were only interested with month and year only but for sorting purpose all are default to 1st of the month
+    crew_date: timestamp('crew_date').notNull(),
+    color_1: varchar('color_1').notNull(),
+    color_2: varchar('color_2').notNull(),
+    color_3: varchar('color_3').notNull(),
+    image_with_bg: varchar('image_with_bg').notNull(),
+    created_at: timestamp('created_at').defaultNow().notNull(),
+    updated_at: timestamp('updated_at').notNull().$onUpdate(() => new Date())
+});
