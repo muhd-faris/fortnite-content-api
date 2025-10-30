@@ -3,11 +3,14 @@
   "name": "fortnite-content-api",
   "main": "src/index.ts",
   "compatibility_date": "2025-09-06",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
   "dev": {
     "port": 8181,
     "local_protocol": "http"
   },
-   "env": {
+  "env": {
     "staging": {
       "name": "fortnite-content-api-staging"
     },
