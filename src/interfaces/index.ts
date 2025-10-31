@@ -1,6 +1,7 @@
 export { IRootCarCosmeticListing } from './car-cosmetic-listing';
 export {
     IRootCosmeticListing,
+    ICosmeticListingData,
     ISeries,
     IType,
     IVariant,

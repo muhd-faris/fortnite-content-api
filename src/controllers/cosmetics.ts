@@ -1,6 +1,7 @@
 import { FortniteComBaseUrl } from '../constants';
 import { CustomException } from '../helpers';
 import {
+    ICosmeticListingData,
     IRootCarCosmeticListing,
     IRootCosmeticListing,
     IRootInstrumentListing,
@@ -10,7 +11,105 @@ import {
 import { TCFContext } from '../types';
 import { SearchCosmeticValidationSchema } from '../validations';
 
-export const getCosmeticFiltersV1 = (c: TCFContext) => { };
+export const getCosmeticFiltersV1 = (c: TCFContext) => {
+    const filters = {
+        general: ['upcoming', 'reactive'],
+        experience: [
+            {
+                value: 'battle_royale',
+                name: 'Battle Royale'
+            },
+            {
+                value: 'rocket_racing',
+                name: 'Rocket Racing'
+            },
+            {
+                value: 'festival',
+                name: 'Fortnite Festival'
+            }
+        ],
+        cosmetic_types: [
+            {
+                group: '',
+                value: '',
+                name: 'Outfit'
+            },
+            {
+                group: '',
+                value: '',
+                name: 'Back Bling'
+            },
+            {
+                group: '',
+                value: '',
+                name: 'Pickaxe'
+            },
+            {
+                group: '',
+                value: '',
+                name: 'Glider'
+            },
+            {
+                group: '',
+                value: '',
+                name: 'Kicks'
+            },
+            {
+                group: '',
+                value: '',
+                name: 'Contrail'
+            },
+            {
+                group: '',
+                value: '',
+                name: 'Aura'
+            },
+            {
+                group: '',
+                value: '',
+                name: 'Emote'
+            },
+            {
+                group: '',
+                value: '',
+                name: 'Wrap'
+            },
+            // Festival
+            {
+                group: '',
+                value: '',
+                name: 'Bass'
+            },
+            {
+                group: '',
+                value: '',
+                name: 'Guitar'
+            },
+            {
+                group: '',
+                value: '',
+                name: 'Drums'
+            },
+            {
+                group: '',
+                value: '',
+                name: 'Keytar'
+            },
+            {
+                group: '',
+                value: '',
+                name: 'Microphone'
+            },
+            {
+                group: '',
+                value: '',
+                name: 'Jam Tracks'
+            }
+        ]
+    };
+
+    return c.json(filters);
+};
 
 export const searchCosmeticsV1 = async (c: TCFContext) => {
     // TODO: Implement Language
@@ -197,3 +296,56 @@ export const getRecentlyAddedCosmeticsV1 = async (c: TCFContext) => {
 };
 
 export const getCosmeticDetailsV1 = async (c: TCFContext) => { };
+
+export const syncCosmeticSeriesToDbV1 = async (c: TCFContext) => {
+    const fetchedCosmeticListing = await fetch(`${FortniteComBaseUrl}/v2/cosmetics/br`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const cosmeticListingJson = await fetchedCosmeticListing.json() as { status: number; data: ICosmeticListingData[] };
+
+    if (cosmeticListingJson.status !== 200) {
+        throw new CustomException(
+            'Error occured from the server. Sorry about that please try again shortly.',
+            500
+        );
+    };
+
+    const rawSeriesData = cosmeticListingJson.data.map(d => d.series).filter(d => d !== undefined);
+    const uniqueSeries = Array.from(
+        new Map(rawSeriesData.map((item) => [item.backendValue, item])).values()
+    );
+    // 1. Delete from Database before inserting new one
+    // 2. Create Record to Database
+
+    return c.json({ message: `Successfully sync ${uniqueSeries.length} series data.` });
+};
+
+export const syncCosmeticTypesV1 = async (c: TCFContext) => {
+    const fetchedCosmeticListing = await fetch(`${FortniteComBaseUrl}/v2/cosmetics/br`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const cosmeticListingJson = await fetchedCosmeticListing.json() as { status: number; data: ICosmeticListingData[] };
+
+    if (cosmeticListingJson.status !== 200) {
+        throw new CustomException(
+            'Error occured from the server. Sorry about that please try again shortly.',
+            500
+        );
+    };
+
+    const rawSeriesData = cosmeticListingJson.data.map(d => d.type).filter(d => d !== undefined);
+    const uniqueSeries = Array.from(
+        new Map(rawSeriesData.map((item) => [item.backendValue, item])).values()
+    );
+    // console.log()
+    // 1. Delete from Database before inserting new one
+    // 2. Create Record to Database
+
+    return c.json({ message: `Successfully sync ${uniqueSeries.length} series data.`, data: uniqueSeries });
+};

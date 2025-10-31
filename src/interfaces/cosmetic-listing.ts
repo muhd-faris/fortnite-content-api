@@ -3,7 +3,7 @@ export interface IRootCosmeticListing {
     data: ICosmeticListingData[];
 };
 
-interface ICosmeticListingData {
+export interface ICosmeticListingData {
     id: string;
     name: string;
     description: string;

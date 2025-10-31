@@ -32,3 +32,13 @@ export const FortniteCrewTable = pgTable('fortnite_crew', {
     created_at: timestamp('created_at').defaultNow().notNull(),
     updated_at: timestamp('updated_at').notNull().$onUpdate(() => new Date())
 });
+
+export const FortniteCosmeticSeries = pgTable('fortnite_cosmetic_series', {
+    id: uuid('id').primaryKey().defaultRandom(),
+    display_name: varchar('display_name').notNull(),
+    image: varchar('image').notNull(),
+    internal_name: varchar('internal_name').notNull(),
+    colors: varchar('colors').array().default([]).notNull(),
+    created_at: timestamp('created_at').defaultNow().notNull(),
+    updated_at: timestamp('updated_at').notNull().$onUpdate(() => new Date())
+});
