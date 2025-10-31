@@ -21,7 +21,7 @@ interface ICosmeticListingData {
     builtInEmoteIds?: string[];
 };
 
-interface ISeries {
+export interface ISeries {
     value: string;
     colors: string[];
     backendValue: string;
@@ -74,7 +74,7 @@ interface ISet {
     backendValue: string;
 };
 
-interface IType {
+export interface IType {
     value: string;
     displayValue: string;
     backendValue: string;
