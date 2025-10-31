@@ -1,0 +1,87 @@
+[
+  {
+    "value": "backpack",
+    "displayValue": "Back Bling",
+    "backendValue": "AthenaBackpack"
+  },
+  {
+    "value": "banner",
+    "displayValue": "Banner",
+    "backendValue": "BannerToken"
+  },
+  {
+    "value": "petcarrier",
+    "displayValue": "Pet",
+    "backendValue": "AthenaPetCarrier"
+  },
+  {
+    "value": "pet",
+    "displayValue": "Pet",
+    "backendValue": "AthenaPet"
+  },
+  {
+    "value": "pickaxe",
+    "displayValue": "Pickaxe",
+    "backendValue": "AthenaPickaxe"
+  },
+  {
+    "value": "outfit",
+    "displayValue": "Outfit",
+    "backendValue": "AthenaCharacter"
+  },
+  {
+    "value": "wrap",
+    "displayValue": "Wrap",
+    "backendValue": "AthenaItemWrap"
+  },
+  {
+    "value": "contrail",
+    "displayValue": "Contrail",
+    "backendValue": "AthenaSkyDiveContrail"
+  },
+  {
+    "value": "glider",
+    "displayValue": "Glider",
+    "backendValue": "AthenaGlider"
+  },
+  {
+    "value": "emote",
+    "displayValue": "Emote",
+    "backendValue": "AthenaDance"
+  },
+  {
+    "value": "emoji",
+    "displayValue": "Emoticon",
+    "backendValue": "AthenaEmoji"
+  },
+  {
+    "value": "loadingscreen",
+    "displayValue": "Loading Screen",
+    "backendValue": "AthenaLoadingScreen"
+  },
+  {
+    "value": "music",
+    "displayValue": "Music",
+    "backendValue": "AthenaMusicPack"
+  },
+  {
+    "value": "shoe",
+    "displayValue": "Shoes",
+    "backendValue": "CosmeticShoes"
+  },
+  {
+    "value": "aura",
+    "displayValue": "Aura",
+    "backendValue": "SparksAura"
+  },
+  {
+    "value": "spray",
+    "displayValue": "Spray",
+    "backendValue": "AthenaSpray"
+  },
+  {
+    "value": "toy",
+    "displayValue": "Toy",
+    "backendValue": "AthenaToy"
+  }
+]

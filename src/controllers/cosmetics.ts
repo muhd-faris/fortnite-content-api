@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 import { FortniteComBaseUrl } from '../constants';
 import { CustomException } from '../helpers';
 import {
@@ -343,9 +345,21 @@ export const syncCosmeticTypesV1 = async (c: TCFContext) => {
     const uniqueSeries = Array.from(
         new Map(rawSeriesData.map((item) => [item.backendValue, item])).values()
     );
-    // console.log()
-    // 1. Delete from Database before inserting new one
-    // 2. Create Record to Database
+
+    const jsonString = JSON.stringify(uniqueSeries, null, 2);
+    const filePath = './src/data/cosmetic_festival_types.json';
+    console.log('Test1')
+    fs.writeFileSync(filePath, jsonString)
+
+    console.log('Test')
+    // (err) => {
+    //     if (err) {
+    //         throw new CustomException(
+    //             'There was an error while trying to save the new sync data. Please try again later.',
+    //             500
+    //         )
+    //     };
+    // });
 
     return c.json({ message: `Successfully sync ${uniqueSeries.length} series data.`, data: uniqueSeries });
 };

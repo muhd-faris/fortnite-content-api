@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify",
-    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "generate:data": "npx tsx src/helpers/data-generators.ts"
   },
   "dependencies": {
     "@upstash/redis": "^1.35.6",
