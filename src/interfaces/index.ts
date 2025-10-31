@@ -2,7 +2,11 @@ export { IRootCarCosmeticListing } from './car-cosmetic-listing';
 export {
     IRootCosmeticListing,
     ISeries,
-    IType
+    IType,
+    IVariant,
+    IIntroduction,
+    ISet
 } from './cosmetic-listing';
 export { IRootInstrumentListing } from './instrument-listing';
+export { IRootRecentCosmetic } from './recent-cosmetic.interface';
 export { IRootTrackListing } from './track-listing';

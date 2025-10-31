@@ -28,7 +28,7 @@ export interface ISeries {
     image?: string;
 };
 
-interface IVariant {
+export interface IVariant {
     channel: string;
     type: string;
     options: IVariantOption[];
@@ -41,7 +41,7 @@ interface IVariantOption {
     unlockRequirements?: string;
 };
 
-interface IIntroduction {
+export interface IIntroduction {
     chapter: string;
     season: string;
     text: string;
@@ -68,7 +68,7 @@ interface ILego {
     large: string;
 };
 
-interface ISet {
+export interface ISet {
     value: string;
     text: string;
     backendValue: string;
