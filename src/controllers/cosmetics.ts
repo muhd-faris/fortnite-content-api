@@ -1,5 +1,9 @@
 import fs from 'fs';
 
+import brSeriesData from '../data/cosmetic_br_series.json';
+import brCosmeticTypesData from '../data/cosmetic_br_types.json';
+import festivalCosmeticTypesData from '../data/cosmetic_festival_types.json';
+
 import { FortniteComBaseUrl } from '../constants';
 import { CustomException } from '../helpers';
 import {
@@ -13,7 +17,12 @@ import {
 import { TCFContext } from '../types';
 import { SearchCosmeticValidationSchema } from '../validations';
 
-export const getCosmeticFiltersV1 = (c: TCFContext) => {
+export const getCosmeticFiltersV1 = async (c: TCFContext) => {
+    const brCosmeticTypes = brCosmeticTypesData
+        .map(c => ({ group: 'battle_royale', value: c.value, display_name: c.display_name }));
+    const festivalCosmeticTypes = festivalCosmeticTypesData
+        .map(c => ({ group: 'festival', value: c.value, display_name: c.display_name }));
+
     const filters = {
         general: ['upcoming', 'reactive'],
         experience: [
@@ -31,82 +40,20 @@ export const getCosmeticFiltersV1 = (c: TCFContext) => {
             }
         ],
         cosmetic_types: [
+            ...brCosmeticTypes,
+            ...festivalCosmeticTypes,
             {
-                group: '',
-                value: '',
-                name: 'Outfit'
-            },
-            {
-                group: '',
-                value: '',
-                name: 'Back Bling'
-            },
-            {
-                group: '',
-                value: '',
-                name: 'Pickaxe'
-            },
-            {
-                group: '',
-                value: '',
-                name: 'Glider'
-            },
-            {
-                group: '',
-                value: '',
-                name: 'Kicks'
-            },
-            {
-                group: '',
-                value: '',
-                name: 'Contrail'
-            },
-            {
-                group: '',
-                value: '',
-                name: 'Aura'
-            },
-            {
-                group: '',
-                value: '',
-                name: 'Emote'
-            },
-            {
-                group: '',
-                value: '',
-                name: 'Wrap'
-            },
-            // Festival
-            {
-                group: '',
-                value: '',
-                name: 'Bass'
-            },
-            {
-                group: '',
-                value: '',
-                name: 'Guitar'
-            },
-            {
-                group: '',
-                value: '',
-                name: 'Drums'
-            },
-            {
-                group: '',
-                value: '',
-                name: 'Keytar'
-            },
-            {
-                group: '',
-                value: '',
-                name: 'Microphone'
-            },
-            {
-                group: '',
-                value: '',
-                name: 'Jam Tracks'
+                group: 'festival',
+                value: 'jam_track',
+                display_name: 'Jam Tracks'
             }
+        ],
+        series: [
+            {
+                backend_value: 'all',
+                display_name: 'All'
+            },
+            ...brSeriesData
         ]
     };
 

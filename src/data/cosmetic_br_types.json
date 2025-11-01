@@ -1,0 +1,52 @@
+[
+  {
+    "backend_value": "SparksAura",
+    "display_name": "Aura",
+    "value": "aura"
+  },
+  {
+    "backend_value": "AthenaBackpack",
+    "display_name": "Back Bling",
+    "value": "backpack"
+  },
+  {
+    "backend_value": "AthenaSkyDiveContrail",
+    "display_name": "Contrail",
+    "value": "contrail"
+  },
+  {
+    "backend_value": "AthenaDance",
+    "display_name": "Emote",
+    "value": "emote"
+  },
+  {
+    "backend_value": "AthenaGlider",
+    "display_name": "Glider",
+    "value": "glider"
+  },
+  {
+    "backend_value": "AthenaMusicPack",
+    "display_name": "Music",
+    "value": "music"
+  },
+  {
+    "backend_value": "AthenaCharacter",
+    "display_name": "Outfit",
+    "value": "outfit"
+  },
+  {
+    "backend_value": "AthenaPickaxe",
+    "display_name": "Pickaxe",
+    "value": "pickaxe"
+  },
+  {
+    "backend_value": "CosmeticShoes",
+    "display_name": "Shoes",
+    "value": "shoe"
+  },
+  {
+    "backend_value": "AthenaItemWrap",
+    "display_name": "Wrap",
+    "value": "wrap"
+  }
+]

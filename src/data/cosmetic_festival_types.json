@@ -1,87 +1,27 @@
 [
   {
-    "value": "backpack",
-    "displayValue": "Back Bling",
-    "backendValue": "AthenaBackpack"
+    "backend_value": "SparksBass",
+    "display_name": "Bass",
+    "value": "bass"
   },
   {
-    "value": "banner",
-    "displayValue": "Banner",
-    "backendValue": "BannerToken"
+    "backend_value": "SparksDrum",
+    "display_name": "Drums",
+    "value": "drum"
   },
   {
-    "value": "petcarrier",
-    "displayValue": "Pet",
-    "backendValue": "AthenaPetCarrier"
+    "backend_value": "SparksGuitar",
+    "display_name": "Guitar",
+    "value": "guitar"
   },
   {
-    "value": "pet",
-    "displayValue": "Pet",
-    "backendValue": "AthenaPet"
+    "backend_value": "SparksKeyboard",
+    "display_name": "Keytar",
+    "value": "keyboard"
   },
   {
-    "value": "pickaxe",
-    "displayValue": "Pickaxe",
-    "backendValue": "AthenaPickaxe"
-  },
-  {
-    "value": "outfit",
-    "displayValue": "Outfit",
-    "backendValue": "AthenaCharacter"
-  },
-  {
-    "value": "wrap",
-    "displayValue": "Wrap",
-    "backendValue": "AthenaItemWrap"
-  },
-  {
-    "value": "contrail",
-    "displayValue": "Contrail",
-    "backendValue": "AthenaSkyDiveContrail"
-  },
-  {
-    "value": "glider",
-    "displayValue": "Glider",
-    "backendValue": "AthenaGlider"
-  },
-  {
-    "value": "emote",
-    "displayValue": "Emote",
-    "backendValue": "AthenaDance"
-  },
-  {
-    "value": "emoji",
-    "displayValue": "Emoticon",
-    "backendValue": "AthenaEmoji"
-  },
-  {
-    "value": "loadingscreen",
-    "displayValue": "Loading Screen",
-    "backendValue": "AthenaLoadingScreen"
-  },
-  {
-    "value": "music",
-    "displayValue": "Music",
-    "backendValue": "AthenaMusicPack"
-  },
-  {
-    "value": "shoe",
-    "displayValue": "Shoes",
-    "backendValue": "CosmeticShoes"
-  },
-  {
-    "value": "aura",
-    "displayValue": "Aura",
-    "backendValue": "SparksAura"
-  },
-  {
-    "value": "spray",
-    "displayValue": "Spray",
-    "backendValue": "AthenaSpray"
-  },
-  {
-    "value": "toy",
-    "displayValue": "Toy",
-    "backendValue": "AthenaToy"
+    "backend_value": "SparksMic",
+    "display_name": "Microphone",
+    "value": "mic"
   }
 ]

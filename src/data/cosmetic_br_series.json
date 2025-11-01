@@ -1,0 +1,46 @@
+[
+  {
+    "backend_value": "CrewSeries",
+    "display_name": "Crew Series"
+  },
+  {
+    "backend_value": "CUBESeries",
+    "display_name": "Dark Series"
+  },
+  {
+    "backend_value": "DCUSeries",
+    "display_name": "DC Series"
+  },
+  {
+    "backend_value": "FrozenSeries",
+    "display_name": "Frozen Series"
+  },
+  {
+    "backend_value": "PlatformSeries",
+    "display_name": "Gaming Legends Series"
+  },
+  {
+    "backend_value": "CreatorCollabSeries",
+    "display_name": "Icon Series"
+  },
+  {
+    "backend_value": "LavaSeries",
+    "display_name": "Lava Series"
+  },
+  {
+    "backend_value": "MarvelSeries",
+    "display_name": "Marvel Series"
+  },
+  {
+    "backend_value": "ShadowSeries",
+    "display_name": "Shadow Series"
+  },
+  {
+    "backend_value": "SlurpSeries",
+    "display_name": "Slurp Series"
+  },
+  {
+    "backend_value": "ColumbusSeries",
+    "display_name": "Star Wars Series"
+  }
+]
