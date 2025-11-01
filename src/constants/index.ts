@@ -1,1 +1,4 @@
-export { FortniteComBaseUrl } from './configs';
+export {
+    FortniteComBaseUrl,
+    UnsupportedBrTypes
+} from './configs';

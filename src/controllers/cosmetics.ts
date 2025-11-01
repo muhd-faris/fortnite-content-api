@@ -1,13 +1,14 @@
-import fs from 'fs';
-
 import brSeriesData from '../data/cosmetic_br_series.json';
 import brCosmeticTypesData from '../data/cosmetic_br_types.json';
 import festivalCosmeticTypesData from '../data/cosmetic_festival_types.json';
 
-import { FortniteComBaseUrl } from '../constants';
+import {
+    FortniteComBaseUrl,
+    UnsupportedBrTypes
+} from '../constants';
 import { CustomException } from '../helpers';
 import {
-    ICosmeticListingData,
+    IFECosmeticListing,
     IRootCarCosmeticListing,
     IRootCosmeticListing,
     IRootInstrumentListing,
@@ -15,7 +16,10 @@ import {
     IRootTrackListing
 } from '../interfaces';
 import { TCFContext } from '../types';
-import { SearchCosmeticValidationSchema } from '../validations';
+import {
+    ExperienceValidationSchema,
+    SearchCosmeticValidationSchema
+} from '../validations';
 
 export const getCosmeticFiltersV1 = async (c: TCFContext) => {
     const brCosmeticTypes = brCosmeticTypesData
@@ -40,6 +44,11 @@ export const getCosmeticFiltersV1 = async (c: TCFContext) => {
             }
         ],
         cosmetic_types: [
+            {
+                group: 'all',
+                value: 'all',
+                display_name: 'All'
+            },
             ...brCosmeticTypes,
             ...festivalCosmeticTypes,
             {
@@ -60,89 +69,12 @@ export const getCosmeticFiltersV1 = async (c: TCFContext) => {
     return c.json(filters);
 };
 
-export const searchCosmeticsV1 = async (c: TCFContext) => {
-    // TODO: Implement Language
+export const searchBrCosmeticsV1 = async (c: TCFContext) => {
     const lang = c.req.query('lang') || 'en';
     const body = SearchCosmeticValidationSchema.parse(await c.req.json());
 
-    if (body.experience === 'rocket_racing') {
-        const fetchedCosmeticListing = await fetch(`${FortniteComBaseUrl}/v2/cosmetics/cars`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        const cosmeticListingJson = await fetchedCosmeticListing.json() as IRootCarCosmeticListing;
-
-        if (cosmeticListingJson.status !== 200) {
-            throw new CustomException(
-                'Error occured from the server. Sorry about that please try again shortly.',
-                500
-            );
-        };
-
-        const data = cosmeticListingJson.data.map(d => ({
-            id: d.id,
-            name: d.name,
-            item_type: d.type.displayValue,
-            card_bg_color: 'linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))',
-            overlay_bg_color: 'linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)',
-            // TODO: Add Fallback icon
-            transparent_image: d.images?.large || ''
-        }));
-
-        return c.json(data);
-    };
-
-    if (body.experience === 'festival') {
-        const fetchedTrackListing = await fetch(`${FortniteComBaseUrl}/v2/cosmetics/tracks`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        const trackListingJson = await fetchedTrackListing.json() as IRootTrackListing;
-
-        const trackData = trackListingJson.data.map(d => ({
-            id: d.id,
-            name: d.title,
-            item_type: d.artist,
-            card_bg_color: 'linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))',
-            overlay_bg_color: 'linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)',
-            // TODO: Add Fallback icon
-            transparent_image: d.albumArt
-        }));
-
-        const fetchedInstrumentListing = await fetch(`${FortniteComBaseUrl}/v2/cosmetics/instruments`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        const instrumentListingJson = await fetchedInstrumentListing.json() as IRootInstrumentListing;
-
-        if (trackListingJson.status !== 200 || instrumentListingJson.status !== 200) {
-            throw new CustomException(
-                'Error occured from the server. Sorry about that please try again shortly.',
-                500
-            );
-        };
-
-        const instrumentData = instrumentListingJson.data.map(d => ({
-            id: d.id,
-            name: d.name,
-            item_type: d.type.displayValue,
-            card_bg_color: 'linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))',
-            overlay_bg_color: 'linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)',
-            transparent_image: d.images.large
-        }));
-
-        const data = instrumentData.concat(trackData);
-
-        return c.json(data);
-    };
-
     const params = new URLSearchParams();
+    params.append('language', lang);
     params.append('name', body.name);
     params.append('type', body.cosmetic_type);
     params.append('matchMethod', 'contains');
@@ -177,11 +109,10 @@ export const searchCosmeticsV1 = async (c: TCFContext) => {
 };
 
 export const getRecentlyAddedCosmeticsV1 = async (c: TCFContext) => {
-    // TODO: Implement Language
     const lang = c.req.query('lang') || 'en';
-    const { experience } = await c.req.json();
+    const { experience } = ExperienceValidationSchema.parse(await c.req.json());
 
-    const fetchedCosmeticListing = await fetch(`${FortniteComBaseUrl}/v2/cosmetics/new`, {
+    const fetchedCosmeticListing = await fetch(`${FortniteComBaseUrl}/v2/cosmetics/new?language=${lang}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -197,10 +128,17 @@ export const getRecentlyAddedCosmeticsV1 = async (c: TCFContext) => {
     };
 
     if (experience === 'battle_royale') {
-        const data = cosmeticListingJson.data.items.br.map(d => ({
+        const filteredBrData = cosmeticListingJson.data.items.br
+            .filter(c => !UnsupportedBrTypes.includes(c.type.backendValue))
+            // Filter out test names
+            .filter(c => !['null', 'test', 'undefined'].includes(c.name));
+        const data: IFECosmeticListing[] = filteredBrData.map(d => ({
             id: d.id,
             name: d.name,
-            item_type: d.type.displayValue,
+            item_type: {
+                id: d.type.value,
+                name: d.type.displayValue
+            },
             card_bg_color: 'linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))',
             overlay_bg_color: 'linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)',
             // TODO: Add Fallback icon
@@ -211,10 +149,13 @@ export const getRecentlyAddedCosmeticsV1 = async (c: TCFContext) => {
     };
 
     if (experience === 'rocket_racing') {
-        const data = cosmeticListingJson.data.items.cars.map(d => ({
+        const data: IFECosmeticListing[] = cosmeticListingJson.data.items.cars.map(d => ({
             id: d.id,
             name: d.name,
-            item_type: d.type.displayValue,
+            item_type: {
+                id: d.type.value,
+                name: d.type.displayValue
+            },
             card_bg_color: 'linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))',
             overlay_bg_color: 'linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)',
             transparent_image: d.images.large
@@ -223,18 +164,24 @@ export const getRecentlyAddedCosmeticsV1 = async (c: TCFContext) => {
         return c.json(data);
     };
 
-    const trackData = cosmeticListingJson.data.items.tracks.map(d => ({
+    const trackData: IFECosmeticListing[] = cosmeticListingJson.data.items.tracks.map(d => ({
         id: d.id,
         name: d.title,
-        item_type: d.artist,
+        item_type: {
+            id: '',
+            name: d.artist
+        },
         card_bg_color: 'linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))',
         overlay_bg_color: 'linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)',
         transparent_image: d.albumArt
     }));
-    const instrumentData = cosmeticListingJson.data.items.instruments.map(d => ({
+    const instrumentData: IFECosmeticListing[] = cosmeticListingJson.data.items.instruments.map(d => ({
         id: d.id,
         name: d.name,
-        item_type: d.type.displayValue,
+        item_type: {
+            id: d.type.value,
+            name: d.type.displayValue
+        },
         card_bg_color: 'linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))',
         overlay_bg_color: 'linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)',
         transparent_image: d.images.large
@@ -244,69 +191,84 @@ export const getRecentlyAddedCosmeticsV1 = async (c: TCFContext) => {
     return c.json(data);
 };
 
+export const getRocketRacingListingV1 = async (c: TCFContext) => {
+    const lang = c.req.query('lang') || 'en';
+
+    const fetchedCosmeticListing = await fetch(`${FortniteComBaseUrl}/v2/cosmetics/cars?language=${lang}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const cosmeticListingJson = await fetchedCosmeticListing.json() as IRootCarCosmeticListing;
+
+    if (cosmeticListingJson.status !== 200) {
+        throw new CustomException(
+            'Error occured from the server. Sorry about that please try again shortly.',
+            500
+        );
+    };
+
+    const data = cosmeticListingJson.data.map(d => ({
+        id: d.id,
+        name: d.name,
+        item_type: d.type.displayValue,
+        card_bg_color: 'linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))',
+        overlay_bg_color: 'linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)',
+        // TODO: Add Fallback icon
+        transparent_image: d.images?.large || ''
+    }));
+
+    return c.json(data);
+};
+
+export const getFestivalListingV1 = async (c: TCFContext) => {
+    const lang = c.req.query('lang') || 'en';
+
+    const fetchedTrackListing = await fetch(`${FortniteComBaseUrl}/v2/cosmetics/tracks?language=${lang}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const trackListingJson = await fetchedTrackListing.json() as IRootTrackListing;
+
+    const trackData = trackListingJson.data.map(d => ({
+        id: d.id,
+        name: d.title,
+        item_type: d.artist,
+        card_bg_color: 'linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))',
+        overlay_bg_color: 'linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)',
+        transparent_image: d.albumArt
+    }));
+
+    const fetchedInstrumentListing = await fetch(`${FortniteComBaseUrl}/v2/cosmetics/instruments?language=${lang}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const instrumentListingJson = await fetchedInstrumentListing.json() as IRootInstrumentListing;
+
+    if (trackListingJson.status !== 200 || instrumentListingJson.status !== 200) {
+        throw new CustomException(
+            'Error occured from the server. Sorry about that please try again shortly.',
+            500
+        );
+    };
+
+    const instrumentData = instrumentListingJson.data.map(d => ({
+        id: d.id,
+        name: d.name,
+        item_type: d.type.displayValue,
+        card_bg_color: 'linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))',
+        overlay_bg_color: 'linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)',
+        transparent_image: d.images.large
+    }));
+
+    const data = instrumentData.concat(trackData);
+
+    return c.json(data);
+};
+
 export const getCosmeticDetailsV1 = async (c: TCFContext) => { };
-
-export const syncCosmeticSeriesToDbV1 = async (c: TCFContext) => {
-    const fetchedCosmeticListing = await fetch(`${FortniteComBaseUrl}/v2/cosmetics/br`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-    const cosmeticListingJson = await fetchedCosmeticListing.json() as { status: number; data: ICosmeticListingData[] };
-
-    if (cosmeticListingJson.status !== 200) {
-        throw new CustomException(
-            'Error occured from the server. Sorry about that please try again shortly.',
-            500
-        );
-    };
-
-    const rawSeriesData = cosmeticListingJson.data.map(d => d.series).filter(d => d !== undefined);
-    const uniqueSeries = Array.from(
-        new Map(rawSeriesData.map((item) => [item.backendValue, item])).values()
-    );
-    // 1. Delete from Database before inserting new one
-    // 2. Create Record to Database
-
-    return c.json({ message: `Successfully sync ${uniqueSeries.length} series data.` });
-};
-
-export const syncCosmeticTypesV1 = async (c: TCFContext) => {
-    const fetchedCosmeticListing = await fetch(`${FortniteComBaseUrl}/v2/cosmetics/br`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-    const cosmeticListingJson = await fetchedCosmeticListing.json() as { status: number; data: ICosmeticListingData[] };
-
-    if (cosmeticListingJson.status !== 200) {
-        throw new CustomException(
-            'Error occured from the server. Sorry about that please try again shortly.',
-            500
-        );
-    };
-
-    const rawSeriesData = cosmeticListingJson.data.map(d => d.type).filter(d => d !== undefined);
-    const uniqueSeries = Array.from(
-        new Map(rawSeriesData.map((item) => [item.backendValue, item])).values()
-    );
-
-    const jsonString = JSON.stringify(uniqueSeries, null, 2);
-    const filePath = './src/data/cosmetic_festival_types.json';
-    console.log('Test1')
-    fs.writeFileSync(filePath, jsonString)
-
-    console.log('Test')
-    // (err) => {
-    //     if (err) {
-    //         throw new CustomException(
-    //             'There was an error while trying to save the new sync data. Please try again later.',
-    //             500
-    //         )
-    //     };
-    // });
-
-    return c.json({ message: `Successfully sync ${uniqueSeries.length} series data.`, data: uniqueSeries });
-};

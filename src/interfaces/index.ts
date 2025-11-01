@@ -8,6 +8,7 @@ export {
     IIntroduction,
     ISet
 } from './cosmetic-listing';
+export { IFECosmeticListing } from './cosmetic.interface';
 export { IRootInstrumentListing } from './instrument-listing';
 export { IRootRecentCosmetic } from './recent-cosmetic.interface';
 export { IRootTrackListing } from './track-listing';

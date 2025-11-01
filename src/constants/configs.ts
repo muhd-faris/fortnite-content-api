@@ -15,3 +15,13 @@ export const SupportedLanguage = [
     { display_name: 'Simplified Chinese', value: 'zh-Hans' },
     { display_name: 'Portuguese (Brazil)', value: 'pt-BR' }
 ].sort((a, b) => a.display_name.localeCompare(b.display_name));
+
+export const UnsupportedBrTypes: string[] = [
+    'BannerToken',
+    'AthenaEmoji',
+    'AthenaLoadingScreen',
+    'AthenaPetCarrier',
+    'AthenaPet',
+    'AthenaSpray',
+    'AthenaToy'
+];

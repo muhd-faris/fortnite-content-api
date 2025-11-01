@@ -1,6 +1,9 @@
 import fs from 'fs';
 
-import { FortniteComBaseUrl } from '../constants';
+import {
+    FortniteComBaseUrl,
+    UnsupportedBrTypes
+} from '../constants';
 import { IRootCosmeticListing, IRootInstrumentListing } from '../interfaces';
 import { CustomException } from './app-error';
 
@@ -26,21 +29,11 @@ const syncBrCosmeticTypes = async () => {
 
     console.log('API call success. Mapping the data...');
 
-    const excludedTypes: string[] = [
-        'BannerToken',
-        'AthenaEmoji',
-        'AthenaLoadingScreen',
-        'AthenaPetCarrier',
-        'AthenaPet',
-        'AthenaSpray',
-        'AthenaToy'
-    ];
-
     const rawCosmeticType = cosmeticListingJson.data
         .map(d => d.type)
         .filter(d => d !== undefined)
         .map(t => ({ backend_value: t.backendValue, display_name: t.displayValue, value: t.value }))
-        .filter(t => !excludedTypes.includes(t.backend_value));
+        .filter(t => !UnsupportedBrTypes.includes(t.backend_value));
     const uniqueCosmeticTypes = Array.from(
         new Map(rawCosmeticType.map((item) => [item.backend_value, item])).values()
     ).sort((a, b) => a.display_name.localeCompare(b.display_name));
@@ -145,14 +138,14 @@ const syncBrCosmeticSeries = async () => {
 };
 
 function titleCasePreserveAcronyms(s: string): string {
-  return s
-    .split(/\s+/)
-    .map((word) => {
-      // If word is all letters and all uppercase and short (<=3),
-      // treat it as an acronym and preserve uppercase.
-      if (/^[A-Z]{2,3}$/.test(word)) return word;
-      // Otherwise title-case: first char uppercase, rest lowercase
-      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-    })
-    .join(" ");
+    return s
+        .split(/\s+/)
+        .map((word) => {
+            // If word is all letters and all uppercase and short (<=3),
+            // treat it as an acronym and preserve uppercase.
+            if (/^[A-Z]{2,3}$/.test(word)) return word;
+            // Otherwise title-case: first char uppercase, rest lowercase
+            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        })
+        .join(" ");
 };
