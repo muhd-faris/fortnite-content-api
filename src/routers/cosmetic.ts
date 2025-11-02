@@ -1,6 +1,7 @@
 import { Hono } from 'hono';
 
 import {
+    getCosmeticDetailsV1,
     getCosmeticFiltersV1,
     getFestivalListingV1,
     getRecentlyAddedCosmeticsV1,
@@ -13,6 +14,7 @@ const app = new Hono();
 const v1BaseName = '/v1/cosmetics';
 
 app.get(`${v1BaseName}/filter-config`, asyncHandler(getCosmeticFiltersV1));
+app.get(`${v1BaseName}/:id`, asyncHandler(getCosmeticDetailsV1));
 app.post(`${v1BaseName}/search-br`, asyncHandler(searchBrCosmeticsV1));
 app.post(`${v1BaseName}/rocket-racing`, asyncHandler(getRocketRacingListingV1));
 app.post(`${v1BaseName}/festival`, asyncHandler(getFestivalListingV1));

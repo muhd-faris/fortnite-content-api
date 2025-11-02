@@ -10,7 +10,7 @@ export interface ICosmeticListingData {
     type: IType;
     rarity: IType;
     set?: ISet;
-    images: IImages;
+    images: IBRImages;
     added: string;
     introduction?: IIntroduction;
     variants?: IVariant[];
@@ -48,7 +48,7 @@ export interface IIntroduction {
     backendValue: number;
 };
 
-interface IImages {
+export interface IBRImages {
     smallIcon: string;
     icon?: string;
     featured?: string;

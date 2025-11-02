@@ -1,3 +1,4 @@
+export { IBaseProviderResponse } from './base-provider-response.interface';
 export { IRootCarCosmeticListing } from './car-cosmetic-listing';
 export {
     IRootCosmeticListing,
@@ -6,9 +7,13 @@ export {
     IType,
     IVariant,
     IIntroduction,
-    ISet
+    ISet,
+    IBRImages
 } from './cosmetic-listing';
-export { IFECosmeticListing } from './cosmetic.interface';
+export {
+    IFECosmeticListing,
+    ICosmeticDetailsData
+} from './cosmetic.interface';
 export { IRootInstrumentListing } from './instrument-listing';
 export { IRootRecentCosmetic } from './recent-cosmetic.interface';
 export { IRootTrackListing } from './track-listing';

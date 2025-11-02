@@ -6,7 +6,7 @@ import {
     FortniteComBaseUrl,
     UnsupportedBrTypes
 } from '../constants';
-import { CustomException } from '../helpers';
+import { CustomException, hasValueInTag } from '../helpers';
 import {
     IFECosmeticListing,
     IRootCarCosmeticListing,
@@ -15,7 +15,7 @@ import {
     IRootRecentCosmetic,
     IRootTrackListing
 } from '../interfaces';
-import { TCFContext } from '../types';
+import { TCFContext, TRootCosmeticDetails } from '../types';
 import {
     ExperienceValidationSchema,
     SearchCosmeticValidationSchema
@@ -278,4 +278,53 @@ export const getFestivalListingV1 = async (c: TCFContext) => {
     return c.json(data);
 };
 
-export const getCosmeticDetailsV1 = async (c: TCFContext) => { };
+export const getCosmeticDetailsV1 = async (c: TCFContext) => {
+    const id = c.req.param('id')?.toLowerCase();
+    const lang = c.req.query('lang') || 'en';
+
+    const params = new URLSearchParams();
+    params.append('language', lang);
+    params.append('responseFlags', '7');
+
+    const url: string = `${FortniteComBaseUrl}/v2/cosmetics/br/${id}?${params.toString()}`;
+    const fetchedCosmeticDetails = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const cosmeticDetailsJson = await fetchedCosmeticDetails.json() as TRootCosmeticDetails;
+
+    if (cosmeticDetailsJson.status === 404) {
+        throw new CustomException(
+            'The id you are looking for does not exists. Please ensure you are searching for the correct ID.',
+            404
+        );
+    };
+
+    const data = cosmeticDetailsJson.data;
+    const freeBattlePass = hasValueInTag(data.gameplayTags ?? [], 'battlepass.free');
+    const paidBattlePass = hasValueInTag(data.gameplayTags ?? [], 'battlepass.paid');
+    const response = {
+        id: data.id.toLowerCase(),
+        name: data.name.toUpperCase(),
+        description: data.description,
+        item_type: {
+            id: data.type.value,
+            name: data.type.displayValue
+        },
+        reactive: hasValueInTag(data.gameplayTags ?? [], 'reactive'),
+        built_in_emote: data.builtInEmoteIds ? true : false,
+        battle_pass: freeBattlePass ? 'Free' : paidBattlePass ? 'Paid' : null,
+        series: data.series ? {
+            id: data.series.backendValue,
+            name: data.series.value
+        } : null,
+        set: data.set ? {
+            id: data.set.backendValue,
+            name: data.set.value
+        } : null
+    };
+
+    return c.json(response);
+};
