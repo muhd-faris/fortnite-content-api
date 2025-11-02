@@ -76,9 +76,16 @@ export const searchBrCosmeticsV1 = async (c: TCFContext) => {
     const params = new URLSearchParams();
     params.append('language', lang);
     params.append('name', body.name);
-    params.append('type', body.cosmetic_type);
     params.append('matchMethod', 'contains');
     params.append('responseFlags', '7');
+
+    if (body.item_type !== 'all') {
+        params.append('type', body.item_type);
+    };
+
+    if (body.item_series !== 'all') {
+        params.append('backendSeries', body.item_series);
+    };
 
     const fetchedCosmeticListing = await fetch(`${FortniteComBaseUrl}/v2/cosmetics/br/search/all?${params.toString()}`, {
         method: 'GET',

@@ -1,4 +1,5 @@
 export {
     FortniteComBaseUrl,
-    UnsupportedBrTypes
+    UnsupportedBrTypes,
+    SupportedItemTypesVal
 } from './configs';

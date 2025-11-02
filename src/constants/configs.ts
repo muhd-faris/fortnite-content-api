@@ -1,3 +1,6 @@
+import brCosmeticTypesData from '../data/cosmetic_br_types.json';
+import festivalCosmeticTypesData from '../data/cosmetic_festival_types.json';
+
 export const FortniteComBaseUrl: string = 'https://fortnite-api.com';
 
 export const SupportedLanguage = [
@@ -24,4 +27,10 @@ export const UnsupportedBrTypes: string[] = [
     'AthenaPet',
     'AthenaSpray',
     'AthenaToy'
+];
+
+export const SupportedItemTypesVal: string[] = [
+    'all',
+    ...brCosmeticTypesData.map(t => t.value),
+    ...festivalCosmeticTypesData.map(t => t.value)
 ];
