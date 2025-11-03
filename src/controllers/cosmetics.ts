@@ -305,10 +305,12 @@ export const getCosmeticDetailsV1 = async (c: TCFContext) => {
     const data = cosmeticDetailsJson.data;
     const freeBattlePass = hasValueInTag(data.gameplayTags ?? [], 'battlepass.free');
     const paidBattlePass = hasValueInTag(data.gameplayTags ?? [], 'battlepass.paid');
+    const shopHistory = data.shopHistory?.sort((a, b) => new Date(b).getTime() - new Date(a).getTime()) ?? [];
     const response = {
         id: data.id.toLowerCase(),
         name: data.name.toUpperCase(),
         description: data.description,
+        main_image: data.images.smallIcon,
         item_type: {
             id: data.type.value,
             name: data.type.displayValue
@@ -323,7 +325,10 @@ export const getCosmeticDetailsV1 = async (c: TCFContext) => {
         set: data.set ? {
             id: data.set.backendValue,
             name: data.set.value
-        } : null
+        } : null,
+        season_introduced: data.introduction?.text ?? null,
+        added_at: data.added,
+        shop_history: shopHistory
     };
 
     return c.json(response);
