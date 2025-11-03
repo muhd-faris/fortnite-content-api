@@ -11,6 +11,7 @@ export {
     IBRImages
 } from './cosmetic-listing';
 export {
+    IBRStyleFE,
     IFECosmeticListing,
     ICosmeticDetailsData
 } from './cosmetic.interface';

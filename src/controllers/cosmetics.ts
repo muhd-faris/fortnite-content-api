@@ -8,12 +8,15 @@ import {
 } from '../constants';
 import { CustomException, hasValueInTag } from '../helpers';
 import {
+    IBRImages,
+    IBRStyleFE,
     IFECosmeticListing,
     IRootCarCosmeticListing,
     IRootCosmeticListing,
     IRootInstrumentListing,
     IRootRecentCosmetic,
-    IRootTrackListing
+    IRootTrackListing,
+    IVariant
 } from '../interfaces';
 import { TCFContext, TRootCosmeticDetails } from '../types';
 import {
@@ -328,8 +331,29 @@ export const getCosmeticDetailsV1 = async (c: TCFContext) => {
         } : null,
         season_introduced: data.introduction?.text ?? null,
         added_at: data.added,
-        shop_history: shopHistory
+        shop_history: shopHistory,
+        styles: generateItemStyles(data.images, data.variants || [])
     };
 
     return c.json(response);
+};
+
+function generateItemStyles(images: IBRImages, variants: IVariant[]): IBRStyleFE[] {
+    const styles: IBRStyleFE[] = [];
+
+    if (images.lego) {
+        styles.push({ image: images.lego.large, mode: 'Fortnite LEGO' });
+    };
+
+    if (images.bean) {
+        styles.push({ image: images.bean.large, mode: 'Fall Guys' });
+    };
+
+    variants.forEach(v => {
+        v.options.forEach(opt => {
+            styles.push({ image: opt.image, mode: 'Battle Royale' });
+        });
+    });
+
+    return styles;
 };

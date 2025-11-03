@@ -12,6 +12,11 @@ interface IFECosmeticType {
     name: string;
 };
 
+export interface IBRStyleFE {
+    image: string;
+    mode: string;
+};
+
 export interface IFECosmeticListing {
     id: string;
     name: string;
