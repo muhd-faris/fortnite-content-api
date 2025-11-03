@@ -45,6 +45,11 @@
     "value": "shoe"
   },
   {
+    "backend_value": "CosmeticCompanion",
+    "display_name": "Sidekick",
+    "value": "sidekick"
+  },
+  {
     "backend_value": "AthenaItemWrap",
     "display_name": "Wrap",
     "value": "wrap"
