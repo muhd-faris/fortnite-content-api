@@ -338,6 +338,42 @@ export const getCosmeticDetailsV1 = async (c: TCFContext) => {
     return c.json(response);
 };
 
+export const getCosmeticsBySeriesV1 = async (c: TCFContext) => {
+    const lang = c.req.query('lang') || 'en';
+    // TODO: Use Zod
+    const { series } = await c.req.json();
+
+    const params = new URLSearchParams();
+    params.append('language', lang);
+    params.append('backendSeries', series);
+
+    const fetchedCosmeticListing = await fetch(`${FortniteComBaseUrl}/v2/cosmetics/br/search/all?${params.toString()}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const cosmeticListingJson = await fetchedCosmeticListing.json() as IRootCosmeticListing;
+
+    if (cosmeticListingJson.status !== 200) {
+        throw new CustomException(
+            'Error occured from the server. Sorry about that please try again shortly.',
+            500
+        );
+    };
+
+    const data = cosmeticListingJson.data.map(d => ({
+        id: d.id,
+        name: d.name,
+        item_type: d.type.displayValue,
+        card_bg_color: 'linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))',
+        overlay_bg_color: 'linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)',
+        transparent_image: d.images.icon || d.images.smallIcon
+    }));
+
+    return c.json(data);
+};
+
 function generateItemStyles(images: IBRImages, variants: IVariant[]): IBRStyleFE[] {
     const styles: IBRStyleFE[] = [];
 
