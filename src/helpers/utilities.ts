@@ -27,3 +27,16 @@ export const formatBrListingResponse = (data: ICosmeticListingData[]): IFECosmet
             transparent_image: d.images?.featured ?? d.images?.icon ?? d.images.smallIcon
         }));
 };
+
+export const titleCasePreserveAcronyms = (value: string): string => {
+    return value
+        .split(/\s+/)
+        .map((word) => {
+            // If word is all letters and all uppercase and short (<=3),
+            // treat it as an acronym and preserve uppercase.
+            if (/^[A-Z]{2,3}$/.test(word)) return word;
+            // Otherwise title-case: first char uppercase, rest lowercase
+            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        })
+        .join(" ");
+};

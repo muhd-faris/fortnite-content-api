@@ -5,7 +5,7 @@
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings",
-    "generate:data": "npx tsx src/helpers/data-generators.ts"
+    "cli": "tsx src/cli/main.ts"
   },
   "dependencies": {
     "@upstash/redis": "^1.35.6",
@@ -13,6 +13,7 @@
     "dotenv": "^17.2.3",
     "drizzle-orm": "^0.44.7",
     "hono": "^4.10.4",
+    "inquirer": "^12.10.0",
     "pg": "^8.16.3",
     "zod": "^4.1.12"
   },

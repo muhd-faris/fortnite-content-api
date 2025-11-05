@@ -3,5 +3,6 @@ export { asyncHandler } from './async-handler';
 export { globalErrorMessage } from './error-message-config';
 export {
     hasValueInTag,
-    formatBrListingResponse
+    formatBrListingResponse,
+    titleCasePreserveAcronyms
 } from './utilities';
