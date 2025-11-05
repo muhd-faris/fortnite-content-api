@@ -1,6 +1,9 @@
 import z from 'zod';
 
-import { SupportedItemTypesVal } from '../constants';
+import {
+  SupportedBrItemSeriesVal,
+  SupportedItemTypesVal
+} from '../constants';
 
 const ExperienceValidation = z.enum([
   'battle_royale',
@@ -19,4 +22,10 @@ export const SearchCosmeticValidationSchema = z.object({
 
 export const ExperienceValidationSchema = z.object({
   experience: ExperienceValidation
+});
+
+export const SeriesValidationSchema = z.object({
+  series: z.enum(SupportedBrItemSeriesVal, {
+    error: `Opps it seems that this series does not exists in FNTrack. It could be because its new and and not synced yet. Please contact me through feedback to assists on this issue. Thank you.`
+  })
 });

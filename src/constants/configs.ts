@@ -1,5 +1,6 @@
 import brCosmeticTypesData from '../data/cosmetic_br_types.json';
 import festivalCosmeticTypesData from '../data/cosmetic_festival_types.json';
+import brSeriesData from '../data/cosmetic_br_series.json';
 
 export const FortniteComBaseUrl: string = 'https://fortnite-api.com';
 
@@ -29,8 +30,12 @@ export const UnsupportedBrTypes: string[] = [
     'AthenaToy'
 ];
 
+export const SupportedBrItemTypesVal: string[] = brCosmeticTypesData.map(t => t.value);
+
+export const SupportedBrItemSeriesVal: string[] = brSeriesData.map(s => s.backend_value);
+
 export const SupportedItemTypesVal: string[] = [
     'all',
-    ...brCosmeticTypesData.map(t => t.value),
+    ...SupportedBrItemTypesVal,
     ...festivalCosmeticTypesData.map(t => t.value)
 ];

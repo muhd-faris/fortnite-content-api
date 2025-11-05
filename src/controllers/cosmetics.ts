@@ -2,11 +2,12 @@ import brSeriesData from '../data/cosmetic_br_series.json';
 import brCosmeticTypesData from '../data/cosmetic_br_types.json';
 import festivalCosmeticTypesData from '../data/cosmetic_festival_types.json';
 
+import { FortniteComBaseUrl } from '../constants';
 import {
-    FortniteComBaseUrl,
-    UnsupportedBrTypes
-} from '../constants';
-import { CustomException, hasValueInTag } from '../helpers';
+    CustomException,
+    formatBrListingResponse,
+    hasValueInTag
+} from '../helpers';
 import {
     IBRImages,
     IBRStyleFE,
@@ -18,10 +19,14 @@ import {
     IRootTrackListing,
     IVariant
 } from '../interfaces';
-import { TCFContext, TRootCosmeticDetails } from '../types';
+import {
+    TCFContext,
+    TRootCosmeticDetails
+} from '../types';
 import {
     ExperienceValidationSchema,
-    SearchCosmeticValidationSchema
+    SearchCosmeticValidationSchema,
+    SeriesValidationSchema
 } from '../validations';
 
 export const getCosmeticFiltersV1 = async (c: TCFContext) => {
@@ -80,7 +85,6 @@ export const searchBrCosmeticsV1 = async (c: TCFContext) => {
     params.append('language', lang);
     params.append('name', body.name);
     params.append('matchMethod', 'contains');
-    params.append('responseFlags', '7');
 
     if (body.item_type !== 'all') {
         params.append('type', body.item_type);
@@ -90,7 +94,8 @@ export const searchBrCosmeticsV1 = async (c: TCFContext) => {
         params.append('backendSeries', body.item_series);
     };
 
-    const fetchedCosmeticListing = await fetch(`${FortniteComBaseUrl}/v2/cosmetics/br/search/all?${params.toString()}`, {
+    const url: string = `${FortniteComBaseUrl}/v2/cosmetics/br/search/all?${params.toString()}`;
+    const fetchedCosmeticListing = await fetch(url, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -105,15 +110,7 @@ export const searchBrCosmeticsV1 = async (c: TCFContext) => {
         );
     };
 
-    const data = cosmeticListingJson.data.map(d => ({
-        id: d.id,
-        name: d.name,
-        item_type: d.type.displayValue,
-        card_bg_color: 'linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))',
-        overlay_bg_color: 'linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)',
-        // TODO: Add Fallback icon
-        transparent_image: d.images.icon || ''
-    }));
+    const data = formatBrListingResponse(cosmeticListingJson.data);
 
     return c.json(data);
 };
@@ -138,22 +135,7 @@ export const getRecentlyAddedCosmeticsV1 = async (c: TCFContext) => {
     };
 
     if (experience === 'battle_royale') {
-        const filteredBrData = cosmeticListingJson.data.items.br
-            .filter(c => !UnsupportedBrTypes.includes(c.type.backendValue))
-            // Filter out test names
-            .filter(c => !['null', 'test', 'undefined'].includes(c.name));
-        const data: IFECosmeticListing[] = filteredBrData.map(d => ({
-            id: d.id,
-            name: d.name,
-            item_type: {
-                id: d.type.value,
-                name: d.type.displayValue
-            },
-            card_bg_color: 'linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))',
-            overlay_bg_color: 'linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)',
-            // TODO: Add Fallback icon
-            transparent_image: d.images?.icon || ''
-        }));
+        const data = formatBrListingResponse(cosmeticListingJson.data.items.br);
 
         return c.json(data);
     };
@@ -340,14 +322,14 @@ export const getCosmeticDetailsV1 = async (c: TCFContext) => {
 
 export const getCosmeticsBySeriesV1 = async (c: TCFContext) => {
     const lang = c.req.query('lang') || 'en';
-    // TODO: Use Zod
-    const { series } = await c.req.json();
+    const { series } = SeriesValidationSchema.parse(await c.req.json());
 
     const params = new URLSearchParams();
     params.append('language', lang);
     params.append('backendSeries', series);
 
-    const fetchedCosmeticListing = await fetch(`${FortniteComBaseUrl}/v2/cosmetics/br/search/all?${params.toString()}`, {
+    const url: string = `${FortniteComBaseUrl}/v2/cosmetics/br/search/all?${params.toString()}`;
+    const fetchedCosmeticListing = await fetch(url, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -362,14 +344,7 @@ export const getCosmeticsBySeriesV1 = async (c: TCFContext) => {
         );
     };
 
-    const data = cosmeticListingJson.data.map(d => ({
-        id: d.id,
-        name: d.name,
-        item_type: d.type.displayValue,
-        card_bg_color: 'linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))',
-        overlay_bg_color: 'linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)',
-        transparent_image: d.images.icon || d.images.smallIcon
-    }));
+    const data = formatBrListingResponse(cosmeticListingJson.data);
 
     return c.json(data);
 };
