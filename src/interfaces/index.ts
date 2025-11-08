@@ -21,4 +21,8 @@ export {
     ISeasonListFE,
     ISeasonByChapterFE
 } from './season-history.interface';
+export {
+    IRootSeasonPasses,
+    IPassData
+} from './season-passes.interface';
 export { IRootTrackListing } from './track-listing';

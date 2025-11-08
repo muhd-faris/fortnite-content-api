@@ -3,6 +3,7 @@ import { cors } from 'hono/cors';
 
 import CosmeticRoutes from './routers/cosmetic';
 import SeasonHistoryRoutes from './routers/season-history';
+import GameRoutes from './routers/game';
 
 import { TDefaultContext } from './types';
 
@@ -26,5 +27,6 @@ app.get('/', (c) => {
 
 app.route('/', CosmeticRoutes);
 app.route('/', SeasonHistoryRoutes);
+app.route('/', GameRoutes);
 
 export default app
