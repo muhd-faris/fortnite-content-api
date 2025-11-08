@@ -1,10 +1,12 @@
+import { differenceInDays, isPast } from 'date-fns';
+
 import { SeasonHistoryTable } from '../db/schema';
 import { getDrizzle } from '../lib';
 import { TCFContext, TOmitedSeasonHistory } from '../types';
 import { SeasonHistoryValidationSchema } from '../validations';
+import { ISeasonListFE, ISeasonByChapterFE } from '../interfaces';
 
 import archivedHistoryData from '../data/archived_season_history.json';
-import { differenceInDays, isPast } from 'date-fns';
 
 export const createSeasonHistoryV1 = async (c: TCFContext) => {
     const body = SeasonHistoryValidationSchema.parse(await c.req.json());
@@ -42,7 +44,32 @@ export const getAllSeasonHistoryV1 = async (c: TCFContext) => {
             season_completed: h.end_date ? isPast(h.end_date) : false
         }));
 
-    return c.json(mergedHistory);
+    
+
+    const seasonByChapter = mergedHistory.reduce((prev: { [chapter: number]: ISeasonListFE[] }, current: ISeasonListFE) => {
+        const chapter = +current.chapter;
+
+        if (!prev[chapter]) {
+            prev[chapter] = [current];
+        } else {
+            prev[chapter].push(current);
+        }
+        return prev;
+    }, {});
+
+    const data: ISeasonByChapterFE[] = Object.keys(seasonByChapter)
+        .map(chapter => +chapter)
+        .map(chapter => ({ chapter, history: seasonByChapter[chapter] }))
+        .map(c => {
+            // Sort the history by recent season instead of the first season in the chapter
+            c.history = c.history.reverse();
+
+            return c;
+        })
+        // Sort to recent chapter first
+        .sort((a, b) => b.chapter - a.chapter);
+
+    return c.json(data);
 };
 
 export const syncRecentSeasonHistoryV1 = async (c: TCFContext) => { };

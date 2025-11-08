@@ -17,4 +17,8 @@ export {
 } from './cosmetic.interface';
 export { IRootInstrumentListing } from './instrument-listing';
 export { IRootRecentCosmetic } from './recent-cosmetic.interface';
+export {
+    ISeasonListFE,
+    ISeasonByChapterFE
+} from './season-history.interface';
 export { IRootTrackListing } from './track-listing';
