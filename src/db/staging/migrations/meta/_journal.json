@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1762529150909,
+      "tag": "0000_added_display_name",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1762569167681,
+      "tag": "0001_added_season_code",
+      "breakpoints": true
+    }
+  ]
+}

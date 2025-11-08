@@ -12,9 +12,9 @@ import {
 export const SeasonHistoryTable = pgTable('season_history', {
     id: uuid('id').primaryKey().defaultRandom(),
     chapter: integer('chapter').notNull(),
-    // Season is basically the season code number. (ex 31)
-    season: integer('season').notNull(),
+    season_code: integer('season_code').notNull(),
     season_in_chapter: integer('season_in_chapter').notNull(),
+    display_name: varchar('display_name', { length: 100 }).notNull(),
     start_date: timestamp('start_date').notNull(),
     end_date: timestamp('end_date').notNull(),
     created_at: timestamp('created_at').defaultNow().notNull(),

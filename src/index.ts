@@ -2,6 +2,7 @@ import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 
 import CosmeticRoutes from './routers/cosmetic';
+import SeasonHistoryRoutes from './routers/season-history';
 
 import { TDefaultContext } from './types';
 
@@ -24,5 +25,6 @@ app.get('/', (c) => {
 });
 
 app.route('/', CosmeticRoutes);
+app.route('/', SeasonHistoryRoutes);
 
 export default app
