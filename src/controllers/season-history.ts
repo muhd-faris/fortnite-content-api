@@ -60,12 +60,6 @@ export const getAllSeasonHistoryV1 = async (c: TCFContext) => {
     const data: ISeasonByChapterFE[] = Object.keys(seasonByChapter)
         .map(chapter => +chapter)
         .map(chapter => ({ chapter, history: seasonByChapter[chapter] }))
-        .map(c => {
-            // Sort the history by recent season instead of the first season in the chapter
-            c.history = c.history.reverse();
-
-            return c;
-        })
         // Sort to recent chapter first
         .sort((a, b) => b.chapter - a.chapter);
 
