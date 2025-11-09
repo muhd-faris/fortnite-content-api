@@ -117,7 +117,27 @@ export const getAllFortniteCrewV1 = async (c: TCFContext) => {
         };
     });
 
-    return c.json(recentCrewData);
+    const crewByYear = recentCrewData.reduce((prev: { [year: number]: any[]; }, current: any) => {
+        const splittedYear = current.month.split(' ');
+        const year = +splittedYear[splittedYear.length - 1];
+
+        if (!prev[year]) {
+            prev[year] = [current];
+        } else {
+            prev[year].push(current);
+        }
+        return prev;
+    }, {});
+    const crewResponse = Object.keys(crewByYear).map(year => ({ year: +year, crew_data: crewByYear[+year] }))
+        .sort((a, b) => b.year - a.year);
+    const yearOpts = crewResponse.map(r => r.year);
+
+    const response = {
+        year_options: yearOpts,
+        crew_by_year: crewResponse
+    };
+
+    return c.json(response);
 };
 
 function seasonPercentage(startDate: string, endDate: string) {
