@@ -1,20 +1,7 @@
 import {
-    format,
-    isThisMonth,
-    startOfYear,
-    subYears
-} from 'date-fns';
-import { desc } from 'drizzle-orm';
-
-import {
-    IFECosmeticListing,
     IRootSeasonPasses
 } from '../interfaces';
-import { getDrizzle } from '../lib';
 import { TCFContext } from '../types';
-import { FortniteCrewTable } from '../db/schema';
-
-import crewRewardsData from '../data/crew_rewards_cosmetic.json';
 
 export const getCurrentSeasonsV1 = async (c: TCFContext) => {
     const lang = c.req.query('lang') || 'en';
@@ -79,65 +66,6 @@ export const getCurrentSeasonsV1 = async (c: TCFContext) => {
     };
 
     return c.json(data);
-};
-
-export const getAllFortniteCrewV1 = async (c: TCFContext) => {
-    const db = getDrizzle();
-
-    const cosmeticsDetails: { [id: string]: IFECosmeticListing } = crewRewardsData.reduce((acc, item) => ({ ...acc, [item.id]: item }), {});
-    const startDate = startOfYear(subYears(new Date(), 3));
-    const endDate = new Date();
-    const recentCrewInDb = await db.query.FortniteCrewTable.findMany({
-        columns: {
-            id: false,
-            created_at: false,
-            updated_at: false
-        },
-        where: ({ crew_date }, { between }) => between(
-            crew_date,
-            startDate,
-            endDate
-        ),
-        orderBy: [desc(FortniteCrewTable.crew_date)],
-    });
-
-    const recentCrewData = recentCrewInDb.map(r => {
-        const rewards = r.rewards_id.map(id => cosmeticsDetails[id] || null).filter(c => c !== null);
-        const outfitName = rewards.find(r => r.item_type.id.toLowerCase() === 'outfit')?.name.toUpperCase() || '';
-        const name = `${outfitName} CREW PACK`.toUpperCase();
-        const month = format(new Date(r.crew_date), 'MMMM y');
-
-        return {
-            name,
-            month,
-            background_color: `linear-gradient(#${r.color_1}, #${r.color_2}, #${r.color_2})`,
-            background_image: r.image_with_bg,
-            current_pack: isThisMonth(r.crew_date),
-            rewards
-        };
-    });
-
-    const crewByYear = recentCrewData.reduce((prev: { [year: number]: any[]; }, current: any) => {
-        const splittedYear = current.month.split(' ');
-        const year = +splittedYear[splittedYear.length - 1];
-
-        if (!prev[year]) {
-            prev[year] = [current];
-        } else {
-            prev[year].push(current);
-        }
-        return prev;
-    }, {});
-    const crewResponse = Object.keys(crewByYear).map(year => ({ year: +year, crew_data: crewByYear[+year] }))
-        .sort((a, b) => b.year - a.year);
-    const yearOpts = crewResponse.map(r => r.year);
-
-    const response = {
-        year_options: yearOpts,
-        crew_by_year: crewResponse
-    };
-
-    return c.json(response);
 };
 
 function seasonPercentage(startDate: string, endDate: string) {

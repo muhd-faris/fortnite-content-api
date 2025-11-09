@@ -5,6 +5,7 @@ import { TCFContext, TDefaultContext } from './types';
 import CosmeticRoutes from './routers/cosmetic';
 import SeasonHistoryRoutes from './routers/season-history';
 import GameRoutes from './routers/game';
+import CrewRoutes from './routers/crew';
 
 
 const app = new Hono<TDefaultContext>();
@@ -30,5 +31,6 @@ app.get('/', (c: TCFContext) => {
 app.route('/', CosmeticRoutes);
 app.route('/', SeasonHistoryRoutes);
 app.route('/', GameRoutes);
+app.route('/', CrewRoutes);
 
 export default app
