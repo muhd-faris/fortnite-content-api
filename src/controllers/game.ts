@@ -102,8 +102,7 @@ export const getAllFortniteCrewV1 = async (c: TCFContext) => {
     });
 
     const recentCrewData = recentCrewInDb.map(r => {
-        const rewards = r.rewards_id.map(id => cosmeticsDetails[id]);
-        console.log(rewards)
+        const rewards = r.rewards_id.map(id => cosmeticsDetails[id] || null).filter(c => c !== null);
         const outfitName = rewards.find(r => r.item_type.id.toLowerCase() === 'outfit')?.name.toUpperCase() || '';
         const name = `${outfitName} CREW PACK`.toUpperCase();
         const month = format(new Date(r.crew_date), 'MMMM y');
