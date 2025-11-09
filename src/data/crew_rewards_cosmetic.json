@@ -1,0 +1,2312 @@
+[
+  {
+    "id": "character_saxopop",
+    "name": "Hana Park",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_saxopop/icon.png"
+  },
+  {
+    "id": "backpack_saxopop",
+    "name": "Starlit Heart",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_saxopop/icon.png"
+  },
+  {
+    "id": "pickaxe_saxopop",
+    "name": "Heartbreaker Lightstick",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_saxopop/icon.png"
+  },
+  {
+    "id": "character_tidalninja",
+    "name": "Augury",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_tidalninja/icon.png"
+  },
+  {
+    "id": "backpack_tidalninja",
+    "name": "Prophetic Exo-Spine",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_tidalninja/icon.png"
+  },
+  {
+    "id": "pickaxe_tidalninja",
+    "name": "Seer Scythe",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_tidalninja/icon.png"
+  },
+  {
+    "id": "character_eagertrapper",
+    "name": "Bernie",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_eagertrapper/icon.png"
+  },
+  {
+    "id": "backpack_eagertrapper",
+    "name": "Torto-nade",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_eagertrapper/icon.png"
+  },
+  {
+    "id": "pickaxe_eagertrapper",
+    "name": "Trap Claws",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_eagertrapper/icon.png"
+  },
+  {
+    "id": "character_doubleconk",
+    "name": "Reboot Man",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_doubleconk/icon.png"
+  },
+  {
+    "id": "backpack_doubleconk",
+    "name": "Reboot Replica",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_doubleconk/icon.png"
+  },
+  {
+    "id": "pickaxe_doubleconk",
+    "name": "Reboot's Rezzblade",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_doubleconk/icon.png"
+  },
+  {
+    "id": "character_bluntwhimsy",
+    "name": "Ayla Winn",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_bluntwhimsy/icon.png"
+  },
+  {
+    "id": "backpack_bluntwhimsy",
+    "name": "Gumball Gun",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_bluntwhimsy/icon.png"
+  },
+  {
+    "id": "pickaxe_bluntwhimsy",
+    "name": "Bubble Basher",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_bluntwhimsy/featured.png"
+  },
+  {
+    "id": "character_mutedsheath",
+    "name": "Kwame",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_mutedsheath/icon.png"
+  },
+  {
+    "id": "backpack_mutedsheath",
+    "name": "Officebound Pack",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_mutedsheath/icon.png"
+  },
+  {
+    "id": "pickaxe_mutedsheath",
+    "name": "Kwame's Katana",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_mutedsheath/icon.png"
+  },
+  {
+    "id": "character_cyberdelivery",
+    "name": "Nyangelica",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_cyberdelivery/icon.png"
+  },
+  {
+    "id": "backpack_cyberdelivery",
+    "name": "Angy Counter",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_cyberdelivery/icon.png"
+  },
+  {
+    "id": "pickaxe_cyberdelivery",
+    "name": "Hex Cutters",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_cyberdelivery/icon.png"
+  },
+  {
+    "id": "character_pointsmoke",
+    "name": "Bones",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_pointsmoke/icon.png"
+  },
+  {
+    "id": "backpack_pointsmoke",
+    "name": "Spine Rider",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_pointsmoke/icon.png"
+  },
+  {
+    "id": "pickaxe_pointsmoke",
+    "name": "Skull Blade",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_pointsmoke/icon.png"
+  },
+  {
+    "id": "character_anodizedmetal",
+    "name": "Haruka of the Masks",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_anodizedmetal/icon.png"
+  },
+  {
+    "id": "backpack_anodizedmetal",
+    "name": "Shadow Hyotan",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_anodizedmetal/icon.png"
+  },
+  {
+    "id": "pickaxe_anodizedmetal",
+    "name": "The Sharpened Shadow",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_anodizedmetal/icon.png"
+  },
+  {
+    "id": "character_dashsurge",
+    "name": "Durrr Taisho",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_dashsurge/icon.png"
+  },
+  {
+    "id": "backpack_dashsurge",
+    "name": "Sous-shi Chefs",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_dashsurge/icon.png"
+  },
+  {
+    "id": "pickaxe_dashsurge",
+    "name": "The Greenest Onion",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_dashsurge/icon.png"
+  },
+  {
+    "id": "character_cranelaugh",
+    "name": "Lady of Cranes",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_cranelaugh/icon.png"
+  },
+  {
+    "id": "backpack_cranelaugh",
+    "name": "Eternal Fortune",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_cranelaugh/icon.png"
+  },
+  {
+    "id": "pickaxe_cranelaugh",
+    "name": "Gilded Naginata",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_cranelaugh/icon.png"
+  },
+  {
+    "id": "character_leafyvest",
+    "name": "Kyran Aryk",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_leafyvest/icon.png"
+  },
+  {
+    "id": "backpack_leafyvest",
+    "name": "Impact Tactical Pack",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_leafyvest/icon.png"
+  },
+  {
+    "id": "pickaxe_leafyvest",
+    "name": "18's Kama",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_leafyvest/icon.png"
+  },
+  {
+    "id": "character_magmabreak",
+    "name": "Polus",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_magmabreak/icon.png"
+  },
+  {
+    "id": "backpack_magmabreak",
+    "name": "The Rune of Temptation",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_magmabreak/icon.png"
+  },
+  {
+    "id": "pickaxe_magmabreak",
+    "name": "Igneous Blade",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_magmabreak/icon.png"
+  },
+  {
+    "id": "character_dollenthusiast",
+    "name": "Dali",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_dollenthusiast/icon.png"
+  },
+  {
+    "id": "backpack_dollenthusiast",
+    "name": "Stuffie Sack",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_dollenthusiast/icon.png"
+  },
+  {
+    "id": "pickaxe_dollenthusiast",
+    "name": "Cuddly Crusher",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_dollenthusiast/icon.png"
+  },
+  {
+    "id": "character_coralnumber",
+    "name": "The Operator",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_coralnumber/smallicon.png"
+  },
+  {
+    "id": "backpack_coralnumber",
+    "name": "Weld-O",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_coralnumber/icon.png"
+  },
+  {
+    "id": "pickaxe_coralnumber",
+    "name": "Sawblade Slashers",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_coralnumber/icon.png"
+  },
+  {
+    "id": "character_fairyflex",
+    "name": "Persephone",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_fairyflex/icon.png"
+  },
+  {
+    "id": "backpack_fairyflex",
+    "name": "Heart of Darkness",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_fairyflex/icon.png"
+  },
+  {
+    "id": "pickaxe_fairyflex",
+    "name": "Stygian Scythes",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_fairyflex/icon.png"
+  },
+  {
+    "id": "character_sphericaldefense",
+    "name": "Jing",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_sphericaldefense/icon.png"
+  },
+  {
+    "id": "backpack_sphericaldefense",
+    "name": "Battle Ruan",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_sphericaldefense/icon.png"
+  },
+  {
+    "id": "pickaxe_sphericaldefense",
+    "name": "Blade Aria",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_sphericaldefense/icon.png"
+  },
+  {
+    "id": "character_voltaichuntress",
+    "name": "Spirit Hunter Saeko",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_voltaichuntress/icon.png"
+  },
+  {
+    "id": "backpack_voltaichuntress",
+    "name": "Abyssal Vault",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_voltaichuntress/icon.png"
+  },
+  {
+    "id": "pickaxe_voltaichuntress",
+    "name": "Spirit Glitcher",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_voltaichuntress/icon.png"
+  },
+  {
+    "id": "character_goldaccomplishment",
+    "name": "Ares",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_goldaccomplishment/icon.png"
+  },
+  {
+    "id": "backpack_goldaccomplishmentcape",
+    "name": "Warrior's Cape",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_goldaccomplishmentcape/icon.png"
+  },
+  {
+    "id": "pickaxe_goldaccomplishment",
+    "name": "Immortal War Doru",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_goldaccomplishment/icon.png"
+  },
+  {
+    "id": "character_spacefeline",
+    "name": "Katt",
+    "item_type": {
+      "id": "outfit",
+      "name": "Character"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_spacefeline/icon.png"
+  },
+  {
+    "id": "backpack_spacefeline",
+    "name": "Ro-boy",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_spacefeline/icon.png"
+  },
+  {
+    "id": "pickaxe_spacefeline",
+    "name": "Katt's Carver",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_spacefeline/icon.png"
+  },
+  {
+    "id": "character_rainbowstraps",
+    "name": "Lana Llane",
+    "item_type": {
+      "id": "outfit",
+      "name": "Character"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_rainbowstraps/icon.png"
+  },
+  {
+    "id": "backpack_rainbowstraps",
+    "name": "Llamaphonic Blaster",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_rainbowstraps/icon.png"
+  },
+  {
+    "id": "pickaxe_rainbowstraps",
+    "name": "Glownicorn Llamaxes",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_rainbowstraps/icon.png"
+  },
+  {
+    "id": "character_serpentcoil",
+    "name": "Silas Hesk",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_serpentcoil/icon.png"
+  },
+  {
+    "id": "backpack_serpentcoil",
+    "name": "The Serpentine",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_serpentcoil/icon.png"
+  },
+  {
+    "id": "pickaxe_serpentcoil",
+    "name": "Fangs of Hesk",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_serpentcoil/icon.png"
+  },
+  {
+    "id": "character_skeleprobe",
+    "name": "Skull Scout",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_skeleprobe/icon.png"
+  },
+  {
+    "id": "backpack_skeleprobe",
+    "name": "Expert's Bonebag",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_skeleprobe/icon.png"
+  },
+  {
+    "id": "pickaxe_skeleprobe",
+    "name": "Reconner's Reckoning",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_skeleprobe/icon.png"
+  },
+  {
+    "id": "character_dracodueler",
+    "name": "Drakon Steel Hybrid",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_dracodueler/icon.png"
+  },
+  {
+    "id": "backpack_dracodueler",
+    "name": "Drakonscale Duo",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_dracodueler/icon.png"
+  },
+  {
+    "id": "pickaxe_dracodueler",
+    "name": "Drakon Claws",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_dracodueler/icon.png"
+  },
+  {
+    "id": "character_lethalvae",
+    "name": "Shimmerdusk",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_lethalvae/icon.png"
+  },
+  {
+    "id": "backpack_lethalvae",
+    "name": "Gothic Gearpack",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_lethalvae/icon.png"
+  },
+  {
+    "id": "pickaxe_lethalvae",
+    "name": "Huntress' Duskblade",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_lethalvae/icon.png"
+  },
+  {
+    "id": "character_supernovataro",
+    "name": "Astrea",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_supernovataro/smallicon.png"
+  },
+  {
+    "id": "backpack_supernovataro",
+    "name": "Voidheart",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_supernovataro/smallicon.png"
+  },
+  {
+    "id": "pickaxe_supernovataro",
+    "name": "Voidblack Slasher",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_supernovataro/smallicon.png"
+  },
+  {
+    "id": "musicpack_188_supernovataro",
+    "name": "Stars Are Born",
+    "item_type": {
+      "id": "music",
+      "name": "Lobby Music"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/musicpack_188_supernovataro/icon.png"
+  },
+  {
+    "id": "character_lexaearlgrey",
+    "name": "Princess Lexa",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_lexaearlgrey/icon.png"
+  },
+  {
+    "id": "backpack_lexaearlgrey",
+    "name": "Celestial Crest",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_lexaearlgrey/smallicon.png"
+  },
+  {
+    "id": "character_orinchai",
+    "name": "Prince Orin",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_orinchai/icon.png"
+  },
+  {
+    "id": "backpack_orinchai",
+    "name": "Celestial Guide",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_orinchai/smallicon.png"
+  },
+  {
+    "id": "pickaxe_lexaearlgrey",
+    "name": "Sovereign Sabers",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_lexaearlgrey/smallicon.png"
+  },
+  {
+    "id": "pickaxe_orinchai",
+    "name": "Prince Orin's Polearm",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_orinchai/smallicon.png"
+  },
+  {
+    "id": "character_cubecoast",
+    "name": "Breezabelle",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_cubecoast/icon.png"
+  },
+  {
+    "id": "backpack_cubecoast",
+    "name": "Message in a Bottle",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_cubecoast/icon.png"
+  },
+  {
+    "id": "pickaxe_cubecoast",
+    "name": "Bubble Wands",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_cubecoast/icon.png"
+  },
+  {
+    "id": "character_patches",
+    "name": "Styx",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_patches/icon.png"
+  },
+  {
+    "id": "backpack_patches",
+    "name": "Stygian Maw",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_patches/icon.png"
+  },
+  {
+    "id": "pickaxe_patches",
+    "name": "Stitch'd Slicer",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_patches/icon.png"
+  },
+  {
+    "id": "character_lilac",
+    "name": "Dahlia",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_lilac/icon.png"
+  },
+  {
+    "id": "backpack_lilac",
+    "name": "Exo-Intellect",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_lilac/icon.png"
+  },
+  {
+    "id": "pickaxe_lilac",
+    "name": "Codecarver",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_lilac/icon.png"
+  },
+  {
+    "id": "character_titanium",
+    "name": "Triarch Nox",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_titanium/icon.png"
+  },
+  {
+    "id": "backpack_titanium",
+    "name": "Midnight Aegis",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_titanium/icon.png"
+  },
+  {
+    "id": "pickaxe_titanium",
+    "name": "Starlit Sai",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_titanium/icon.png"
+  },
+  {
+    "id": "wrap_titanium",
+    "name": "Noxious",
+    "item_type": {
+      "id": "wrap",
+      "name": "Wrap"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/wrap_titanium/icon.png"
+  },
+  {
+    "id": "character_metalscout",
+    "name": "Rift Knight Kieran",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_metalscout/icon.png"
+  },
+  {
+    "id": "backpack_metalscout",
+    "name": "Inheritor's Edge",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_metalscout/icon.png"
+  },
+  {
+    "id": "pickaxe_metalscout",
+    "name": "Inheritor's Edge",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_metalscout/icon.png"
+  },
+  {
+    "id": "wrap_metalscout",
+    "name": "Knight's Legacy",
+    "item_type": {
+      "id": "wrap",
+      "name": "Wrap"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/wrap_metalscout/icon.png"
+  },
+  {
+    "id": "musicpack_172_metalscout",
+    "name": "Double-Edged Sword",
+    "item_type": {
+      "id": "music",
+      "name": "Lobby Music"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/musicpack_172_metalscout/icon.png"
+  },
+  {
+    "id": "character_emberrae",
+    "name": "Sylvie",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_emberrae/icon.png"
+  },
+  {
+    "id": "backpack_emberrae",
+    "name": "Groaker",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_emberrae/icon.png"
+  },
+  {
+    "id": "pickaxe_emberrae",
+    "name": "Smith's Slammers",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_emberrae/icon.png"
+  },
+  {
+    "id": "wrap_emberrae",
+    "name": "Groak'd",
+    "item_type": {
+      "id": "wrap",
+      "name": "Wrap"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/wrap_emberrae/icon.png"
+  },
+  {
+    "id": "character_goldenguard",
+    "name": "Gildhart",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_goldenguard/icon.png"
+  },
+  {
+    "id": "backpack_goldenguard",
+    "name": "Golden Guard",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_goldenguard/icon.png"
+  },
+  {
+    "id": "pickaxe_goldenguard",
+    "name": "Gilt Glaive",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_goldenguard/icon.png"
+  },
+  {
+    "id": "character_silencer",
+    "name": "Joni the Red",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_silencer/icon.png"
+  },
+  {
+    "id": "backpack_silencer",
+    "name": "Hunter's Holdall",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_silencer/icon.png"
+  },
+  {
+    "id": "pickaxe_silencer",
+    "name": "The Scarlet Oath",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_silencer/icon.png"
+  },
+  {
+    "id": "musicpack_158_vampirehunters",
+    "name": "High Stakes Club",
+    "item_type": {
+      "id": "music",
+      "name": "Lobby Music"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/musicpack_158_vampirehunters/icon.png"
+  },
+  {
+    "id": "character_imitator",
+    "name": "The Inkquisitor",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_imitator/icon.png"
+  },
+  {
+    "id": "backpack_imitator",
+    "name": "Inkquisitive Stare",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_imitator/icon.png"
+  },
+  {
+    "id": "pickaxe_imitator",
+    "name": "Sunken Strikers",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_imitator/icon.png"
+  },
+  {
+    "id": "character_despair",
+    "name": "Red Claw",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/character_despair/icon.png"
+  },
+  {
+    "id": "backpack_despair",
+    "name": "Black Fang",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/backpack_despair/icon.png"
+  },
+  {
+    "id": "pickaxe_despair",
+    "name": "Red's Rippers",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_despair/icon.png"
+  },
+  {
+    "id": "wrap_despair",
+    "name": "Shredded Red",
+    "item_type": {
+      "id": "wrap",
+      "name": "Wrap"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/wrap_despair/icon.png"
+  },
+  {
+    "id": "musicpack_150_crewlobby",
+    "name": "Dark Nights/Red Lights",
+    "item_type": {
+      "id": "music",
+      "name": "Lobby Music"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/musicpack_150_crewlobby/icon.png"
+  },
+  {
+    "id": "musicpack_151_crewlobby_instrumental",
+    "name": "Dark & Red Instrumental",
+    "item_type": {
+      "id": "music",
+      "name": "Lobby Music"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/musicpack_151_crewlobby_instrumental/icon.png"
+  },
+  {
+    "id": "cid_a_478_athena_commando_f_wildcard",
+    "name": "Loveless",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_a_478_athena_commando_f_wildcard/icon.png"
+  },
+  {
+    "id": "bid_a_070_wildcardfemale",
+    "name": "Calling Card",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_a_070_wildcardfemale/icon.png"
+  },
+  {
+    "id": "pickaxe_id_854_wildcard",
+    "name": "Stylus Edge",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_854_wildcard/icon.png"
+  },
+  {
+    "id": "wrap_513_wildcard",
+    "name": "Shooting Shuffle",
+    "item_type": {
+      "id": "wrap",
+      "name": "Wrap"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/wrap_513_wildcard/icon.png"
+  },
+  {
+    "id": "musicpack_144_septembercrew",
+    "name": "The Loveless Bandit",
+    "item_type": {
+      "id": "music",
+      "name": "Lobby Music"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/musicpack_144_septembercrew/icon.png"
+  },
+  {
+    "id": "cid_a_461_athena_commando_m_desertshadow",
+    "name": "Wolverine Zero",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_a_461_athena_commando_m_desertshadow/featured.png"
+  },
+  {
+    "id": "bid_a_052_desertshadowmale",
+    "name": "Muramasa Blade",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_a_052_desertshadowmale/icon.png"
+  },
+  {
+    "id": "pickaxe_id_829_desertshadowblademale",
+    "name": "Muramasa Blade",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_829_desertshadowblademale/featured.png"
+  },
+  {
+    "id": "cid_a_438_athena_commando_f_gloom",
+    "name": "Phaedra",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_a_438_athena_commando_f_gloom/icon.png"
+  },
+  {
+    "id": "bid_a_035_gloomfemale",
+    "name": "Ceph",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_a_035_gloomfemale/icon.png"
+  },
+  {
+    "id": "pickaxe_id_823_gloomfemale",
+    "name": "Stygian Parasol",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_823_gloomfemale/icon.png"
+  },
+  {
+    "id": "glider_id_379_gloomfemale",
+    "name": "Gothic Shadesoarer",
+    "item_type": {
+      "id": "glider",
+      "name": "Glider"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/glider_id_379_gloomfemale/icon.png"
+  },
+  {
+    "id": "cid_a_418_athena_commando_m_armadillorobot",
+    "name": "Mecha Strike Commander",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_a_418_athena_commando_m_armadillorobot/icon.png"
+  },
+  {
+    "id": "bid_a_018_armadillomale",
+    "name": "Mecha Light Capacitor",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_a_018_armadillomale/icon.png"
+  },
+  {
+    "id": "pickaxe_id_811_armadillomale",
+    "name": "Light Blade",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_811_armadillomale/icon.png"
+  },
+  {
+    "id": "wrap_479_armadillo",
+    "name": "Mecha Reborn",
+    "item_type": {
+      "id": "wrap",
+      "name": "Wrap"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/wrap_479_armadillo/icon.png"
+  },
+  {
+    "id": "cid_a_393_athena_commando_f_forsake",
+    "name": "Southpaw",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_a_393_athena_commando_f_forsake/icon.png"
+  },
+  {
+    "id": "bid_995_forsakefemale",
+    "name": "Counterpunch",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_995_forsakefemale/icon.png"
+  },
+  {
+    "id": "pickaxe_id_785_forsakefemale",
+    "name": "Arc Flail",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_785_forsakefemale/icon.png"
+  },
+  {
+    "id": "musicpack_132_maycrew",
+    "name": "Crashed In and Lights Out",
+    "item_type": {
+      "id": "music",
+      "name": "Lobby Music"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/musicpack_132_maycrew/icon.png"
+  },
+  {
+    "id": "musicpack_135_maycrew_instrumental",
+    "name": "Crashed In (Instrumental)",
+    "item_type": {
+      "id": "music",
+      "name": "Lobby Music"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/musicpack_135_maycrew_instrumental/icon.png"
+  },
+  {
+    "id": "cid_a_378_athena_commando_f_bacteria_8jygu",
+    "name": "Sayara",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_a_378_athena_commando_f_bacteria_8jygu/icon.png"
+  },
+  {
+    "id": "bid_978_bacteriafemale_ukdh2",
+    "name": "Fangs of Sayara",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_978_bacteriafemale_ukdh2/icon.png"
+  },
+  {
+    "id": "pickaxe_id_765_bacteriafemale1h",
+    "name": "Dual Machettas",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_765_bacteriafemale1h/icon.png"
+  },
+  {
+    "id": "wrap_449_bacteria",
+    "name": "Sayara Sight",
+    "item_type": {
+      "id": "wrap",
+      "name": "Wrap"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/wrap_449_bacteria/icon.png"
+  },
+  {
+    "id": "cid_a_357_athena_commando_f_valentinefashion_b3s3r",
+    "name": "Tracy Trouble",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_a_357_athena_commando_f_valentinefashion_b3s3r/featured.png"
+  },
+  {
+    "id": "bid_956_valentinefashion_v4rf2",
+    "name": "Lovely Skully",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_956_valentinefashion_v4rf2/icon.png"
+  },
+  {
+    "id": "pickaxe_id_753_valentinesfashionfemale_cpgk7",
+    "name": "Heartslash",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_753_valentinesfashionfemale_cpgk7/icon.png"
+  },
+  {
+    "id": "wrap_441_valentinefashion_h50id",
+    "name": "Tracy's Arsenal",
+    "item_type": {
+      "id": "wrap",
+      "name": "Wrap"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/wrap_441_valentinefashion_h50id/icon.png"
+  },
+  {
+    "id": "cid_a_327_athena_commando_m_skullpunk_9qtqi",
+    "name": "Aftermath",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_a_327_athena_commando_m_skullpunk_9qtqi/featured.png"
+  },
+  {
+    "id": "bid_941_skullpunk_w8fwd",
+    "name": "Flatline",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_941_skullpunk_w8fwd/icon.png"
+  },
+  {
+    "id": "pickaxe_id_740_skullpunk_7k48y",
+    "name": "Rave Digger",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_740_skullpunk_7k48y/icon.png"
+  },
+  {
+    "id": "wrap_432_skullpunk_kpbf4",
+    "name": "Glitter n' Grim",
+    "item_type": {
+      "id": "wrap",
+      "name": "Wrap"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/wrap_432_skullpunk_kpbf4/icon.png"
+  },
+  {
+    "id": "cid_a_324_athena_commando_f_innovatorfestive_3fuph",
+    "name": "Snow Stealth Slone",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_a_324_athena_commando_f_innovatorfestive_3fuph/icon.png"
+  },
+  {
+    "id": "wrap_428_innovatorfestive_y04n1",
+    "name": "Snow Stealth",
+    "item_type": {
+      "id": "wrap",
+      "name": "Wrap"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/wrap_428_innovatorfestive_y04n1/featured.png"
+  },
+  {
+    "id": "bid_926_innovatorfestive_6zngc",
+    "name": "Snow Stealth Hardcase",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_926_innovatorfestive_6zngc/icon.png"
+  },
+  {
+    "id": "pickaxe_id_724_innovatorfestivefemale_ex2rm",
+    "name": "Sleet Spike",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_724_innovatorfestivefemale_ex2rm/icon.png"
+  },
+  {
+    "id": "cid_865_athena_commando_f_cloakedassassin_1xkht",
+    "name": "Cube Assassin",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_865_athena_commando_f_cloakedassassin_1xkht/icon.png"
+  },
+  {
+    "id": "bid_612_cloakedassassin_k7415",
+    "name": "The Cubist",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_612_cloakedassassin_k7415/icon.png"
+  },
+  {
+    "id": "pickaxe_id_467_cloakedassassinfemale1h_xgc2b",
+    "name": "Cube Edge",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_467_cloakedassassinfemale1h_xgc2b/icon.png"
+  },
+  {
+    "id": "wrap_418_cloakedassassin_i43fl",
+    "name": "Assassin's Mark",
+    "item_type": {
+      "id": "wrap",
+      "name": "Wrap"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/wrap_418_cloakedassassin_i43fl/featured.png"
+  },
+  {
+    "id": "cid_a_255_athena_commando_f_sam_qa7zs",
+    "name": "Sierra",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_a_255_athena_commando_f_sam_qa7zs/featured.png"
+  },
+  {
+    "id": "bid_888_sam_4lyl3",
+    "name": "Sierra's Go Bag",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_888_sam_4lyl3/icon.png"
+  },
+  {
+    "id": "pickaxe_id_697_samfemale1h_rv6an",
+    "name": "Serrated Steelblades",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_697_samfemale1h_rv6an/icon.png"
+  },
+  {
+    "id": "wrap_413_sam_wk0ax",
+    "name": "Glowing Vengeance",
+    "item_type": {
+      "id": "wrap",
+      "name": "Wrap"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/wrap_413_sam_wk0ax/icon.png"
+  },
+  {
+    "id": "cid_a_211_athena_commando_m_psyche_jwqp3",
+    "name": "Chaos Origins",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_a_211_athena_commando_m_psyche_jwqp3/featured.png"
+  },
+  {
+    "id": "bid_868_psychemale_ctvm0",
+    "name": "Siphon Pack",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_868_psychemale_ctvm0/icon.png"
+  },
+  {
+    "id": "pickaxe_id_678_psychemale_81rmh",
+    "name": "Mutagen Mace",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_678_psychemale_81rmh/icon.png"
+  },
+  {
+    "id": "wrap_406_psyche_yfo29",
+    "name": "World Dominator",
+    "item_type": {
+      "id": "wrap",
+      "name": "Wrap"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/wrap_406_psyche_yfo29/icon.png"
+  },
+  {
+    "id": "cid_a_184_athena_commando_m_ninjawolf_f09o3",
+    "name": "The Burning Wolf",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_a_184_athena_commando_m_ninjawolf_f09o3/featured.png"
+  },
+  {
+    "id": "bid_830_ninjawolf_4cwaw",
+    "name": "Burning Fangs",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_830_ninjawolf_4cwaw/icon.png"
+  },
+  {
+    "id": "pickaxe_id_656_ninjawolfmale_7ptdp",
+    "name": "Burning Fangs",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_656_ninjawolfmale_7ptdp/icon.png"
+  },
+  {
+    "id": "cid_a_153_athena_commando_f_buffcatfan_ts2dr",
+    "name": "Summer Skye",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_a_153_athena_commando_f_buffcatfan_ts2dr/featured.png"
+  },
+  {
+    "id": "bid_814_buffcatfan_c3des",
+    "name": "Cursed Eagleshield",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_814_buffcatfan_c3des/icon.png"
+  },
+  {
+    "id": "pickaxe_id_635_buffcatfanfemale_j642p",
+    "name": "Epic Sword of Might",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_635_buffcatfanfemale_j642p/icon.png"
+  },
+  {
+    "id": "wrap_382_buffcatfan_oq9iz",
+    "name": "Pspspsps!",
+    "item_type": {
+      "id": "wrap",
+      "name": "Wrap"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/wrap_382_buffcatfan_oq9iz/icon.png"
+  },
+  {
+    "id": "wrap_378_buffcatfanb_j74f1",
+    "name": "Cattitude",
+    "item_type": {
+      "id": "wrap",
+      "name": "Wrap"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/wrap_378_buffcatfanb_j74f1/icon.png"
+  },
+  {
+    "id": "cid_a_126_athena_commando_m_linguini_px0qu",
+    "name": "Loki Laufeyson",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_a_126_athena_commando_m_linguini_px0qu/featured.png"
+  },
+  {
+    "id": "bid_791_linguini_gm9a0",
+    "name": "Loki's Cape",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_791_linguini_gm9a0/icon.png"
+  },
+  {
+    "id": "pickaxe_id_627_linguinimale_2zox0",
+    "name": "Loki's Scepter",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_627_linguinimale_2zox0/icon.png"
+  },
+  {
+    "id": "glider_id_301_linguinimale_ip674",
+    "name": "Chitauri Chariot",
+    "item_type": {
+      "id": "glider",
+      "name": "Glider"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/glider_id_301_linguinimale_ip674/icon.png"
+  },
+  {
+    "id": "cid_a_105_athena_commando_f_spacecuddles_5teva",
+    "name": "Mecha Cuddle Master",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_a_105_athena_commando_f_spacecuddles_5teva/featured.png"
+  },
+  {
+    "id": "bid_770_spacecuddles_x9qet",
+    "name": "Psytronic Bow",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_770_spacecuddles_x9qet/icon.png"
+  },
+  {
+    "id": "pickaxe_id_607_spacecuddlesfemale_0ecba",
+    "name": "Nuzzle Jet",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_607_spacecuddlesfemale_0ecba/icon.png"
+  },
+  {
+    "id": "wrap_357_spacecuddles_8gdwq",
+    "name": "Cuddle Mech",
+    "item_type": {
+      "id": "wrap",
+      "name": "Wrap"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/wrap_357_spacecuddles_8gdwq/icon.png"
+  },
+  {
+    "id": "cid_a_071_athena_commando_m_cranium",
+    "name": "Deimos",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_a_071_athena_commando_m_cranium/featured.png"
+  },
+  {
+    "id": "bid_754_craniummale",
+    "name": "Sorrow's Edge",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_754_craniummale/icon.png"
+  },
+  {
+    "id": "pickaxe_id_590_craniummale",
+    "name": "Sorrow's Reach",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_590_craniummale/icon.png"
+  },
+  {
+    "id": "wrap_349_cranium",
+    "name": "Doomed Echo",
+    "item_type": {
+      "id": "wrap",
+      "name": "Wrap"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/wrap_349_cranium/icon.png"
+  },
+  {
+    "id": "cid_a_044_athena_commando_f_neoncatfashion_64jw3",
+    "name": "Alli",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_a_044_athena_commando_f_neoncatfashion_64jw3/featured.png"
+  },
+  {
+    "id": "bid_722_neoncatfashion_kep9b",
+    "name": "Squee",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_722_neoncatfashion_kep9b/icon.png"
+  },
+  {
+    "id": "pickaxe_id_567_neoncatfashionfemale_fx9s5",
+    "name": "Skellyfish",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_567_neoncatfashionfemale_fx9s5/icon.png"
+  },
+  {
+    "id": "wrap_337_neoncatfashion_93jro",
+    "name": "Cat's Paw",
+    "item_type": {
+      "id": "wrap",
+      "name": "Wrap"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/wrap_337_neoncatfashion_93jro/icon.png"
+  },
+  {
+    "id": "cid_a_029_athena_commando_m_llamaherowinter_c83tz",
+    "name": "Llambro",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_a_029_athena_commando_m_llamaherowinter_c83tz/featured.png"
+  },
+  {
+    "id": "bid_707_llamaherowinter_3oq1v",
+    "name": "Up North",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_707_llamaherowinter_3oq1v/icon.png"
+  },
+  {
+    "id": "pickaxe_id_552_llamaherowintermale_s9mdn",
+    "name": "Puffcorn Pick",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_552_llamaherowintermale_s9mdn/icon.png"
+  },
+  {
+    "id": "wrap_329_llamaherowinter_xztgc",
+    "name": "The Llegend",
+    "item_type": {
+      "id": "wrap",
+      "name": "Wrap"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/wrap_329_llamaherowinter_xztgc/icon.png"
+  },
+  {
+    "id": "cid_a_009_athena_commando_f_foxwarrior_21b9r",
+    "name": "Vi",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_a_009_athena_commando_f_foxwarrior_21b9r/featured.png"
+  },
+  {
+    "id": "bid_697_foxwarrior_g0ytr",
+    "name": "Foxbow Quiver",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_697_foxwarrior_g0ytr/icon.png"
+  },
+  {
+    "id": "pickaxe_id_544_foxwarriorfemale_byvm8",
+    "name": "Crooked Claw",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_544_foxwarriorfemale_byvm8/icon.png"
+  },
+  {
+    "id": "wrap_321_foxwarrior_ih2a5",
+    "name": "Drift Shift",
+    "item_type": {
+      "id": "wrap",
+      "name": "Wrap"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/wrap_321_foxwarrior_ih2a5/icon.png"
+  },
+  {
+    "id": "cid_985_athena_commando_m_tiptoe_5l424",
+    "name": "Green Arrow",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_985_athena_commando_m_tiptoe_5l424/featured.png"
+  },
+  {
+    "id": "bid_585_tiptoe_v1t3m",
+    "name": "Tactical Quiver",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_585_tiptoe_v1t3m/icon.png"
+  },
+  {
+    "id": "pickaxe_id_529_tiptoemale_mq5um",
+    "name": "Boxing Glove Arrow",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_529_tiptoemale_mq5um/icon.png"
+  },
+  {
+    "id": "cid_935_athena_commando_f_eternity",
+    "name": "Galaxia",
+    "item_type": {
+      "id": "outfit",
+      "name": "Outfit"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/cid_935_athena_commando_f_eternity/featured.png"
+  },
+  {
+    "id": "bid_651_eternityfemale",
+    "name": "Fractured World",
+    "item_type": {
+      "id": "backpack",
+      "name": "Back Bling"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/bid_651_eternityfemale/icon.png"
+  },
+  {
+    "id": "pickaxe_id_501_eternityfemale",
+    "name": "Cosmic Llamacorn",
+    "item_type": {
+      "id": "pickaxe",
+      "name": "Pickaxe"
+    },
+    "card_bg_color": "linear-gradient(rgb(153, 0, 49), rgb(92, 0, 32), rgb(5, 38, 35))",
+    "overlay_bg_color": "linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)",
+    "transparent_image": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_501_eternityfemale/featured.png"
+  }
+]

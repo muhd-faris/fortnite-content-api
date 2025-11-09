@@ -15,6 +15,13 @@
       "when": 1762569167681,
       "tag": "0001_added_season_code",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1762592089139,
+      "tag": "0002_cleanup_schema",
+      "breakpoints": true
     }
   ]
 }

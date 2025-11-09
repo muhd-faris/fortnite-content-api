@@ -5,6 +5,7 @@ import {
     syncBrCosmeticTypes,
     syncFestivalCosmeticTypes
 } from './cosmetic-item-type';
+import { syncCrewRewardItems } from './crew-reward-items';
 
 const main = async () => {
     const { generateOptions } = await inquirer.prompt([
@@ -17,6 +18,8 @@ const main = async () => {
                 { name: 'Festival Cosmetic Item Type', value: 'festival_item_type' },
                 new inquirer.Separator(),
                 { name: 'BR Cosmetic Series', value: 'br_item_series' },
+                new inquirer.Separator(),
+                { name: 'Fortnite Crew Rewards', value: 'crew_rewards' },
                 new inquirer.Separator(),
                 { name: 'Quit', value: 'quit' }
             ]
@@ -32,6 +35,9 @@ const main = async () => {
             break;
         case 'br_item_series':
             await syncBrCosmeticSeries();
+            break;
+        case 'crew_rewards':
+            await syncCrewRewardItems();
             break;
         case 'quit':
             return;

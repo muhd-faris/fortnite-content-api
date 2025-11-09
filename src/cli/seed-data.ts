@@ -5,11 +5,15 @@ import fs from 'fs';
 import * as schema from '../db/schema';
 
 import brSeasonHistory from '../data/seed/season-history.json';
-import { SeasonHistoryTable } from '../db/schema';
+import fortniteCrewHistory from '../data/seed/fortnite-crew.json';
+import {
+    FortniteCrewTable,
+    SeasonHistoryTable
+} from '../db/schema';
 
 const db = drizzle(process.env.DATABASE_STAGING_URL as string, { schema });
 
-export const seedSeasonHistoryData = async () => {
+const seedSeasonHistoryData = async () => {
     await db.delete(SeasonHistoryTable).returning({ id: SeasonHistoryTable.id });
 
     const currentDate = new Date();
@@ -56,4 +60,28 @@ export const seedSeasonHistoryData = async () => {
     process.exit(1);
 };
 
-seedSeasonHistoryData();
+const seedFortniteCrewData = async () => {
+    await db.delete(FortniteCrewTable).returning({ id: FortniteCrewTable.id });
+
+    const crewData = fortniteCrewHistory.history;
+    const formattedCrew = crewData.map(d => {
+        const rewardsIds = d.rewards.map(r => r.item.id.toLowerCase());
+
+        return {
+            crew_date: new Date(d.date),
+            color_1: d.colors.A,
+            color_2: d.colors.B,
+            color_3: d.colors.C,
+            image_with_bg: d.images.itemShopTile,
+            rewards_id: rewardsIds
+        }
+    });
+
+    const data = await db.insert(FortniteCrewTable).values([
+        ...formattedCrew
+    ]).returning({ id: FortniteCrewTable.id });
+
+    console.log(`Successfully seeded ${data.length} fortnite crew to database`);
+};
+
+seedFortniteCrewData();
