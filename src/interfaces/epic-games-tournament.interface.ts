@@ -1,46 +1,46 @@
 export interface IRootEpicGamesTournament {
-    scoringRuleSets: { [id: string]: IRootScoringRuleSet[]; };
-    payoutTables: { [id: string]: IRootPayoutTable[]; };
-    events: IRootEvent[];
-    templates: IRootTemplate[];
-    leaderboardDefs: IRootLeaderboardDefs[];
-    scoreLocationScoringRuleSets: { [idKey: string]: string; };
-    scoreLocationPayoutTables: { [idKey: string]: string; };
-    resolvedWindowLocations: { [idKey: string]: string[]; };
-    eventSeries: any;
+  scoringRuleSets: { [id: string]: IRootScoringRuleSet[]; };
+  payoutTables: { [id: string]: IRootPayoutTable[]; };
+  events: IRootEvent[];
+  templates: IRootTemplate[];
+  leaderboardDefs: IRootLeaderboardDefs[];
+  scoreLocationScoringRuleSets: { [idKey: string]: string; };
+  scoreLocationPayoutTables: { [idKey: string]: string; };
+  resolvedWindowLocations: { [idKey: string]: string[]; };
+  eventSeries: any;
 };
 
 // Start Scoring Rule Set Interface
 interface IRootScoringRuleSet {
-    trackedStat: string;
-    matchRule: string;
-    rewardTiers: IScoringRuleSetRewardTier[];
+  trackedStat: string;
+  matchRule: string;
+  rewardTiers: IScoringRuleSetRewardTier[];
 };
 
 interface IScoringRuleSetRewardTier {
-    keyValue: number;
-    pointsEarned: number;
-    multiplicative: boolean;
+  keyValue: number;
+  pointsEarned: number;
+  multiplicative: boolean;
 };
 // End Scoring Rule Set Interface
 
 // Start Payout Table Interface
 interface IRootPayoutTable {
-    scoringType: string;
-    ranks: IPayoutTableRank[];
+  scoringType: string;
+  ranks: IPayoutTableRank[];
 };
 
 interface IPayoutTableRank {
-    threshold: number;
-    payouts: IPayoutTableRankPayout[];
+  threshold: number;
+  payouts: IPayoutTableRankPayout[];
 };
 
 interface IPayoutTableRankPayout {
-    rewardType: string;
-    rewardMode: string;
-    value: string;
-    quantity: number;
-    notifiesPlayer: boolean;
+  rewardType: string;
+  rewardMode: string;
+  value: string;
+  quantity: number;
+  notifiesPlayer: boolean;
 };
 // End Payout Table Interface
 
@@ -141,7 +141,7 @@ interface ITieBreakerFormulaComponent {
 // End Template Interface
 
 // Start Leaderboard Defs Interface
-interface IRootLeaderboardDefs {
+export interface IRootLeaderboardDefs {
   gameId: string;
   leaderboardDefId: string;
   leaderboardStorageId: string;
@@ -152,8 +152,15 @@ interface IRootLeaderboardDefs {
   tiebreakerFormula: ITieBreakerFormula;
   scoringRuleSetId: string;
   clampsToZero: boolean;
+  payoutsConfig?: ILeaderboardDefsPayoutConfig;
+  percentileAccuracy?: number;
   onlyScoreTopN: number;
   hidePlayerScores: boolean;
   requiredPlayerListings: any[];
+};
+
+interface ILeaderboardDefsPayoutConfig {
+  payoutTableIdFormat: string;
+  payoutDate: string;
 };
 // End Leaderboard Defs Interface

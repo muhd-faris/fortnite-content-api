@@ -6,7 +6,7 @@ import CosmeticRoutes from './routers/cosmetic';
 import SeasonHistoryRoutes from './routers/season-history';
 import GameRoutes from './routers/game';
 import CrewRoutes from './routers/crew';
-
+import TournamentRoutes from './routers/tournament';
 
 const app = new Hono<TDefaultContext>();
 
@@ -32,5 +32,6 @@ app.route('/', CosmeticRoutes);
 app.route('/', SeasonHistoryRoutes);
 app.route('/', GameRoutes);
 app.route('/', CrewRoutes);
+app.route('/', TournamentRoutes);
 
 export default app
