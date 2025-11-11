@@ -113,6 +113,31 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
 };
 
 function formatTournamentPlatform(platforms: string[]) {
-  // TODO: Format Platforms
-  return platforms;
+  const plt: { name: string; value: string }[] = [];
+
+  for (const p of platforms) {
+    if (p.toLowerCase().includes('xbox')) {
+      plt.push({ name: 'Xbox', value: 'xbox' });
+    };
+
+    if (p.toLowerCase().includes('switch')) {
+      plt.push({ name: 'Nintendo Switch', value: 'switch' });
+    };
+
+    if (p.toLowerCase().includes('windows')) {
+      plt.push({ name: 'PC', value: 'pc' });
+    };
+
+    if (p.toLowerCase().includes('mobile') || p.toLowerCase().includes('android') || p.toLowerCase().includes('ios')) {
+      plt.push({ name: 'Mobile', value: 'mobile' });
+    };
+
+    if (p.toLowerCase().startsWith('ps')) {
+      plt.push({ name: 'Playstation', value: 'playstation' });
+    };
+  };
+
+  const uniquePlatformsJSON = new Set(plt.map((p) => JSON.stringify(p)));
+
+  return Array.from(uniquePlatformsJSON).map((s) => JSON.parse(s));
 };
