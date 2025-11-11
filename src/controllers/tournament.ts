@@ -4,6 +4,7 @@ import { TCFContext } from '../types';
 import rawTournament from '../data/seed/tournaments-past.json';
 import { IRootEpicGamesTournament, IRootLeaderboardDefs } from '../interfaces';
 import { CustomException } from '../helpers';
+import { TournamentValidationSchema } from '../validations';
 
 export const getTournamentsV1 = (c: TCFContext) => { };
 
@@ -22,9 +23,7 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
    * Step 5 - Remove all Tournaments from the region in Database
    * Step 6 - Add new Tournaments to region Database
    */
-
-  // TODO: Enable this once validation from zod
-  // const { region } = await c.req.json();
+  const { region } = TournamentValidationSchema.parse(await c.req.json());
 
   const data = rawTournament as IRootEpicGamesTournament;
 
@@ -59,8 +58,7 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
       event_id: ev.eventId,
       start_time: ev.beginTime,
       end_time: ev.endTime,
-      // TODO: Change this get from request body
-      region: 'asia',
+      region,
       platforms: formattedPlatforms,
       session_windows: []
     };

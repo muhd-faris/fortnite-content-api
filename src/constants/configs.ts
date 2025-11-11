@@ -20,6 +20,18 @@ export const SupportedLanguage = [
     { display_name: 'Portuguese (Brazil)', value: 'pt-BR' }
 ].sort((a, b) => a.display_name.localeCompare(b.display_name));
 
+export const SupportedRegion = [
+    { display_name: 'Asia', value: 'asia' },
+    { display_name: 'Brazil', value: 'br' },
+    { display_name: 'Europe', value: 'eu' },
+    { display_name: 'Middle East', value: 'me' },
+    { display_name: 'Oceania', value: 'oce' },
+    { display_name: 'NA East', value: 'nae' },
+    { display_name: 'NA West', value: 'naw' },
+    { display_name: 'NA Central', value: 'nac' },
+    { display_name: 'Onsite', value: 'onsite' },
+].sort((a, b) => a.display_name.localeCompare(b.display_name));
+
 export const UnsupportedBrTypes: string[] = [
     'BannerToken',
     'AthenaEmoji',
@@ -39,3 +51,5 @@ export const SupportedItemTypesVal: string[] = [
     ...SupportedBrItemTypesVal,
     ...festivalCosmeticTypesData.map(t => t.value)
 ];
+
+export const SupportedRegionVal: string[] = SupportedRegion.map(r => r.value);

@@ -3,5 +3,7 @@ export {
     UnsupportedBrTypes,
     SupportedBrItemTypesVal,
     SupportedBrItemSeriesVal,
-    SupportedItemTypesVal
+    SupportedItemTypesVal,
+    SupportedRegion,
+    SupportedRegionVal
 } from './configs';

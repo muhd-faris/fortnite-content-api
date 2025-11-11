@@ -57,7 +57,7 @@ interface IRootEvent {
   regionMappings: { [region: string]: string };
   platforms: string[];
   platformMappings: any;
-  metadata: Metadata;
+  metadata: IMetadata;
   eventWindows: IEventWindow[];
   link: IEventLink;
 };
@@ -80,7 +80,7 @@ interface IEventWindow {
   additionalRequirements: string[];
   teammateEligibility: string;
   blackoutPeriods: any[];
-  scoreLocations: ScoreLocation[];
+  scoreLocations: IScoreLocation[];
   canLiveSpectate: boolean;
   requireAllTokens: string[];
   requireAnyTokens: string[];
@@ -98,12 +98,12 @@ interface IEventWindowMetadata {
   ScheduledMatchmakingMatchDelaySeconds?: number;
 };
 
-interface ScoreLocation {
+interface IScoreLocation {
   leaderboardDefId: string;
   isMainWindowLeaderboard: boolean;
 };
 
-interface Metadata {
+interface IMetadata {
   requireSystemFeatures: string[];
   tournamentType: string;
   TeamLockType: string;
