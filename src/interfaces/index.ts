@@ -16,6 +16,10 @@ export {
     ICosmeticDetailsData
 } from './cosmetic.interface';
 export {
+    IEGAccessToken,
+    IEGError
+} from './epic-games-auth.interface';
+export {
     IRootEpicGamesTournament,
     IRootLeaderboardDefs
 } from './epic-games-tournament.interface';
