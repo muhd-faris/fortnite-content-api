@@ -1,22 +1,22 @@
-import { getDrizzle } from "../lib";
-import { TCFContext } from "../types";
+import { getDrizzle } from '../lib';
+import { TCFContext } from '../types';
 
-import rawTournament from "../data/seed/tournaments-past.json";
+import rawTournament from '../data/seed/tournaments-past.json';
 import {
   IEGAccessToken,
   IEGError,
   IRootEpicGamesTournament,
   IRootLeaderboardDefs,
   ITournamentPlatform,
-} from "../interfaces";
-import { CustomException } from "../helpers";
-import { TournamentValidationSchema } from "../validations";
+} from '../interfaces';
+import { CustomException } from '../helpers';
+import { TournamentValidationSchema } from '../validations';
 
-export const getTournamentsV1 = (c: TCFContext) => { };
+export const getTournamentsV1 = (c: TCFContext) => {};
 
-export const getTournamentDetailsV1 = (c: TCFContext) => { };
+export const getTournamentDetailsV1 = (c: TCFContext) => {};
 
-export const getTournamentWindowDetailsV1 = (c: TCFContext) => { };
+export const getTournamentWindowDetailsV1 = (c: TCFContext) => {};
 
 export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
   /**
@@ -34,17 +34,17 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
   const { access_token } = await getEpicGamesAccessToken();
 
   const params = new URLSearchParams();
-  params.append("region", region.toUpperCase());
-  params.append("showPastEvents", "true");
+  params.append('region', region.toUpperCase());
+  params.append('showPastEvents', 'true');
 
-  const gameId: string = "Fortnite";
+  const gameId: string = 'Fortnite';
   const accountId: string = process.env.EPIC_GAMES_ACCOUNT_ID!;
   const url: string = `https://events-public-service-live.ol.epicgames.com/api/v1/events/${gameId}/data/${accountId}?${params.toString()}`;
   const response = await fetch(url, {
-    method: "GET",
+    method: 'GET',
     headers: {
       Authorization: `Bearer ${access_token}`,
-      "Content-Type": "application/x-www-form-urlencoded",
+      'Content-Type': 'application/x-www-form-urlencoded',
     },
   });
 
@@ -58,10 +58,7 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
   } = jsonResponse;
 
   if (events.length === 0) {
-    throw new CustomException(
-      "No tournaments available to parse. Please try again later.",
-      400
-    );
+    throw new CustomException('No tournaments available to parse. Please try again later.', 400);
   }
 
   // Create a fast lookup map for leaderboard definitions
@@ -76,9 +73,7 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
     const displayId = ev.displayDataId;
 
     // TODO: Add name, description and image
-    const formattedPlatforms: ITournamentPlatform[] = formatTournamentPlatform(
-      ev.platforms
-    );
+    const formattedPlatforms: ITournamentPlatform[] = formatTournamentPlatform(ev.platforms);
     const eventResponse: any = {
       event_id: ev.eventId,
       start_time: ev.beginTime,
@@ -102,18 +97,14 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
 
       // TODO: Break this into seperate function because either way it wont be undefined
       // Find the main leaderboard
-      let scoreLocation = window.scoreLocations.find(
-        (sl) => sl.isMainWindowLeaderboard
-      );
+      let scoreLocation = window.scoreLocations.find((sl) => sl.isMainWindowLeaderboard);
       // If no main leaderboard then assign any available leaderboard
       if (!scoreLocation && window.scoreLocations.length > 0) {
         scoreLocation = window.scoreLocations[0];
       }
 
       if (scoreLocation) {
-        const leaderboardDef = leaderboardDefsMap.get(
-          scoreLocation.leaderboardDefId
-        );
+        const leaderboardDef = leaderboardDefsMap.get(scoreLocation.leaderboardDefId);
 
         if (leaderboardDef) {
           const scoringId = leaderboardDef.scoringRuleSetId;
@@ -122,13 +113,12 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
             windowResponse.scoring = scoringRuleSets[scoringId] ?? [];
           }
 
-          const payoutIdFormat =
-            leaderboardDef.payoutsConfig?.payoutTableIdFormat;
+          const payoutIdFormat = leaderboardDef.payoutsConfig?.payoutTableIdFormat;
 
           if (payoutIdFormat) {
             const resolvedPayoutId = payoutIdFormat
-              .replace("${eventId}", ev.eventId ?? "")
-              .replace("${windowId}", window.eventWindowId ?? "");
+              .replace('${eventId}', ev.eventId ?? '')
+              .replace('${windowId}', window.eventWindowId ?? '');
 
             windowResponse.payout = payoutTables[resolvedPayoutId] ?? null;
           }
@@ -146,28 +136,28 @@ function formatTournamentPlatform(platforms: string[]): ITournamentPlatform[] {
   const plt: ITournamentPlatform[] = [];
 
   for (const p of platforms) {
-    if (p.toLowerCase().includes("xbox")) {
-      plt.push({ display_name: "Xbox", value: "xbox" });
+    if (p.toLowerCase().includes('xbox')) {
+      plt.push({ display_name: 'Xbox', value: 'xbox' });
     }
 
-    if (p.toLowerCase().includes("switch")) {
-      plt.push({ display_name: "Nintendo Switch", value: "switch" });
+    if (p.toLowerCase().includes('switch')) {
+      plt.push({ display_name: 'Nintendo Switch', value: 'switch' });
     }
 
-    if (p.toLowerCase().includes("windows")) {
-      plt.push({ display_name: "PC", value: "pc" });
+    if (p.toLowerCase().includes('windows')) {
+      plt.push({ display_name: 'PC', value: 'pc' });
     }
 
     if (
-      p.toLowerCase().includes("mobile") ||
-      p.toLowerCase().includes("android") ||
-      p.toLowerCase().includes("ios")
+      p.toLowerCase().includes('mobile') ||
+      p.toLowerCase().includes('android') ||
+      p.toLowerCase().includes('ios')
     ) {
-      plt.push({ display_name: "Mobile", value: "mobile" });
+      plt.push({ display_name: 'Mobile', value: 'mobile' });
     }
 
-    if (p.toLowerCase().startsWith("ps")) {
-      plt.push({ display_name: "Playstation", value: "playstation" });
+    if (p.toLowerCase().startsWith('ps')) {
+      plt.push({ display_name: 'Playstation', value: 'playstation' });
     }
   }
 
@@ -176,55 +166,50 @@ function formatTournamentPlatform(platforms: string[]): ITournamentPlatform[] {
   return Array.from(uniquePlatformsJSON).map((s) => JSON.parse(s));
 }
 
-function getClientDetails(
-  client: "fortnite_pc_game" | "fortnite_android_game"
-) {
-  let cliendId: string = "";
-  let clientSecret: string = "";
+function getClientDetails(client: 'fortnite_pc_game' | 'fortnite_android_game') {
+  let cliendId: string = '';
+  let clientSecret: string = '';
 
   switch (client) {
-    case "fortnite_android_game":
-      cliendId = "3f69e56c7649492c8cc29f1af08a8a12";
-      clientSecret = "b51ee9cb12234f50a69efa67ef53812e";
+    case 'fortnite_android_game':
+      cliendId = '3f69e56c7649492c8cc29f1af08a8a12';
+      clientSecret = 'b51ee9cb12234f50a69efa67ef53812e';
 
       break;
 
-    case "fortnite_pc_game":
-      cliendId = "ec684b8c687f479fadea3cb2ad83f5c6";
-      clientSecret = "e1f31c211f28413186262d37a13fc84d";
+    case 'fortnite_pc_game':
+      cliendId = 'ec684b8c687f479fadea3cb2ad83f5c6';
+      clientSecret = 'e1f31c211f28413186262d37a13fc84d';
 
       break;
     default:
-      throw new CustomException(
-        "Unsupported Client Name provided. Please try again later.",
-        400
-      );
+      throw new CustomException('Unsupported Client Name provided. Please try again later.', 400);
   }
 
   return { client_id: cliendId, client_secret: clientSecret };
 }
 
 async function getEpicGamesAccessToken() {
-  const clientDetails = getClientDetails("fortnite_android_game");
+  const clientDetails = getClientDetails('fortnite_android_game');
   const authHeader = Buffer.from(
     `${clientDetails.client_id}:${clientDetails.client_secret}`,
-    "utf8"
-  ).toString("base64");
+    'utf8'
+  ).toString('base64');
 
   const body = new URLSearchParams({
-    grant_type: "device_auth",
+    grant_type: 'device_auth',
     account_id: process.env.EPIC_GAMES_ACCOUNT_ID!,
     device_id: process.env.EPIC_GAMES_DEVICE_ID!,
     secret: process.env.EPIC_GAMES_DEVICE_ID_SECRET!,
   });
 
   const response = await fetch(
-    "https://account-public-service-prod.ol.epicgames.com/account/api/oauth/token",
+    'https://account-public-service-prod.ol.epicgames.com/account/api/oauth/token',
     {
-      method: "POST",
+      method: 'POST',
       headers: {
         Authorization: `Basic ${authHeader}`,
-        "Content-Type": "application/x-www-form-urlencoded",
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: body,
     }

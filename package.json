@@ -22,6 +22,7 @@
   "devDependencies": {
     "@types/pg": "^8.15.6",
     "drizzle-kit": "^0.31.6",
+    "prettier": "^3.6.2",
     "tsx": "^4.20.6",
     "wrangler": "^4.46.0"
   }
