@@ -19,6 +19,8 @@ export { IEGAccessToken, IEGError } from "./epic-games-auth.interface";
 export {
   IRootEpicGamesTournament,
   IRootLeaderboardDefs,
+  IRootScoringRuleSet,
+  IRootPayoutTable
 } from "./epic-games-tournament.interface";
 export { IRootInstrumentListing } from "./instrument-listing";
 export { IRootRecentCosmetic } from "./recent-cosmetic.interface";

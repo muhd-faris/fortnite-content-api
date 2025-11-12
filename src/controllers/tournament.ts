@@ -7,16 +7,18 @@ import {
   IEGError,
   IRootEpicGamesTournament,
   IRootLeaderboardDefs,
+  IRootPayoutTable,
+  IRootScoringRuleSet,
   ITournamentPlatform,
 } from '../interfaces';
 import { CustomException } from '../helpers';
 import { TournamentValidationSchema } from '../validations';
 
-export const getTournamentsV1 = (c: TCFContext) => {};
+export const getTournamentsV1 = (c: TCFContext) => { };
 
-export const getTournamentDetailsV1 = (c: TCFContext) => {};
+export const getTournamentDetailsV1 = (c: TCFContext) => { };
 
-export const getTournamentWindowDetailsV1 = (c: TCFContext) => {};
+export const getTournamentWindowDetailsV1 = (c: TCFContext) => { };
 
 export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
   /**
@@ -89,9 +91,7 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
         countdown_starts_at: window.countdownBeginTime,
         start_time: window.beginTime,
         end_time: window.endTime,
-        // TODO: Format to FNTrack desired data
         scoring: [],
-        // TODO: Format to FNTrack desired data
         payout: [],
       };
 
@@ -110,7 +110,7 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
           const scoringId = leaderboardDef.scoringRuleSetId;
 
           if (scoringId) {
-            windowResponse.scoring = scoringRuleSets[scoringId] ?? [];
+            windowResponse.scoring = formateScoringResponse(scoringRuleSets[scoringId] ?? []);
           }
 
           const payoutIdFormat = leaderboardDef.payoutsConfig?.payoutTableIdFormat;
@@ -120,7 +120,7 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
               .replace('${eventId}', ev.eventId ?? '')
               .replace('${windowId}', window.eventWindowId ?? '');
 
-            windowResponse.payout = payoutTables[resolvedPayoutId] ?? null;
+            windowResponse.payout = formatPayoutResponse(payoutTables[resolvedPayoutId] ?? []);
           }
         }
       }
@@ -225,3 +225,55 @@ async function getEpicGamesAccessToken() {
     throw errorData;
   }
 }
+
+function formateScoringResponse(data: IRootScoringRuleSet[]) {
+  return data.map(sc => {
+    const typeKey: { [id: string]: string } = {
+      ['PLACEMENT_STAT_INDEX']: 'Placements',
+      ['TEAM_ELIMS_STAT_INDEX']: 'Eliminations'
+    };
+    const points = sc.rewardTiers.map(r => ({ value: r.keyValue, points: r.pointsEarned }));
+
+    return { type: typeKey[sc.trackedStat], rewards: points }
+  });
+};
+
+function formatPayoutResponse(data: IRootPayoutTable[]) {
+  const handleKey: Record<string, string> = {
+    ['game']: 'cosmetics',
+    ['floatingScore']: 'hype',
+    ['token']: 'qualify',
+    ['ecomm']: 'money',
+    ['persistentScore']: 'point'
+  };
+
+  return data.flatMap(prize =>
+    prize.ranks.flatMap(rank =>
+      rank.payouts.map(payout => {
+        const normalizedRewardType = payout.rewardType.toLowerCase();
+
+        const value =
+          normalizedRewardType === 'game'
+            ? payout.value.split(':')[1] ?? payout.value
+            : payout.value;
+
+        return {
+          type: prize.scoringType,
+          threshold: tournamentPrizeType(prize.scoringType, rank.threshold),
+          quantity: payout.quantity,
+          rewardType: handleKey[normalizedRewardType],
+          value: value
+        };
+      })
+    )
+  );
+};
+
+function tournamentPrizeType(type: string, threshold: number): string {
+  type = type.toLowerCase();
+
+  if (type === 'percentile') return `Top ${threshold * 100}%`;
+  else if (type === 'value') return `Earned ${threshold} Points`;
+
+  return `Top #${threshold}`;
+};
