@@ -221,4 +221,13 @@ interface ITournamentInfo {
   playlist_tile_image: string;
   base_color: string;
 }
+
+export interface ITournamentDisplayInfo {
+  displayId: string;
+  title_line_1?: string;
+  title_line_2?: string;
+  short_format_title?: string;
+  details_description?: string;
+  playlist_tile_image?: string;
+}
 // End of Epic Games Tournament Details Endpoint

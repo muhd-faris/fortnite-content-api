@@ -1,7 +1,8 @@
 import { getDrizzle } from '../lib';
-import { TCFContext } from '../types';
+import { TCFContext, TTournamentExtraDetails } from '../types';
 
 import rawTournament from '../data/seed/tournaments-past.json';
+import tournamentDetail from '../data/seed/tournament-detail.json';
 import {
   IEGAccessToken,
   IEGError,
@@ -9,16 +10,17 @@ import {
   IRootLeaderboardDefs,
   IRootPayoutTable,
   IRootScoringRuleSet,
+  ITournamentDisplayInfo,
   ITournamentPlatform,
 } from '../interfaces';
 import { CustomException } from '../helpers';
 import { TournamentValidationSchema } from '../validations';
 
-export const getTournamentsV1 = (c: TCFContext) => { };
+export const getTournamentsV1 = (c: TCFContext) => {};
 
-export const getTournamentDetailsV1 = (c: TCFContext) => { };
+export const getTournamentDetailsV1 = (c: TCFContext) => {};
 
-export const getTournamentWindowDetailsV1 = (c: TCFContext) => { };
+export const getTournamentWindowDetailsV1 = (c: TCFContext) => {};
 
 export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
   /**
@@ -63,6 +65,9 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
     throw new CustomException('No tournaments available to parse. Please try again later.', 400);
   }
 
+  // TODO: Call from API
+  const tournamentDetails = extractTournamentDisplayInfo(tournamentDetail as any);
+
   // Create a fast lookup map for leaderboard definitions
   const leaderboardDefsMap = new Map<string, IRootLeaderboardDefs>(
     leaderboardDefs.map((def) => [def.leaderboardDefId, def])
@@ -73,11 +78,14 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
 
   for (const ev of events) {
     const displayId = ev.displayDataId;
+    // TODO: Correctly handle this
+    const details = searchTournamentByDisplayId(tournamentDetails, displayId);
 
     // TODO: Add name, description and image
     const formattedPlatforms: ITournamentPlatform[] = formatTournamentPlatform(ev.platforms);
     const eventResponse: any = {
       event_id: ev.eventId,
+      ...details,
       start_time: ev.beginTime,
       end_time: ev.endTime,
       region,
@@ -227,16 +235,16 @@ async function getEpicGamesAccessToken() {
 }
 
 function formateScoringResponse(data: IRootScoringRuleSet[]) {
-  return data.map(sc => {
+  return data.map((sc) => {
     const typeKey: { [id: string]: string } = {
       ['PLACEMENT_STAT_INDEX']: 'Placements',
-      ['TEAM_ELIMS_STAT_INDEX']: 'Eliminations'
+      ['TEAM_ELIMS_STAT_INDEX']: 'Eliminations',
     };
-    const points = sc.rewardTiers.map(r => ({ value: r.keyValue, points: r.pointsEarned }));
+    const points = sc.rewardTiers.map((r) => ({ value: r.keyValue, points: r.pointsEarned }));
 
-    return { type: typeKey[sc.trackedStat], rewards: points }
+    return { type: typeKey[sc.trackedStat], rewards: points };
   });
-};
+}
 
 function formatPayoutResponse(data: IRootPayoutTable[]) {
   const handleKey: Record<string, string> = {
@@ -244,17 +252,17 @@ function formatPayoutResponse(data: IRootPayoutTable[]) {
     ['floatingScore']: 'hype',
     ['token']: 'qualify',
     ['ecomm']: 'money',
-    ['persistentScore']: 'point'
+    ['persistentScore']: 'point',
   };
 
-  return data.flatMap(prize =>
-    prize.ranks.flatMap(rank =>
-      rank.payouts.map(payout => {
+  return data.flatMap((prize) =>
+    prize.ranks.flatMap((rank) =>
+      rank.payouts.map((payout) => {
         const normalizedRewardType = payout.rewardType.toLowerCase();
 
         const value =
           normalizedRewardType === 'game'
-            ? payout.value.split(':')[1] ?? payout.value
+            ? (payout.value.split(':')[1] ?? payout.value)
             : payout.value;
 
         return {
@@ -262,12 +270,12 @@ function formatPayoutResponse(data: IRootPayoutTable[]) {
           threshold: tournamentPrizeType(prize.scoringType, rank.threshold),
           quantity: payout.quantity,
           rewardType: handleKey[normalizedRewardType],
-          value: value
+          value: value,
         };
       })
     )
   );
-};
+}
 
 function tournamentPrizeType(type: string, threshold: number): string {
   type = type.toLowerCase();
@@ -276,4 +284,51 @@ function tournamentPrizeType(type: string, threshold: number): string {
   else if (type === 'value') return `Earned ${threshold} Points`;
 
   return `Top #${threshold}`;
-};
+}
+
+export function extractTournamentDisplayInfo(
+  details: TTournamentExtraDetails
+): ITournamentDisplayInfo[] {
+  const result: ITournamentDisplayInfo[] = [];
+
+  Object.entries(details).forEach(([key, value]) => {
+    // Skip known static keys
+    if (
+      [
+        'conversion_config',
+        'tournament_info',
+        '_title',
+        '_noIndex',
+        '_activeDate',
+        'lastModified',
+        '_locale',
+        '_templateName',
+        '_suggestedPrefetch',
+      ].includes(key)
+    ) {
+      return;
+    }
+
+    // Only process dynamic tournament entries
+    if (value && typeof value === 'object' && 'tournament_info' in value) {
+      const info = value.tournament_info;
+      result.push({
+        displayId: key,
+        title_line_1: info.title_line_1,
+        title_line_2: info.title_line_2,
+        short_format_title: info.short_format_title,
+        details_description: info.details_description,
+        playlist_tile_image: info.playlist_tile_image,
+      });
+    }
+  });
+
+  return result;
+}
+
+function searchTournamentByDisplayId(
+  data: ITournamentDisplayInfo[],
+  displayId: string
+): ITournamentDisplayInfo | null {
+  return data.find((d) => d.displayId === displayId) || null;
+}
