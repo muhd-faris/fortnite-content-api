@@ -66,6 +66,7 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
   }
 
   // TODO: Call from API
+  // https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game/tournamentinformation
   const tournamentDetails = extractTournamentDisplayInfo(tournamentDetail as any);
 
   // Create a fast lookup map for leaderboard definitions

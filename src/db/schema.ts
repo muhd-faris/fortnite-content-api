@@ -74,6 +74,11 @@ export const FortniteTournamentSessionTable = pgTable('fortnite_tournament_sessi
 
 export const FortniteTournamentScoringTable = pgTable('fortnite_tournament_scorings', {
   id: uuid('id').primaryKey().defaultRandom(),
+  score_id: varchar('score_id', { length: 255 }).notNull(),
+  leaderboard_def_id: varchar('leaderboard_def_id', { length: 255 }).notNull(),
+  tracked_stat: varchar('tracked_stat', { length: 255 }).notNull(),
+  key_value: varchar('key_value', { length: 255 }).notNull(),
+  points_earned: varchar('points_earned', { length: 255 }).notNull(),
   created_at: timestamp('created_at').defaultNow().notNull(),
   updated_at: timestamp('updated_at')
     .notNull()
