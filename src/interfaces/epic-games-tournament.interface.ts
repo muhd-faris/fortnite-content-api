@@ -223,11 +223,11 @@ interface ITournamentInfo {
 }
 
 export interface ITournamentDisplayInfo {
-  displayId: string;
-  title_line_1?: string;
-  title_line_2?: string;
-  short_format_title?: string;
-  details_description?: string;
-  playlist_tile_image?: string;
+  display_id: string;
+  title_line_1: string | null;
+  title_line_2: string | null;
+  short_format_title: string | null;
+  details_description: string | null;
+  playlist_tile_image: string | null;
 }
 // End of Epic Games Tournament Details Endpoint

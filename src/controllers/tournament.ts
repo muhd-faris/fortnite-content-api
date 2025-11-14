@@ -82,11 +82,8 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
   const formattedEvents: any[] = [];
 
   for (const ev of events) {
-    const displayId = ev.displayDataId;
-    // TODO: Correctly handle this
-    const details = searchTournamentByDisplayId(tournamentDetails, displayId);
+    const details = searchTournamentByDisplayId(tournamentDetails, ev.displayDataId);
 
-    // TODO: Add name, description and image
     const formattedPlatforms: ITournamentPlatform[] = formatTournamentPlatform(ev.platforms);
     const eventResponse: any = {
       event_id: ev.eventId,
@@ -318,7 +315,7 @@ export function extractTournamentDisplayInfo(
     if (value && typeof value === 'object' && 'tournament_info' in value) {
       const info = value.tournament_info;
       result.push({
-        displayId: key,
+        display_id: key,
         title_line_1: info.title_line_1,
         title_line_2: info.title_line_2,
         short_format_title: info.short_format_title,
@@ -334,6 +331,15 @@ export function extractTournamentDisplayInfo(
 function searchTournamentByDisplayId(
   data: ITournamentDisplayInfo[],
   displayId: string
-): ITournamentDisplayInfo | null {
-  return data.find((d) => d.displayId === displayId) || null;
+): ITournamentDisplayInfo {
+  const defaultResponse: ITournamentDisplayInfo = {
+    display_id: displayId,
+    title_line_1: null,
+    title_line_2: null,
+    short_format_title: null,
+    details_description: null,
+    playlist_tile_image: null,
+  };
+
+  return data.find((d) => d.display_id === displayId) || defaultResponse;
 }
