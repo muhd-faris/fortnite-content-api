@@ -55,12 +55,7 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
 
   const jsonResponse = (await response.json()) as IRootEpicGamesTournament;
 
-  const {
-    events = [],
-    leaderboardDefs = [],
-    scoringRuleSets = {},
-    payoutTables = {},
-  } = jsonResponse;
+  const { events, leaderboardDefs, scoringRuleSets, payoutTables } = jsonResponse;
 
   if (events.length === 0) {
     throw new CustomException('No tournaments available to parse. Please try again later.', 400);
@@ -81,6 +76,10 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
   );
 
   const formattedEvents: ITournamentEvent[] = [];
+  // To track what we need for the tournaments instead of storing all in the database
+  const wantedPayouts: string[] = [];
+  // To track what we need for the tournaments instead of storing all in the database
+  const wantedScorings: string[] = [];
 
   for (const ev of events) {
     const details = searchTournamentByDisplayId(tournamentDetails, ev.displayDataId);
@@ -125,14 +124,30 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
         windowResponse.payout_id = resolvedPayoutId;
       }
 
+      wantedPayouts.push(windowResponse.payout_id ?? '');
+      wantedScorings.push(windowResponse.scoring_id ?? '');
       eventResponse.session_windows.push(windowResponse);
     }
 
     formattedEvents.push(eventResponse);
   }
+  // Ensure they are unique
+  const uniquePayouts = [...new Set(wantedPayouts)];
+  const uniqueScorings = [...new Set(wantedScorings)];
 
-  const parsedPayout = parsePayoutResponse(payoutTables);
-  const parsedScoring = parseScoringResponse(scoringRuleSets);
+  // TODO: Implement
+  if (uniquePayouts.length > 0) {
+    const parsedPayout = parsePayoutResponse(payoutTables).filter((p) =>
+      uniquePayouts.includes(p.epic_payout_id)
+    );
+  }
+
+  // TODO: Implement
+  if (uniqueScorings.length > 0) {
+    const parsedScoring = parseScoringResponse(scoringRuleSets).filter((s) =>
+      uniqueScorings.includes(s.epic_score_id)
+    );
+  }
 
   return c.json(formattedEvents);
 };
