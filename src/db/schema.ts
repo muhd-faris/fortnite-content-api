@@ -61,10 +61,15 @@ export const FortniteTournamentSessionTable = pgTable('fortnite_tournament_sessi
   countdown_starts_at: timestamp('countdown_starts_at').notNull(),
   start_time: timestamp('start_time').notNull(),
   end_time: timestamp('end_time').notNull(),
-  scoring_id: uuid('scoring_id')
+  epic_score_id: varchar('epic_score_id')
     .notNull()
-    .references(() => FortniteTournamentScoringTable.id, {
-      onDelete: 'set default',
+    .references(() => FortniteTournamentScoringTable.epic_score_id, {
+      onDelete: 'set null',
+    }),
+  epic_payout_id: varchar('epic_payout_id')
+    .notNull()
+    .references(() => FortniteTournamentPayoutTable.epic_payout_id, {
+      onDelete: 'set null',
     }),
   created_at: timestamp('created_at').defaultNow().notNull(),
   updated_at: timestamp('updated_at')
@@ -74,8 +79,8 @@ export const FortniteTournamentSessionTable = pgTable('fortnite_tournament_sessi
 
 export const FortniteTournamentScoringTable = pgTable('fortnite_tournament_scorings', {
   id: uuid('id').primaryKey().defaultRandom(),
-  score_id: varchar('score_id', { length: 255 }).notNull(),
-  leaderboard_def_id: varchar('leaderboard_def_id', { length: 255 }).notNull(),
+  epic_score_id: varchar('epic_score_id', { length: 255 }).notNull(),
+  region: TournamentRegionEnum('region').notNull(),
   tracked_stat: varchar('tracked_stat', { length: 255 }).notNull(),
   key_value: varchar('key_value', { length: 255 }).notNull(),
   points_earned: varchar('points_earned', { length: 255 }).notNull(),
@@ -87,6 +92,19 @@ export const FortniteTournamentScoringTable = pgTable('fortnite_tournament_scori
 
 export const FortniteTournamentPayoutTable = pgTable('fortnite_tournament_payouts', {
   id: uuid('id').primaryKey().defaultRandom(),
+  epic_payout_id: varchar('epic_payout_id', { length: 255 }).notNull(),
+  region: TournamentRegionEnum('region').notNull(),
+  scoring_type: varchar('scoring_type', { length: 255 }).notNull(),
+  // Taken from Payout array reward_type
+  rank_threshold: varchar('rank_threshold', { length: 255 }).notNull(),
+  // Taken from Payout array reward_type
+  reward_type: varchar('reward_type', { length: 255 }).notNull(),
+  // Taken from Payout array reward_mode
+  reward_mode: varchar('reward_mode', { length: 255 }).notNull(),
+  // Taken from Payout array reward_value
+  reward_value: varchar('reward_value', { length: 255 }).notNull(),
+  // Taken from Payout array reward_quantity
+  reward_quantity: varchar('reward_quantity', { length: 255 }).notNull(),
   created_at: timestamp('created_at').defaultNow().notNull(),
   updated_at: timestamp('updated_at')
     .notNull()

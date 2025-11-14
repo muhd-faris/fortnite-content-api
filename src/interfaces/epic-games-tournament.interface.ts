@@ -1,6 +1,6 @@
 export interface IRootEpicGamesTournament {
-  scoringRuleSets: { [id: string]: IRootScoringRuleSet[] };
-  payoutTables: { [id: string]: IRootPayoutTable[] };
+  scoringRuleSets: Record<string, IRootScoringRuleSet[]>;
+  payoutTables: Record<string, IRootPayoutTable[]>;
   events: IRootEvent[];
   templates: IRootTemplate[];
   leaderboardDefs: IRootLeaderboardDefs[];
@@ -231,3 +231,22 @@ export interface ITournamentDisplayInfo {
   playlist_tile_image: string | null;
 }
 // End of Epic Games Tournament Details Endpoint
+
+// Start of Parsed Tournament Interface
+export interface IParsedTournamentPayoutResponse {
+  epic_payout_id: string;
+  scoring_type: string;
+  threshold: number;
+  reward_type: string;
+  reward_mode: string;
+  value: string;
+  quantity: number;
+}
+
+export interface IParsedTournamentScoringResponse {
+  epic_score_id: string;
+  tracked_stat: string;
+  key_value: number;
+  points_earned: number;
+}
+// End of Parsed Tournament Interface

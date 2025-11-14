@@ -20,6 +20,8 @@ export {
   IRootEpicGamesTournamentDetail,
   ITDObj,
   ITournamentDisplayInfo,
+  IParsedTournamentPayoutResponse,
+  IParsedTournamentScoringResponse,
 } from './epic-games-tournament.interface';
 export { IRootInstrumentListing } from './instrument-listing';
 export { IRootRecentCosmetic } from './recent-cosmetic.interface';

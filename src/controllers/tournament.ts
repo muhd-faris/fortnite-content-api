@@ -4,6 +4,8 @@ import { TCFContext, TTournamentExtraDetails } from '../types';
 import {
   IEGAccessToken,
   IEGError,
+  IParsedTournamentPayoutResponse,
+  IParsedTournamentScoringResponse,
   IRootEpicGamesTournament,
   IRootLeaderboardDefs,
   IRootPayoutTable,
@@ -350,4 +352,54 @@ function searchTournamentByDisplayId(
   };
 
   return data.find((d) => d.display_id === displayId) || defaultResponse;
+}
+
+// TODO: Test this implementation
+/** Parse the response coming from Epic Games to the format we want before storing in the database */
+function parsePayoutResponse(
+  data: Record<string, IRootPayoutTable[]>
+): IParsedTournamentPayoutResponse[] {
+  const result: IParsedTournamentPayoutResponse[] = [];
+
+  for (const [id, scoringGroups] of Object.entries(data)) {
+    for (const group of scoringGroups) {
+      for (const rank of group.ranks) {
+        for (const payout of rank.payouts) {
+          result.push({
+            epic_payout_id: id,
+            scoring_type: group.scoringType,
+            threshold: rank.threshold,
+            reward_type: payout.rewardType,
+            reward_mode: payout.rewardMode,
+            value: payout.value,
+            quantity: payout.quantity,
+          });
+        }
+      }
+    }
+  }
+
+  return result;
+}
+
+/** Parse the response coming from Epic Games to the format we want before storing in the database */
+function parseScoringResponse(
+  data: Record<string, IRootScoringRuleSet[]>
+): IParsedTournamentScoringResponse[] {
+  const result: IParsedTournamentScoringResponse[] = [];
+
+  for (const [id, rules] of Object.entries(data)) {
+    for (const rule of rules) {
+      for (const tier of rule.rewardTiers) {
+        result.push({
+          epic_score_id: id,
+          tracked_stat: rule.trackedStat,
+          key_value: tier.keyValue,
+          points_earned: tier.pointsEarned,
+        });
+      }
+    }
+  }
+
+  return result;
 }
