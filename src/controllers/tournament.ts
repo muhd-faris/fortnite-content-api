@@ -11,6 +11,8 @@ import {
   IRootPayoutTable,
   IRootScoringRuleSet,
   ITournamentDisplayInfo,
+  ITournamentEvent,
+  ITournamentEventSession,
   ITournamentPlatform,
 } from '../interfaces';
 import { CustomException } from '../helpers';
@@ -80,8 +82,7 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
     leaderboardDefs.map((def) => [def.leaderboardDefId, def])
   );
 
-  // TODO: Define interface
-  const formattedEvents: any[] = [];
+  const formattedEvents: ITournamentEvent[] = [];
 
   for (const ev of events) {
     const details = searchTournamentByDisplayId(tournamentDetails, ev.displayDataId);
@@ -98,7 +99,7 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
     };
 
     for (const window of ev.eventWindows) {
-      let windowResponse: any = {
+      let windowResponse: ITournamentEventSession = {
         window_id: window.eventWindowId,
         countdown_starts_at: window.countdownBeginTime,
         start_time: window.beginTime,

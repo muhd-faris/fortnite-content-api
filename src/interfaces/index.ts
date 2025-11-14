@@ -27,5 +27,9 @@ export { IRootInstrumentListing } from './instrument-listing';
 export { IRootRecentCosmetic } from './recent-cosmetic.interface';
 export { ISeasonListFE, ISeasonByChapterFE } from './season-history.interface';
 export { IRootSeasonPasses, IPassData } from './season-passes.interface';
-export { ITournamentListingFE, ITournamentPlatform } from './tournament.interface';
+export {
+  ITournamentEvent,
+  ITournamentEventSession,
+  ITournamentPlatform,
+} from './tournament.interface';
 export { IRootTrackListing } from './track-listing';
