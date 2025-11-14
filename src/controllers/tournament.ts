@@ -1,8 +1,6 @@
 import { getDrizzle } from '../lib';
 import { TCFContext, TTournamentExtraDetails } from '../types';
 
-import rawTournament from '../data/seed/tournaments-past.json';
-import tournamentDetail from '../data/seed/tournament-detail.json';
 import {
   IEGAccessToken,
   IEGError,
@@ -15,6 +13,7 @@ import {
 } from '../interfaces';
 import { CustomException } from '../helpers';
 import { TournamentValidationSchema } from '../validations';
+import { EGTournamentInfoEndpoint, EGTournamentListingEndpoint } from '../constants';
 
 export const getTournamentsV1 = (c: TCFContext) => {};
 
@@ -43,8 +42,8 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
 
   const gameId: string = 'Fortnite';
   const accountId: string = process.env.EPIC_GAMES_ACCOUNT_ID!;
-  const url: string = `https://events-public-service-live.ol.epicgames.com/api/v1/events/${gameId}/data/${accountId}?${params.toString()}`;
-  const response = await fetch(url, {
+  const tournamentListingUrl: string = `${EGTournamentListingEndpoint}/${gameId}/data/${accountId}?${params.toString()}`;
+  const response = await fetch(tournamentListingUrl, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${access_token}`,
@@ -65,10 +64,15 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
     throw new CustomException('No tournaments available to parse. Please try again later.', 400);
   }
 
-  // TODO: Call from API
-  // https://fortnitecontent-website-prod07.ol.epicgames.com/content/api/pages/fortnite-game/tournamentinformation
-  const tournamentDetails = extractTournamentDisplayInfo(tournamentDetail as any);
+  const tournamentInfoResponse = await fetch(EGTournamentInfoEndpoint, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 
+  const tournamentInfoJsonRes = (await tournamentInfoResponse.json()) as TTournamentExtraDetails;
+  const tournamentDetails = extractTournamentDisplayInfo(tournamentInfoJsonRes);
   // Create a fast lookup map for leaderboard definitions
   const leaderboardDefsMap = new Map<string, IRootLeaderboardDefs>(
     leaderboardDefs.map((def) => [def.leaderboardDefId, def])
