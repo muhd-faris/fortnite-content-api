@@ -88,7 +88,7 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
     const details = searchTournamentByDisplayId(tournamentDetails, ev.displayDataId);
 
     const formattedPlatforms: ITournamentPlatform[] = formatTournamentPlatform(ev.platforms);
-    const eventResponse: any = {
+    const eventResponse: ITournamentEvent = {
       event_id: ev.eventId,
       ...details,
       start_time: ev.beginTime,
@@ -110,43 +110,31 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
         payout: [],
       };
 
-      // TODO: Break this into seperate function because either way it wont be undefined
-      // Find the main leaderboard
-      let scoreLocation = window.scoreLocations.find((sl) => sl.isMainWindowLeaderboard);
-      // If no main leaderboard then assign any available leaderboard
-      if (!scoreLocation && window.scoreLocations.length > 0) {
-        scoreLocation = window.scoreLocations[0];
-      }
+      // Find the main leaderboard and if no main leaderboard then assign any available leaderboard
+      const scoreLocation =
+        window.scoreLocations.find((sl) => sl.isMainWindowLeaderboard) ?? window.scoreLocations[0];
 
       if (scoreLocation) {
         const leaderboardDef = leaderboardDefsMap.get(scoreLocation.leaderboardDefId);
 
-        if (leaderboardDef) {
-          const scoringId = leaderboardDef.scoringRuleSetId;
+        windowResponse.scoring_id = leaderboardDef?.scoringRuleSetId ?? null;
 
-          if (scoringId) {
-            // TODO: Temporary Disable
-            // windowResponse.scoring = formateScoringResponse(scoringRuleSets[scoringId] ?? []);
-            windowResponse.scoring_id = scoringId;
-          }
+        const payoutIdFormat = leaderboardDef?.payoutsConfig?.payoutTableIdFormat ?? '';
+        const resolvedPayoutId = payoutIdFormat
+          .replace('${eventId}', ev.eventId ?? '')
+          .replace('${windowId}', window.eventWindowId ?? '');
 
-          const payoutIdFormat = leaderboardDef.payoutsConfig?.payoutTableIdFormat;
-
-          if (payoutIdFormat) {
-            const resolvedPayoutId = payoutIdFormat
-              .replace('${eventId}', ev.eventId ?? '')
-              .replace('${windowId}', window.eventWindowId ?? '');
-
-            // TODO: Temporary Disable
-            // windowResponse.payout = formatPayoutResponse(payoutTables[resolvedPayoutId] ?? []);
-            windowResponse.payout_id = resolvedPayoutId;
-          }
-        }
+        windowResponse.payout_id = resolvedPayoutId;
       }
+
       eventResponse.session_windows.push(windowResponse);
     }
+
     formattedEvents.push(eventResponse);
   }
+
+  const parsedPayout = parsePayoutResponse(payoutTables);
+  const parsedScoring = parseScoringResponse(scoringRuleSets);
 
   return c.json(formattedEvents);
 };
