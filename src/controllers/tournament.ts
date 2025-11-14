@@ -2,8 +2,6 @@ import { getDrizzle } from '../lib';
 import { TCFContext, TTournamentExtraDetails } from '../types';
 
 import {
-  IEGAccessToken,
-  IEGError,
   IParsedTournamentPayoutResponse,
   IParsedTournamentScoringResponse,
   IRootEpicGamesTournament,
@@ -15,7 +13,7 @@ import {
   ITournamentEventSession,
   ITournamentPlatform,
 } from '../interfaces';
-import { CustomException } from '../helpers';
+import { CustomException, getEGAccountAccessToken } from '../helpers';
 import { TournamentValidationSchema } from '../validations';
 import { EGTournamentInfoEndpoint, EGTournamentListingEndpoint } from '../constants';
 
@@ -38,7 +36,7 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
    */
   const { region } = TournamentValidationSchema.parse(await c.req.json());
 
-  const { access_token } = await getEpicGamesAccessToken();
+  const { access_token } = await getEGAccountAccessToken();
 
   const params = new URLSearchParams();
   params.append('region', region.toUpperCase());
@@ -171,68 +169,6 @@ function formatTournamentPlatform(platforms: string[]): ITournamentPlatform[] {
   const uniquePlatformsJSON = new Set(plt.map((p) => JSON.stringify(p)));
 
   return Array.from(uniquePlatformsJSON).map((s) => JSON.parse(s));
-}
-
-function getClientDetails(client: 'fortnite_pc_game' | 'fortnite_android_game') {
-  let cliendId: string = '';
-  let clientSecret: string = '';
-
-  switch (client) {
-    case 'fortnite_android_game':
-      cliendId = '3f69e56c7649492c8cc29f1af08a8a12';
-      clientSecret = 'b51ee9cb12234f50a69efa67ef53812e';
-
-      break;
-
-    case 'fortnite_pc_game':
-      cliendId = 'ec684b8c687f479fadea3cb2ad83f5c6';
-      clientSecret = 'e1f31c211f28413186262d37a13fc84d';
-
-      break;
-    default:
-      throw new CustomException('Unsupported Client Name provided. Please try again later.', 400);
-  }
-
-  return { client_id: cliendId, client_secret: clientSecret };
-}
-
-async function getEpicGamesAccessToken() {
-  const clientDetails = getClientDetails('fortnite_android_game');
-  const authHeader = Buffer.from(
-    `${clientDetails.client_id}:${clientDetails.client_secret}`,
-    'utf8'
-  ).toString('base64');
-
-  // console.log(authHeader);
-
-  const body = new URLSearchParams({
-    grant_type: 'device_auth',
-    account_id: process.env.EPIC_GAMES_ACCOUNT_ID!,
-    device_id: process.env.EPIC_GAMES_DEVICE_ID!,
-    secret: process.env.EPIC_GAMES_DEVICE_ID_SECRET!,
-  });
-
-  const response = await fetch(
-    'https://account-public-service-prod.ol.epicgames.com/account/api/oauth/token',
-    {
-      method: 'POST',
-      headers: {
-        Authorization: `Basic ${authHeader}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: body,
-    }
-  );
-
-  if (response.ok) {
-    const successData = (await response.json()) as IEGAccessToken;
-
-    return successData;
-  } else {
-    const errorData = (await response.json()) as IEGError;
-
-    throw errorData;
-  }
 }
 
 function formateScoringResponse(data: IRootScoringRuleSet[]) {

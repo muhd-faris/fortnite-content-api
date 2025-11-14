@@ -7,4 +7,4 @@ export {
   SupportedRegion,
   SupportedRegionVal,
 } from './configs';
-export { EGTournamentListingEndpoint, EGTournamentInfoEndpoint } from './endpoint';
+export { EGTournamentListingEndpoint, EGTournamentInfoEndpoint, EGTokenEndpoint } from './endpoint';
