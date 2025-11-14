@@ -101,7 +101,9 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
         countdown_starts_at: window.countdownBeginTime,
         start_time: window.beginTime,
         end_time: window.endTime,
+        scoring_id: null,
         scoring: [],
+        payout_id: null,
         payout: [],
       };
 
@@ -120,7 +122,9 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
           const scoringId = leaderboardDef.scoringRuleSetId;
 
           if (scoringId) {
-            windowResponse.scoring = formateScoringResponse(scoringRuleSets[scoringId] ?? []);
+            // TODO: Temporary Disable
+            // windowResponse.scoring = formateScoringResponse(scoringRuleSets[scoringId] ?? []);
+            windowResponse.scoring_id = scoringId;
           }
 
           const payoutIdFormat = leaderboardDef.payoutsConfig?.payoutTableIdFormat;
@@ -130,7 +134,9 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
               .replace('${eventId}', ev.eventId ?? '')
               .replace('${windowId}', window.eventWindowId ?? '');
 
-            windowResponse.payout = formatPayoutResponse(payoutTables[resolvedPayoutId] ?? []);
+            // TODO: Temporary Disable
+            // windowResponse.payout = formatPayoutResponse(payoutTables[resolvedPayoutId] ?? []);
+            windowResponse.payout_id = resolvedPayoutId;
           }
         }
       }
@@ -205,6 +211,8 @@ async function getEpicGamesAccessToken() {
     `${clientDetails.client_id}:${clientDetails.client_secret}`,
     'utf8'
   ).toString('base64');
+
+  // console.log(authHeader);
 
   const body = new URLSearchParams({
     grant_type: 'device_auth',
