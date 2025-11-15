@@ -235,6 +235,11 @@ export interface ITournamentDisplayInfo {
 // Start of Parsed Tournament Interface
 export interface IParsedTournamentPayoutResponse {
   epic_payout_id: string;
+  region: string;
+  payout_data: IParsedTournamentPayoutData[];
+}
+
+export interface IParsedTournamentPayoutData {
   scoring_type: string;
   threshold: number;
   reward_type: string;
@@ -245,6 +250,11 @@ export interface IParsedTournamentPayoutResponse {
 
 export interface IParsedTournamentScoringResponse {
   epic_score_id: string;
+  region: string;
+  scoring_rules: IParsedTournamentScoringRules[];
+}
+
+export interface IParsedTournamentScoringRules {
   tracked_stat: string;
   key_value: number;
   points_earned: number;

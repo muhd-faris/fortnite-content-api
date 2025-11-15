@@ -1,67 +1,9 @@
 {
-  "id": "bf3ec6d1-36ae-4b69-891b-afc93941566f",
+  "id": "e410e0f0-88d8-43ff-b80d-ca5342682409",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.fortnite_cosmetic_series": {
-      "name": "fortnite_cosmetic_series",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "uuid",
-          "primaryKey": true,
-          "notNull": true,
-          "default": "gen_random_uuid()"
-        },
-        "display_name": {
-          "name": "display_name",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "image": {
-          "name": "image",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "internal_name": {
-          "name": "internal_name",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "colors": {
-          "name": "colors",
-          "type": "varchar[]",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "'{}'"
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
     "public.fortnite_crew": {
       "name": "fortnite_crew",
       "schema": "",
@@ -103,6 +45,296 @@
           "primaryKey": false,
           "notNull": true
         },
+        "rewards_id": {
+          "name": "rewards_id",
+          "type": "varchar[]",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'{}'"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.fortnite_tournament_payouts": {
+      "name": "fortnite_tournament_payouts",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "epic_payout_id": {
+          "name": "epic_payout_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "region": {
+          "name": "region",
+          "type": "tournament_region_enum",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "payout_data": {
+          "name": "payout_data",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'[]'::jsonb"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "fortnite_tournament_payouts_epic_payout_id_unique": {
+          "name": "fortnite_tournament_payouts_epic_payout_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "epic_payout_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.fortnite_tournament_scorings": {
+      "name": "fortnite_tournament_scorings",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "epic_score_id": {
+          "name": "epic_score_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "region": {
+          "name": "region",
+          "type": "tournament_region_enum",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "scoring_rules": {
+          "name": "scoring_rules",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'[]'::jsonb"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "fortnite_tournament_scorings_epic_score_id_unique": {
+          "name": "fortnite_tournament_scorings_epic_score_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "epic_score_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.fortnite_tournament_sessions": {
+      "name": "fortnite_tournament_sessions",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "window_id": {
+          "name": "window_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "countdown_starts_at": {
+          "name": "countdown_starts_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "start_time": {
+          "name": "start_time",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "end_time": {
+          "name": "end_time",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "epic_score_id": {
+          "name": "epic_score_id",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "epic_payout_id": {
+          "name": "epic_payout_id",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "fortnite_tournament_sessions_epic_score_id_fortnite_tournament_scorings_epic_score_id_fk": {
+          "name": "fortnite_tournament_sessions_epic_score_id_fortnite_tournament_scorings_epic_score_id_fk",
+          "tableFrom": "fortnite_tournament_sessions",
+          "tableTo": "fortnite_tournament_scorings",
+          "columnsFrom": [
+            "epic_score_id"
+          ],
+          "columnsTo": [
+            "epic_score_id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
+        "fortnite_tournament_sessions_epic_payout_id_fortnite_tournament_payouts_epic_payout_id_fk": {
+          "name": "fortnite_tournament_sessions_epic_payout_id_fortnite_tournament_payouts_epic_payout_id_fk",
+          "tableFrom": "fortnite_tournament_sessions",
+          "tableTo": "fortnite_tournament_payouts",
+          "columnsFrom": [
+            "epic_payout_id"
+          ],
+          "columnsTo": [
+            "epic_payout_id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.fortnite_tournaments": {
+      "name": "fortnite_tournaments",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "event_id": {
+          "name": "event_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "start_time": {
+          "name": "start_time",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "end_time": {
+          "name": "end_time",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "region": {
+          "name": "region",
+          "type": "tournament_region_enum",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "platforms": {
+          "name": "platforms",
+          "type": "varchar(255)[]",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'{}'"
+        },
         "created_at": {
           "name": "created_at",
           "type": "timestamp",
@@ -142,8 +374,8 @@
           "primaryKey": false,
           "notNull": true
         },
-        "season": {
-          "name": "season",
+        "season_code": {
+          "name": "season_code",
           "type": "integer",
           "primaryKey": false,
           "notNull": true
@@ -195,7 +427,23 @@
       "isRLSEnabled": false
     }
   },
-  "enums": {},
+  "enums": {
+    "public.tournament_region_enum": {
+      "name": "tournament_region_enum",
+      "schema": "public",
+      "values": [
+        "asia",
+        "br",
+        "eu",
+        "me",
+        "oce",
+        "nae",
+        "naw",
+        "nac",
+        "onsite"
+      ]
+    }
+  },
   "schemas": {},
   "sequences": {},
   "roles": {},

@@ -2,8 +2,10 @@ import { getDrizzle } from '../lib';
 import { TCFContext, TTournamentExtraDetails } from '../types';
 
 import {
+  IParsedTournamentPayoutData,
   IParsedTournamentPayoutResponse,
   IParsedTournamentScoringResponse,
+  IParsedTournamentScoringRules,
   IRootEpicGamesTournament,
   IRootLeaderboardDefs,
   IRootPayoutTable,
@@ -76,10 +78,6 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
   );
 
   const formattedEvents: ITournamentEvent[] = [];
-  // To track what we need for the tournaments instead of storing all in the database
-  const wantedPayouts: string[] = [];
-  // To track what we need for the tournaments instead of storing all in the database
-  const wantedScorings: string[] = [];
 
   for (const ev of events) {
     const details = searchTournamentByDisplayId(tournamentDetails, ev.displayDataId);
@@ -123,31 +121,25 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
 
         windowResponse.payout_id = resolvedPayoutId;
       }
-
-      wantedPayouts.push(windowResponse.payout_id ?? '');
-      wantedScorings.push(windowResponse.scoring_id ?? '');
       eventResponse.session_windows.push(windowResponse);
     }
 
     formattedEvents.push(eventResponse);
   }
-  // Ensure they are unique
-  const uniquePayouts = [...new Set(wantedPayouts)];
-  const uniqueScorings = [...new Set(wantedScorings)];
 
-  // TODO: Implement
-  if (uniquePayouts.length > 0) {
-    const parsedPayout = parsePayoutResponse(payoutTables).filter((p) =>
-      uniquePayouts.includes(p.epic_payout_id)
-    );
-  }
+  const parsedPayout: IParsedTournamentPayoutResponse[] = parsePayoutResponse(payoutTables).map(
+    (p) => ({
+      ...p,
+      region,
+    })
+  );
 
-  // TODO: Implement
-  if (uniqueScorings.length > 0) {
-    const parsedScoring = parseScoringResponse(scoringRuleSets).filter((s) =>
-      uniqueScorings.includes(s.epic_score_id)
-    );
-  }
+  const parsedScoring: IParsedTournamentScoringResponse[] = parseScoringResponse(
+    scoringRuleSets
+  ).map((s) => ({
+    ...s,
+    region,
+  }));
 
   return c.json(formattedEvents);
 };
@@ -298,48 +290,44 @@ function searchTournamentByDisplayId(
 /** Parse the response coming from Epic Games to the format we want before storing in the database */
 function parsePayoutResponse(
   data: Record<string, IRootPayoutTable[]>
-): IParsedTournamentPayoutResponse[] {
-  const result: IParsedTournamentPayoutResponse[] = [];
+): Omit<IParsedTournamentPayoutResponse, 'region'>[] {
+  return Object.entries(data).map(([eventId, eventRules]) => {
+    const flatPayouts: IParsedTournamentPayoutData[] = eventRules.flatMap((group) =>
+      group.ranks.flatMap((rank) =>
+        rank.payouts.map((payout) => ({
+          scoring_type: group.scoringType,
+          threshold: rank.threshold,
+          reward_type: payout.rewardType,
+          reward_mode: payout.rewardMode,
+          value: payout.value,
+          quantity: payout.quantity,
+        }))
+      )
+    );
 
-  for (const [id, scoringGroups] of Object.entries(data)) {
-    for (const group of scoringGroups) {
-      for (const rank of group.ranks) {
-        for (const payout of rank.payouts) {
-          result.push({
-            epic_payout_id: id,
-            scoring_type: group.scoringType,
-            threshold: rank.threshold,
-            reward_type: payout.rewardType,
-            reward_mode: payout.rewardMode,
-            value: payout.value,
-            quantity: payout.quantity,
-          });
-        }
-      }
-    }
-  }
-
-  return result;
+    return {
+      epic_payout_id: eventId,
+      payout_data: flatPayouts,
+    };
+  });
 }
 
 /** Parse the response coming from Epic Games to the format we want before storing in the database */
 function parseScoringResponse(
   data: Record<string, IRootScoringRuleSet[]>
-): IParsedTournamentScoringResponse[] {
-  const result: IParsedTournamentScoringResponse[] = [];
+): Omit<IParsedTournamentScoringResponse, 'region'>[] {
+  return Object.entries(data).map(([id, rulesArray]) => {
+    const flatRules: IParsedTournamentScoringRules[] = rulesArray.flatMap((rule) =>
+      rule.rewardTiers.map((tier) => ({
+        tracked_stat: rule.trackedStat,
+        key_value: tier.keyValue,
+        points_earned: tier.pointsEarned,
+      }))
+    );
 
-  for (const [id, rules] of Object.entries(data)) {
-    for (const rule of rules) {
-      for (const tier of rule.rewardTiers) {
-        result.push({
-          epic_score_id: id,
-          tracked_stat: rule.trackedStat,
-          key_value: tier.keyValue,
-          points_earned: tier.pointsEarned,
-        });
-      }
-    }
-  }
-
-  return result;
+    return {
+      epic_score_id: id,
+      scoring_rules: flatRules,
+    };
+  });
 }

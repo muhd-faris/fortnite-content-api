@@ -1,5 +1,6 @@
 import { relations } from 'drizzle-orm';
-import { pgTable, pgEnum, varchar, integer, boolean, timestamp, uuid } from 'drizzle-orm/pg-core';
+import { pgTable, pgEnum, varchar, integer, timestamp, uuid, jsonb } from 'drizzle-orm/pg-core';
+import { IParsedTournamentPayoutData, IParsedTournamentScoringRules } from '../interfaces';
 
 export const TournamentRegionEnum = pgEnum('tournament_region_enum', [
   'asia',
@@ -79,11 +80,12 @@ export const FortniteTournamentSessionTable = pgTable('fortnite_tournament_sessi
 
 export const FortniteTournamentScoringTable = pgTable('fortnite_tournament_scorings', {
   id: uuid('id').primaryKey().defaultRandom(),
-  epic_score_id: varchar('epic_score_id', { length: 255 }).notNull(),
+  epic_score_id: varchar('epic_score_id', { length: 255 }).notNull().unique(),
   region: TournamentRegionEnum('region').notNull(),
-  tracked_stat: varchar('tracked_stat', { length: 255 }).notNull(),
-  key_value: varchar('key_value', { length: 255 }).notNull(),
-  points_earned: varchar('points_earned', { length: 255 }).notNull(),
+  scoring_rules: jsonb('scoring_rules')
+    .$type<IParsedTournamentScoringRules[]>()
+    .notNull()
+    .default([]),
   created_at: timestamp('created_at').defaultNow().notNull(),
   updated_at: timestamp('updated_at')
     .notNull()
@@ -92,19 +94,9 @@ export const FortniteTournamentScoringTable = pgTable('fortnite_tournament_scori
 
 export const FortniteTournamentPayoutTable = pgTable('fortnite_tournament_payouts', {
   id: uuid('id').primaryKey().defaultRandom(),
-  epic_payout_id: varchar('epic_payout_id', { length: 255 }).notNull(),
+  epic_payout_id: varchar('epic_payout_id', { length: 255 }).notNull().unique(),
   region: TournamentRegionEnum('region').notNull(),
-  scoring_type: varchar('scoring_type', { length: 255 }).notNull(),
-  // Taken from Payout array reward_type
-  rank_threshold: varchar('rank_threshold', { length: 255 }).notNull(),
-  // Taken from Payout array reward_type
-  reward_type: varchar('reward_type', { length: 255 }).notNull(),
-  // Taken from Payout array reward_mode
-  reward_mode: varchar('reward_mode', { length: 255 }).notNull(),
-  // Taken from Payout array reward_value
-  reward_value: varchar('reward_value', { length: 255 }).notNull(),
-  // Taken from Payout array reward_quantity
-  reward_quantity: varchar('reward_quantity', { length: 255 }).notNull(),
+  payout_data: jsonb('payout_data').$type<IParsedTournamentPayoutData[]>().notNull().default([]),
   created_at: timestamp('created_at').defaultNow().notNull(),
   updated_at: timestamp('updated_at')
     .notNull()

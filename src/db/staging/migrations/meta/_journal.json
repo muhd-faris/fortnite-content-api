@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1762529150909,
-      "tag": "0000_added_display_name",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1762569167681,
-      "tag": "0001_added_season_code",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1762592089139,
-      "tag": "0002_cleanup_schema",
+      "when": 1763170518027,
+      "tag": "0000_init",
       "breakpoints": true
     }
   ]

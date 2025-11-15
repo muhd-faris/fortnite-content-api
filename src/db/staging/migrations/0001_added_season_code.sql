@@ -1,1 +1,0 @@
-ALTER TABLE "season_history" RENAME COLUMN "season" TO "season_code";
