@@ -34,6 +34,7 @@ CREATE TABLE "fortnite_tournament_scorings" (
 CREATE TABLE "fortnite_tournament_sessions" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"window_id" varchar(255) NOT NULL,
+	"event_id" varchar(255) NOT NULL,
 	"countdown_starts_at" timestamp NOT NULL,
 	"start_time" timestamp NOT NULL,
 	"end_time" timestamp NOT NULL,
@@ -46,12 +47,17 @@ CREATE TABLE "fortnite_tournament_sessions" (
 CREATE TABLE "fortnite_tournaments" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"event_id" varchar(255) NOT NULL,
+	"display_id" varchar(255) NOT NULL,
+	"name" varchar(255),
+	"details_description" varchar(500),
+	"playlist_tile_image" varchar(255),
 	"start_time" timestamp NOT NULL,
 	"end_time" timestamp NOT NULL,
 	"region" "tournament_region_enum" NOT NULL,
 	"platforms" varchar(255)[] DEFAULT '{}' NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL,
-	"updated_at" timestamp NOT NULL
+	"updated_at" timestamp NOT NULL,
+	CONSTRAINT "fortnite_tournaments_event_id_unique" UNIQUE("event_id")
 );
 --> statement-breakpoint
 CREATE TABLE "season_history" (
@@ -66,5 +72,6 @@ CREATE TABLE "season_history" (
 	"updated_at" timestamp NOT NULL
 );
 --> statement-breakpoint
+ALTER TABLE "fortnite_tournament_sessions" ADD CONSTRAINT "fortnite_tournament_sessions_event_id_fortnite_tournaments_event_id_fk" FOREIGN KEY ("event_id") REFERENCES "public"."fortnite_tournaments"("event_id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "fortnite_tournament_sessions" ADD CONSTRAINT "fortnite_tournament_sessions_epic_score_id_fortnite_tournament_scorings_epic_score_id_fk" FOREIGN KEY ("epic_score_id") REFERENCES "public"."fortnite_tournament_scorings"("epic_score_id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "fortnite_tournament_sessions" ADD CONSTRAINT "fortnite_tournament_sessions_epic_payout_id_fortnite_tournament_payouts_epic_payout_id_fk" FOREIGN KEY ("epic_payout_id") REFERENCES "public"."fortnite_tournament_payouts"("epic_payout_id") ON DELETE set null ON UPDATE no action;

@@ -1,3 +1,5 @@
+import { TSupportedRegion } from '../types';
+
 export interface IRootEpicGamesTournament {
   scoringRuleSets: Record<string, IRootScoringRuleSet[]>;
   payoutTables: Record<string, IRootPayoutTable[]>;
@@ -195,7 +197,7 @@ export interface ITDObj {
   _templateName: string;
 }
 
-interface ITournamentInfo {
+export interface ITournamentInfo {
   title_color: string;
   loading_screen_image: string;
   background_text_color: string;
@@ -224,9 +226,7 @@ interface ITournamentInfo {
 
 export interface ITournamentDisplayInfo {
   display_id: string;
-  title_line_1: string | null;
-  title_line_2: string | null;
-  short_format_title: string | null;
+  name: string | null;
   details_description: string | null;
   playlist_tile_image: string | null;
 }
@@ -235,7 +235,7 @@ export interface ITournamentDisplayInfo {
 // Start of Parsed Tournament Interface
 export interface IParsedTournamentPayoutResponse {
   epic_payout_id: string;
-  region: string;
+  region: TSupportedRegion;
   payout_data: IParsedTournamentPayoutData[];
 }
 
@@ -250,7 +250,7 @@ export interface IParsedTournamentPayoutData {
 
 export interface IParsedTournamentScoringResponse {
   epic_score_id: string;
-  region: string;
+  region: TSupportedRegion;
   scoring_rules: IParsedTournamentScoringRules[];
 }
 
