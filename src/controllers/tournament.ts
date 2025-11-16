@@ -62,6 +62,43 @@ export const getTournamentsV1 = async (c: TCFContext) => {
   return c.json(tournaments);
 };
 
+export const getLiveTournamentsV1 = async (c: TCFContext) => {
+  const userRegion = c.req.query('region') || 'asia';
+
+  const db = getDrizzle();
+  const tournamentsInDb = await db.query.FortniteTournamentSessionTable.findMany({
+    where: ({ start_time, end_time }, { and, lte, gte }) =>
+      and(lte(start_time, new Date()), gte(end_time, new Date())),
+    columns: {
+      window_id: true,
+      start_time: true,
+      end_time: true,
+    },
+    with: {
+      tournament: {
+        columns: {
+          name: true,
+          region: true,
+          platforms: true,
+        },
+      },
+    },
+  });
+  const tournaments = tournamentsInDb
+    .filter((t) => t.tournament.region === userRegion)
+    .map((t) => {
+      const { tournament, ...excludeTournamentObj } = t;
+      const { region, ...excludeRegion } = tournament;
+
+      return {
+        ...excludeTournamentObj,
+        ...excludeRegion,
+      };
+    });
+
+  return c.json(tournaments);
+};
+
 export const getTournamentDetailsV1 = (c: TCFContext) => {};
 
 export const getTournamentWindowDetailsV1 = (c: TCFContext) => {};
