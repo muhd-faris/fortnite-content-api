@@ -30,5 +30,9 @@ export { IRootInstrumentListing } from './instrument-listing';
 export { IRootRecentCosmetic } from './recent-cosmetic.interface';
 export { ISeasonListFE, ISeasonByChapterFE } from './season-history.interface';
 export { IRootSeasonPasses, IPassData } from './season-passes.interface';
-export { ITournamentEvent, ITournamentEventSession } from './tournament.interface';
+export {
+  ITournamentEvent,
+  ITournamentEventSession,
+  ITournamentSessionFE,
+} from './tournament.interface';
 export { IRootTrackListing } from './track-listing';

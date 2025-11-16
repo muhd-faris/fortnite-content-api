@@ -18,3 +18,12 @@ export interface ITournamentEventSession {
   epic_score_id: string | null;
   epic_payout_id: string | null;
 }
+
+export interface ITournamentSessionFE {
+  // TODO: Seperate to types file
+  status: 'ended' | 'live' | 'upcoming';
+  start_time: Date;
+  end_time: Date;
+  window_id: string;
+  session_name: string;
+}

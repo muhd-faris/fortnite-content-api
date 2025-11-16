@@ -113,3 +113,21 @@ export const FortniteTournamentPayoutTable = pgTable('fortnite_tournament_payout
     .notNull()
     .$onUpdate(() => new Date()),
 });
+
+export const FortniteTournamentTableRelations = relations(FortniteTournamentTable, ({ many }) => {
+  return {
+    sessions: many(FortniteTournamentSessionTable),
+  };
+});
+
+export const FortniteTournamentSessionTableRelations = relations(
+  FortniteTournamentSessionTable,
+  ({ one }) => {
+    return {
+      tournament: one(FortniteTournamentTable, {
+        fields: [FortniteTournamentSessionTable.event_id],
+        references: [FortniteTournamentTable.event_id],
+      }),
+    };
+  }
+);

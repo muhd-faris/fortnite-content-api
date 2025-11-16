@@ -1,19 +1,66 @@
 import { getDrizzle } from '../lib';
 import { TCFContext, TSupportedRegion, TTournamentExtraDetails } from '../types';
-
 import {
   IRootEpicGamesTournament,
   ITournamentDisplayInfo,
   ITournamentEvent,
   ITournamentEventSession,
   ITournamentInfo,
+  ITournamentSessionFE,
 } from '../interfaces';
 import { CustomException, getEGAccountAccessToken } from '../helpers';
 import { TournamentValidationSchema } from '../validations';
 import { EGTournamentInfoEndpoint, EGTournamentListingEndpoint } from '../constants';
 import { FortniteTournamentSessionTable, FortniteTournamentTable } from '../db/schema';
 
-export const getTournamentsV1 = (c: TCFContext) => {};
+export const getTournamentsV1 = async (c: TCFContext) => {
+  const userRegion = c.req.query('region') || 'asia';
+
+  const db = getDrizzle();
+  const tournamentsInDb = await db.query.FortniteTournamentTable.findMany({
+    where: ({ region }, { eq }) => eq(region, userRegion as TSupportedRegion),
+    columns: {
+      id: false,
+      display_id: false,
+      playlist_tile_image: false,
+      details_description: false,
+      region: false,
+      created_at: false,
+      updated_at: false,
+    },
+    with: {
+      sessions: {
+        columns: {
+          id: false,
+          event_id: false,
+          countdown_starts_at: false,
+          epic_score_id: false,
+          epic_payout_id: false,
+          created_at: false,
+          updated_at: false,
+        },
+      },
+    },
+  });
+  const tournaments = tournamentsInDb.map((t) => {
+    const { sessions, ...excludeSession } = t;
+    const formattedSessions: ITournamentSessionFE[] = sessions.map((s, index) => ({
+      session_name: generateTournamentSessionName(s.window_id, index),
+      ...s,
+      status: getTournamentStatus(s.start_time, s.end_time),
+    }));
+    const nextSession = getNextSession(formattedSessions);
+
+    return {
+      ...excludeSession,
+      sessions: formattedSessions,
+      next_session: nextSession,
+      current_status: nextSession !== null ? nextSession.status : 'ended',
+    };
+  });
+
+  return c.json(tournaments);
+};
 
 export const getTournamentDetailsV1 = (c: TCFContext) => {};
 
@@ -415,4 +462,39 @@ function generateTournamentName(
 
   // Fallback: If all are null/empty, return an empty string
   return null;
+}
+
+function generateTournamentSessionName(id: string, index: number): string {
+  const match = id.match(/Event(\d+)Round(\d+)/i);
+
+  if (match === null) {
+    return `Session ${index + 1}`;
+  }
+
+  // Must have the front comma if not it will get from the ID
+  const [, event, round] = match;
+
+  return `Session ${event} Round ${round}`;
+}
+
+function getTournamentStatus(startTime: Date, endTime: Date) {
+  const now = new Date();
+
+  if (now < new Date(startTime)) return 'upcoming';
+
+  if (now > new Date(endTime)) return 'ended';
+
+  return 'live';
+}
+
+function getNextSession(sessions: ITournamentSessionFE[]): ITournamentSessionFE | null {
+  const upcomingSessions = sessions.filter((s) => s.status !== 'ended');
+
+  if (upcomingSessions.length === 0) return null;
+
+  const sortedSessions = upcomingSessions.sort(
+    (a, b) => new Date(a.start_time).getTime() - new Date(b.start_time).getTime()
+  );
+
+  return sortedSessions[0];
 }
