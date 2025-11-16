@@ -99,7 +99,56 @@ export const getLiveTournamentsV1 = async (c: TCFContext) => {
   return c.json(tournaments);
 };
 
-export const getTournamentDetailsV1 = (c: TCFContext) => {};
+export const getTournamentDetailsV1 = async (c: TCFContext) => {
+  const eventId = c.req.param('eventId') as string;
+
+  const db = getDrizzle();
+  const tournamentDetailsInDb = await db.query.FortniteTournamentTable.findFirst({
+    where: ({ event_id }, { eq }) => eq(event_id, eventId),
+    columns: {
+      id: false,
+      created_at: false,
+      updated_at: false,
+      region: false,
+      event_id: false,
+      display_id: false,
+    },
+    with: {
+      sessions: {
+        columns: {
+          id: false,
+          event_id: false,
+          countdown_starts_at: false,
+          created_at: false,
+          updated_at: false,
+        },
+      },
+    },
+  });
+
+  if (!tournamentDetailsInDb) {
+    throw new CustomException('No tournaments matching with that ID', 404);
+  }
+
+  const formattedSessions: ITournamentSessionFE[] = tournamentDetailsInDb.sessions.map(
+    (s, index) => ({
+      session_name: generateTournamentSessionName(s.window_id, index),
+      ...s,
+      status: getTournamentStatus(s.start_time, s.end_time),
+    })
+  );
+  const nextSession = getNextSession(formattedSessions);
+
+  const { sessions, ...excludeSession } = tournamentDetailsInDb;
+  const response = {
+    ...excludeSession,
+    sessions: formattedSessions,
+    next_session: nextSession,
+    current_status: nextSession !== null ? nextSession.status : 'ended',
+  };
+
+  return c.json(response);
+};
 
 export const getTournamentWindowDetailsV1 = (c: TCFContext) => {};
 
