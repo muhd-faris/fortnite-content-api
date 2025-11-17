@@ -1,3 +1,4 @@
+export { IRootAccountLookup } from './account-lookup.interface';
 export { IBaseProviderResponse } from './base-provider-response.interface';
 export { IRootCarCosmeticListing } from './car-cosmetic-listing';
 export {
@@ -10,6 +11,7 @@ export {
   ISet,
   IBRImages,
 } from './cosmetic-listing';
+export { IRootEpicGamesTournamentWindowDetails } from './eg-window-details.interface';
 export { IBRStyleFE, IFECosmeticListing, ICosmeticDetailsData } from './cosmetic.interface';
 export { IEGAccessToken, IEGError } from './epic-games-auth.interface';
 export {

@@ -6,3 +6,9 @@ export const EGTournamentInfoEndpoint: string =
 
 export const EGTokenEndpoint: string =
   'https://account-public-service-prod.ol.epicgames.com/account/api/oauth/token';
+
+export const EGTournamentWindowEndpoint: string =
+  'https://events-public-service-live.ol.epicgames.com/api/v1/leaderboards';
+
+export const EGAccountIdLookupEndpoint: string =
+  'https://account-public-service-prod.ol.epicgames.com/account/api/public/account';

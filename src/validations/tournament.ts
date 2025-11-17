@@ -10,3 +10,9 @@ export const TournamentValidationSchema = z.object({
     .transform((val) => val.toLowerCase()),
   override_database: z.boolean().default(false),
 });
+
+// TODO: Add Validation
+export const TournamentSessionValidationSchema = z.object({
+  event_id: z.string(),
+  window_id: z.string(),
+});

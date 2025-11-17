@@ -1,16 +1,23 @@
 import { getDrizzle } from '../lib';
 import { TCFContext, TSupportedRegion, TTournamentExtraDetails } from '../types';
 import {
+  IRootAccountLookup,
   IRootEpicGamesTournament,
+  IRootEpicGamesTournamentWindowDetails,
   ITournamentDisplayInfo,
   ITournamentEvent,
   ITournamentEventSession,
   ITournamentInfo,
   ITournamentSessionFE,
 } from '../interfaces';
-import { CustomException, getEGAccountAccessToken } from '../helpers';
-import { TournamentValidationSchema } from '../validations';
-import { EGTournamentInfoEndpoint, EGTournamentListingEndpoint } from '../constants';
+import { chunkArray, CustomException, getEGAccountAccessToken } from '../helpers';
+import { TournamentSessionValidationSchema, TournamentValidationSchema } from '../validations';
+import {
+  EGAccountIdLookupEndpoint,
+  EGTournamentInfoEndpoint,
+  EGTournamentListingEndpoint,
+  EGTournamentWindowEndpoint,
+} from '../constants';
 import { FortniteTournamentSessionTable, FortniteTournamentTable } from '../db/schema';
 
 export const getTournamentsV1 = async (c: TCFContext) => {
@@ -117,7 +124,6 @@ export const getTournamentDetailsV1 = async (c: TCFContext) => {
       sessions: {
         columns: {
           id: false,
-          event_id: false,
           countdown_starts_at: false,
           created_at: false,
           updated_at: false,
@@ -150,7 +156,113 @@ export const getTournamentDetailsV1 = async (c: TCFContext) => {
   return c.json(response);
 };
 
-export const getTournamentWindowDetailsV1 = (c: TCFContext) => {};
+export const getTournamentWindowDetailsV1 = async (c: TCFContext) => {
+  const body = TournamentSessionValidationSchema.parse(await c.req.json());
+
+  const accountId = process.env.EPIC_GAMES_ACCOUNT_ID;
+  const { access_token } = await getEGAccountAccessToken();
+
+  const db = getDrizzle();
+  const sessionInDb = await db.query.FortniteTournamentSessionTable.findFirst({
+    where: ({ window_id }, { eq }) => eq(window_id, body.window_id),
+    columns: {
+      window_id: true,
+      event_id: true,
+      start_time: true,
+      end_time: true,
+    },
+  });
+
+  if (!sessionInDb) {
+    throw new CustomException(
+      'The session you are looking for does not exists. Please try again later.',
+      404
+    );
+  }
+
+  // TODO: Enforce interface type
+  const sessionDetails: any = {
+    ...sessionInDb,
+    status: getTournamentStatus(sessionInDb.start_time, sessionInDb.end_time),
+    leaderboard: [],
+  };
+
+  if (sessionDetails.status !== 'ended') {
+    return c.json(sessionDetails);
+  }
+
+  const leaderboardParams = new URLSearchParams();
+  const endpoint: string = `Fortnite/${body.event_id}/${body.window_id}/${accountId}?${leaderboardParams.toString()}`;
+  const windowDetailUrl: string = `${EGTournamentWindowEndpoint}/${endpoint}`;
+  const windowDetailsReponse = await fetch(windowDetailUrl, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!windowDetailsReponse.ok) {
+    throw new CustomException(
+      'There was an error with the Tournament Window details. Please try again later.',
+      500
+    );
+  }
+
+  const windowDetailsJsonReponse =
+    (await windowDetailsReponse.json()) as IRootEpicGamesTournamentWindowDetails;
+
+  const accountIds = windowDetailsJsonReponse.entries.flatMap((e) => e.teamAccountIds);
+  const foundAccountIds = await fetchAccountsInBatches(accountIds, access_token);
+  const userIdNameMap: Record<string, string> = foundAccountIds.reduce(
+    (acc, user) => {
+      acc[user.id] = user.display_name;
+      return acc;
+    },
+    {} as Record<string, string>
+  );
+
+  const leaderboard = windowDetailsJsonReponse.entries.map((e) => {
+    const sessionHistory = e.sessionHistory.map((s) => ({
+      placements: s.trackedStats.PLACEMENT_STAT_INDEX,
+      eliminations: s.trackedStats.TEAM_ELIMS_STAT_INDEX,
+    }));
+    let totalPlacementPoints: number = 0;
+    let totalEliminationPoints: number = 0;
+    const pointKeys = Object.keys(e.pointBreakdown);
+
+    for (const key of pointKeys) {
+      if (key.startsWith('PLACEMENT_STAT')) {
+        const pointsEarned = e.pointBreakdown[key as any].pointsEarned;
+
+        totalPlacementPoints += pointsEarned;
+      }
+
+      if (key.startsWith('TEAM_ELIMS_STAT')) {
+        const pointsEarned = e.pointBreakdown[key as any].pointsEarned;
+
+        totalEliminationPoints += pointsEarned;
+      }
+    }
+
+    const teamDetails = e.teamAccountIds.map((id) => ({ id, display_name: userIdNameMap[id] }));
+
+    return {
+      rank: e.rank,
+      players: teamDetails,
+      total_points_earned: e.pointsEarned,
+      points_breakdown: {
+        placements: totalPlacementPoints,
+        eliminations: totalEliminationPoints,
+      },
+      session_history: sessionHistory,
+    };
+  });
+
+  sessionDetails.leaderboard = leaderboard;
+
+  return c.json(sessionDetails);
+};
 
 export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
   /**
@@ -583,4 +695,35 @@ function getNextSession(sessions: ITournamentSessionFE[]): ITournamentSessionFE 
   );
 
   return sortedSessions[0];
+}
+
+async function fetchAccountsInBatches(accountIds: string[], access_token: string) {
+  const chunks = chunkArray(accountIds, 100);
+  const allResults: { id: string; display_name: string }[] = [];
+
+  for (const chunk of chunks) {
+    const params = new URLSearchParams();
+    chunk.forEach((id) => params.append('accountId', id));
+
+    const url = `${EGAccountIdLookupEndpoint}?${params.toString()}`;
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    });
+
+    const data = (await response.json()) as IRootAccountLookup[];
+    const mappedData = data.map((d) => ({ id: d.id, display_name: d.displayName }));
+
+    allResults.push(...mappedData);
+
+    // optional delay to avoid rate limiting
+    await new Promise((res) => setTimeout(res, 300));
+  }
+
+  console.log('Available: ', allResults.length);
+
+  return allResults;
 }
