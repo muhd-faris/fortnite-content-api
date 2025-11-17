@@ -12,8 +12,8 @@ const app = new Hono();
 const v1BaseName = '/v1/tournaments';
 
 app.get(v1BaseName, asyncHandler(getTournamentsV1));
-app.get(`${v1BaseName}/:eventId`, asyncHandler(getTournamentDetailsV1));
 app.get(`${v1BaseName}/live`, asyncHandler(getLiveTournamentsV1));
 app.post(`${v1BaseName}/sync`, asyncHandler(syncTournamentToDatabaseV1));
+app.get(`${v1BaseName}/:eventId`, asyncHandler(getTournamentDetailsV1));
 
 export default app;
