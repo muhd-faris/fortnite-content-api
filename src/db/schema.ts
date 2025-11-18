@@ -47,6 +47,7 @@ export const FortniteTournamentTable = pgTable('fortnite_tournaments', {
   id: uuid('id').primaryKey().defaultRandom(),
   event_id: varchar('event_id', { length: 255 }).notNull().unique(),
   display_id: varchar('display_id', { length: 255 }).notNull(),
+  minimum_account_level: integer('minimum_account_level'),
   name: varchar('name', { length: 255 }),
   details_description: varchar('details_description', { length: 2000 }),
   playlist_tile_image: varchar('playlist_tile_image', { length: 255 }),
@@ -62,13 +63,13 @@ export const FortniteTournamentTable = pgTable('fortnite_tournaments', {
 
 export const FortniteTournamentSessionTable = pgTable('fortnite_tournament_sessions', {
   id: uuid('id').primaryKey().defaultRandom(),
-  window_id: varchar('window_id', { length: 255 }).notNull(),
+  session_id: varchar('session_id', { length: 255 }).notNull(),
+  name: varchar('name', { length: 255 }).notNull(),
   event_id: varchar('event_id', { length: 255 })
     .notNull()
     .references(() => FortniteTournamentTable.event_id, {
       onDelete: 'set null',
     }),
-  countdown_starts_at: timestamp('countdown_starts_at').notNull(),
   start_time: timestamp('start_time').notNull(),
   end_time: timestamp('end_time').notNull(),
   epic_score_id: varchar('epic_score_id').references(

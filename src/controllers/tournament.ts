@@ -41,7 +41,6 @@ export const getTournamentsV1 = async (c: TCFContext) => {
         columns: {
           id: false,
           event_id: false,
-          countdown_starts_at: false,
           epic_score_id: false,
           epic_payout_id: false,
           created_at: false,
@@ -53,7 +52,7 @@ export const getTournamentsV1 = async (c: TCFContext) => {
   const tournaments = tournamentsInDb.map((t) => {
     const { sessions, ...excludeSession } = t;
     const formattedSessions: ITournamentSessionFE[] = sessions.map((s, index) => ({
-      session_name: generateTournamentSessionName(s.window_id, index),
+      session_name: generateTournamentSessionName(s.session_id, index),
       ...s,
       status: getTournamentStatus(s.start_time, s.end_time),
     }));
@@ -332,17 +331,19 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
     const eventResponse: ITournamentEvent = {
       event_id: ev.eventId,
       ...details,
+      minimum_account_level: ev.metadata?.minimumAccountLevel ?? null,
       start_time: new Date(ev.beginTime),
       end_time: new Date(ev.endTime),
       region: region as TSupportedRegion,
       platforms,
+      sessions: [],
     };
 
     for (const window of ev.eventWindows) {
       let windowResponse: ITournamentEventSession = {
-        window_id: window.eventWindowId,
+        session_id: window.eventWindowId,
         event_id: eventResponse.event_id,
-        countdown_starts_at: new Date(window.countdownBeginTime),
+        name: '',
         start_time: new Date(window.beginTime),
         end_time: new Date(window.endTime),
         epic_score_id: null,
@@ -373,11 +374,28 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
       //   windowResponse.epic_payout_id = payoutIdFormat;
       // }
 
-      parsedTournamentSessions.push(windowResponse);
+      eventResponse.sessions.push(windowResponse);
     }
 
     formattedEvents.push(eventResponse);
   }
+
+  const parsedTournaments = formattedEvents.map((ev) => {
+    // TODO: Take from Function
+    ev.name =
+      `${ev.name} ${getGroupNumberForIds(ev.sessions.map((s) => s.session_id)) ?? ''}`.trim();
+
+    ev.sessions = ev.sessions
+      .sort((a, b) => a.start_time.getTime() - b.end_time.getTime())
+      .map((s, index) => ({
+        ...s,
+        name: generateTournamentSessionName(s.session_id, index).name,
+      }));
+
+    return ev;
+  });
+
+  const sessionToSave = parsedTournaments.flatMap((t) => t.sessions);
 
   // TODO: Enable in Future update
   // const parsedPayout: IParsedTournamentPayoutResponse[] = parsePayoutResponse(payoutTables).map(
@@ -663,17 +681,47 @@ function generateTournamentName(
   return null;
 }
 
-function generateTournamentSessionName(id: string, index: number): string {
-  const match = id.match(/Event(\d+)Round(\d+)/i);
+function generateTournamentSessionName(
+  id: string,
+  index: number
+): { name: string; group: string | null } {
+  const regex = /Event(\d+)(Group(\d+))?Round(\d+)/i;
 
-  if (match === null) {
-    return `Session ${index + 1}`;
+  const match = id.match(regex);
+
+  let name: string;
+  let groupString: string | null = null;
+
+  if (!match) {
+    // If the pattern doesn't match, use the fallback name
+    name = `Session ${index + 1}`;
+  } else {
+    const sessionNumber = match[1];
+    const groupDigits = match[3]; // undefined if no group exists
+    const roundNumber = match[4];
+
+    // Combine Session and Round into the Name
+    name = `Session ${sessionNumber} Round ${roundNumber}`;
+
+    // Conditionally format the Group string
+    groupString = groupDigits ? `Group ${groupDigits}` : null;
   }
 
-  // Must have the front comma if not it will get from the ID
-  const [, event, round] = match;
+  return {
+    name: name,
+    group: groupString,
+  };
 
-  return `Session ${event} Round ${round}`;
+  // const match = id.match(/Event(\d+)Round(\d+)/i);
+
+  // if (match === null) {
+  //   return `Session ${index + 1}`;
+  // }
+
+  // // Must have the front comma if not it will get from the ID
+  // const [, event, round] = match;
+
+  // return `Session ${event} Round ${round}`;
 }
 
 function getTournamentStatus(startTime: Date, endTime: Date) {
@@ -727,4 +775,19 @@ async function fetchAccountsInBatches(accountIds: string[], access_token: string
   console.log('Available: ', allResults.length);
 
   return allResults;
+}
+
+function getGroupNumberForIds(windowIds: string[]): string | null {
+  const ids = windowIds
+    .map((id) => {
+      const regex = /Group(\d+)/i;
+
+      const match = id.match(regex);
+
+      if (match) return match[1];
+      return null;
+    })
+    .filter((id) => id !== null);
+
+  return ids.length > 0 ? `Group ${ids[0]}` : null;
 }
