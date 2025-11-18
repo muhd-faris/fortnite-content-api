@@ -1,4 +1,4 @@
-import { TSupportedRegion } from '../types';
+import { TSupportedRegion, TTournamentStatus } from '../types';
 import { ITournamentDisplayInfo } from './';
 
 export interface ITournamentEvent extends ITournamentDisplayInfo {
@@ -20,8 +20,7 @@ export interface ITournamentEventSession {
 }
 
 export interface ITournamentSessionFE {
-  // TODO: Seperate to types file
-  status: 'ended' | 'live' | 'upcoming';
+  status: TTournamentStatus;
   start_time: Date;
   end_time: Date;
   window_id: string;

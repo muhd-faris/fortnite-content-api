@@ -5,3 +5,4 @@ export { TEnvContext } from './env-context';
 export { TTournamentExtraDetails } from './epic-games-tournament.type';
 export { TEpicGamesClient } from './epic-games.type';
 export { TOmitedSeasonHistory } from './season-history';
+export { TTournamentStatus } from './tournament.type';

@@ -11,6 +11,7 @@ export {
   ISet,
   IBRImages,
 } from './cosmetic-listing';
+export { IDBSessionDetails } from './db-schema.interface';
 export { IRootEpicGamesTournamentWindowDetails } from './eg-window-details.interface';
 export { IBRStyleFE, IFECosmeticListing, ICosmeticDetailsData } from './cosmetic.interface';
 export { IEGAccessToken, IEGError } from './epic-games-auth.interface';

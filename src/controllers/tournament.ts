@@ -1,6 +1,7 @@
 import { getDrizzle } from '../lib';
 import { TCFContext, TSupportedRegion, TTournamentExtraDetails } from '../types';
 import {
+  IDBSessionDetails,
   IRootAccountLookup,
   IRootEpicGamesTournament,
   IRootEpicGamesTournamentWindowDetails,
