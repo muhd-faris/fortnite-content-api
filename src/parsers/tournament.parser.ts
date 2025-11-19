@@ -225,21 +225,6 @@ function generateSessionName(id: string, index: number): { name: string; group: 
   };
 }
 
-function getGroupNumberForIds(windowIds: string[]): string | null {
-  const ids = windowIds
-    .map((id) => {
-      const regex = /Group(\d+)/i;
-
-      const match = id.match(regex);
-
-      if (match) return match[1];
-      return null;
-    })
-    .filter((id) => id !== null);
-
-  return ids.length > 0 ? `Group ${ids[0]}` : null;
-}
-
 function formatTournamentPlatform(platforms: string[]): string[] {
   const plt: string[] = [];
 
