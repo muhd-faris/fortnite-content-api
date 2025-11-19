@@ -1,14 +1,9 @@
 import { getDrizzle } from '../lib';
-import { TCFContext, TSupportedRegion, TTournamentExtraDetails } from '../types';
+import { TCFContext, TSupportedRegion, TTournamentExtraDetails, TTournamentStatus } from '../types';
 import {
-  IDBSessionDetails,
   IRootAccountLookup,
   IRootEpicGamesTournament,
   IRootEpicGamesTournamentWindowDetails,
-  ITournamentDisplayInfo,
-  ITournamentEvent,
-  ITournamentEventSession,
-  ITournamentInfo,
   ITournamentSessionFE,
 } from '../interfaces';
 import { chunkArray, CustomException, getEGAccountAccessToken } from '../helpers';
@@ -20,6 +15,7 @@ import {
   EGTournamentWindowEndpoint,
 } from '../constants';
 import { FortniteTournamentSessionTable, FortniteTournamentTable } from '../db/schema';
+import { tournamentEventParser, tournamentInfoParser } from '../parsers';
 
 export const getTournamentsV1 = async (c: TCFContext) => {
   const userRegion = c.req.query('region') || 'asia';
@@ -28,39 +24,36 @@ export const getTournamentsV1 = async (c: TCFContext) => {
   const tournamentsInDb = await db.query.FortniteTournamentTable.findMany({
     where: ({ region }, { eq }) => eq(region, userRegion as TSupportedRegion),
     columns: {
-      id: false,
-      display_id: false,
-      playlist_tile_image: false,
-      details_description: false,
-      region: false,
-      created_at: false,
-      updated_at: false,
+      event_id: true,
+      name: true,
+      start_time: true,
+      end_time: true,
+      platforms: true,
     },
     with: {
       sessions: {
         columns: {
-          id: false,
-          event_id: false,
-          epic_score_id: false,
-          epic_payout_id: false,
-          created_at: false,
-          updated_at: false,
+          session_id: true,
+          event_id: true,
+          name: true,
+          start_time: true,
+          end_time: true,
         },
       },
     },
   });
   const tournaments = tournamentsInDb.map((t) => {
     const { sessions, ...excludeSession } = t;
-    const formattedSessions: ITournamentSessionFE[] = sessions.map((s, index) => ({
-      session_name: generateTournamentSessionName(s.session_id, index),
+
+    const sessionWithStatus = sessions.map((s) => ({
       ...s,
       status: getTournamentStatus(s.start_time, s.end_time),
     }));
-    const nextSession = getNextSession(formattedSessions);
+    const nextSession = getNextSession(sessionWithStatus);
 
     return {
       ...excludeSession,
-      sessions: formattedSessions,
+      sessions: sessionWithStatus,
       next_session: nextSession,
       current_status: nextSession !== null ? nextSession.status : 'ended',
     };
@@ -136,19 +129,16 @@ export const getTournamentDetailsV1 = async (c: TCFContext) => {
     throw new CustomException('No tournaments matching with that ID', 404);
   }
 
-  const formattedSessions: ITournamentSessionFE[] = tournamentDetailsInDb.sessions.map(
-    (s, index) => ({
-      session_name: generateTournamentSessionName(s.window_id, index),
-      ...s,
-      status: getTournamentStatus(s.start_time, s.end_time),
-    })
-  );
-  const nextSession = getNextSession(formattedSessions);
+  const sessionWithStatus: ITournamentSessionFE[] = tournamentDetailsInDb.sessions.map((s) => ({
+    ...s,
+    status: getTournamentStatus(s.start_time, s.end_time),
+  }));
+  const nextSession = getNextSession(sessionWithStatus);
 
   const { sessions, ...excludeSession } = tournamentDetailsInDb;
   const response = {
     ...excludeSession,
-    sessions: formattedSessions,
+    sessions: sessionWithStatus,
     next_session: nextSession,
     current_status: nextSession !== null ? nextSession.status : 'ended',
   };
@@ -168,6 +158,7 @@ export const getTournamentWindowDetailsV1 = async (c: TCFContext) => {
     columns: {
       session_id: true,
       event_id: true,
+      name: true,
       start_time: true,
       end_time: true,
     },
@@ -314,88 +305,12 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
   });
 
   const tournamentInfoJsonRes = (await tournamentInfoResponse.json()) as TTournamentExtraDetails;
-  const tournamentDetails = parseTournamentConfig(tournamentInfoJsonRes);
-  // TODO: Enable in Future
-  // Create a fast lookup map for leaderboard definitions
-  // const leaderboardDefsMap = new Map<string, IRootLeaderboardDefs>(
-  //   leaderboardDefs.map((def) => [def.leaderboardDefId, def])
-  // );
-
-  const formattedEvents: ITournamentEvent[] = [];
-  const parsedTournamentSessions: ITournamentEventSession[] = [];
-
-  for (const ev of events) {
-    const details = searchTournamentByDisplayId(tournamentDetails, ev.displayDataId);
-
-    const platforms = formatTournamentPlatform(ev.platforms);
-    const eventResponse: ITournamentEvent = {
-      event_id: ev.eventId,
-      ...details,
-      minimum_account_level: ev.metadata?.minimumAccountLevel ?? null,
-      start_time: new Date(ev.beginTime),
-      end_time: new Date(ev.endTime),
-      region: region as TSupportedRegion,
-      platforms,
-      sessions: [],
-    };
-
-    for (const window of ev.eventWindows) {
-      let windowResponse: ITournamentEventSession = {
-        session_id: window.eventWindowId,
-        event_id: eventResponse.event_id,
-        name: '',
-        start_time: new Date(window.beginTime),
-        end_time: new Date(window.endTime),
-        epic_score_id: null,
-        epic_payout_id: null,
-      };
-
-      // TODO: Enable in Future
-      // Find the main leaderboard and if no main leaderboard then assign any available leaderboard
-      // const scoreLocation =
-      //   window.scoreLocations.find((sl) => sl.isMainWindowLeaderboard) ?? window.scoreLocations[0];
-
-      // if (scoreLocation) {
-      //   const leaderboardDef = leaderboardDefsMap.get(scoreLocation.leaderboardDefId);
-
-      //   windowResponse.epic_score_id = leaderboardDef?.scoringRuleSetId ?? null;
-
-      //   let payoutIdFormat = leaderboardDef?.payoutsConfig?.payoutTableIdFormat ?? '';
-
-      //   if (payoutIdFormat.includes('${')) {
-      //     const resolvedPayoutId = payoutIdFormat
-      //       .replace(/\$\{windowId\}/g, window.eventWindowId)
-      //       .replace(/\$\{eventId\}/g, window.eventWindowId)
-      //       .replace(/\$\{round\}/g, String(window.round));
-
-      //     payoutIdFormat = resolvedPayoutId;
-      //   }
-
-      //   windowResponse.epic_payout_id = payoutIdFormat;
-      // }
-
-      eventResponse.sessions.push(windowResponse);
-    }
-
-    formattedEvents.push(eventResponse);
-  }
-
-  const parsedTournaments = formattedEvents.map((ev) => {
-    // TODO: Take from Function
-    ev.name =
-      `${ev.name} ${getGroupNumberForIds(ev.sessions.map((s) => s.session_id)) ?? ''}`.trim();
-
-    ev.sessions = ev.sessions
-      .sort((a, b) => a.start_time.getTime() - b.end_time.getTime())
-      .map((s, index) => ({
-        ...s,
-        name: generateTournamentSessionName(s.session_id, index).name,
-      }));
-
-    return ev;
-  });
-
-  const sessionToSave = parsedTournaments.flatMap((t) => t.sessions);
+  const tournamentDetails = tournamentInfoParser(tournamentInfoJsonRes);
+  const parsedTournamentEvents = await tournamentEventParser(
+    events,
+    tournamentDetails,
+    region as TSupportedRegion
+  );
 
   // TODO: Enable in Future update
   // const parsedPayout: IParsedTournamentPayoutResponse[] = parsePayoutResponse(payoutTables).map(
@@ -417,32 +332,14 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
   await db.transaction(async (tx) => {
     const savedTournament = await tx
       .insert(FortniteTournamentTable)
-      .values(formattedEvents)
+      .values(parsedTournamentEvents.events)
       .returning({ id: FortniteTournamentTable.id });
 
     console.log(`Successfully sync ${savedTournament.length} tournament to database.`);
 
-    // if (parsedPayout.length > 0) {
-    //   const createdPayout = await db
-    //     .insert(FortniteTournamentPayoutTable)
-    //     .values(parsedPayout)
-    //     .returning({ id: FortniteTournamentPayoutTable.id });
-
-    //   console.log(`Successfully sync ${createdPayout.length} payout data to database.`);
-    // }
-
-    // if (parsedScoring.length > 0) {
-    //   const scoringInDb = await db
-    //     .insert(FortniteTournamentScoringTable)
-    //     .values(parsedScoring)
-    //     .returning({ id: FortniteTournamentScoringTable.id });
-
-    //   console.log(`Successfully sync ${scoringInDb.length} scoring data to database.`);
-    // }
-
     const savedTournamentSession = await tx
       .insert(FortniteTournamentSessionTable)
-      .values(parsedTournamentSessions)
+      .values(parsedTournamentEvents.sessions)
       .returning({ id: FortniteTournamentSessionTable.id });
 
     console.log(
@@ -456,40 +353,6 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
 
   return c.json({ message });
 };
-
-function formatTournamentPlatform(platforms: string[]): string[] {
-  const plt: string[] = [];
-
-  for (const p of platforms) {
-    if (p.toLowerCase().includes('xbox')) {
-      plt.push('xbox');
-    }
-
-    if (p.toLowerCase().includes('switch')) {
-      plt.push('switch');
-    }
-
-    if (p.toLowerCase().includes('windows')) {
-      plt.push('pc');
-    }
-
-    if (
-      p.toLowerCase().includes('mobile') ||
-      p.toLowerCase().includes('android') ||
-      p.toLowerCase().includes('ios')
-    ) {
-      plt.push('mobile');
-    }
-
-    if (p.toLowerCase().startsWith('ps')) {
-      plt.push('playstation');
-    }
-  }
-
-  const uniquePlatformsJSON = new Set(plt.map((p) => JSON.stringify(p)));
-
-  return Array.from(uniquePlatformsJSON).map((s) => JSON.parse(s));
-}
 
 // TODO: Enable in Future
 // function formateScoringResponse(data: IRootScoringRuleSet[]) {
@@ -535,15 +398,6 @@ function formatTournamentPlatform(platforms: string[]): string[] {
 //     )
 //   );
 // }
-
-function tournamentPrizeType(type: string, threshold: number): string {
-  type = type.toLowerCase();
-
-  if (type === 'percentile') return `Top ${threshold * 100}%`;
-  else if (type === 'value') return `Earned ${threshold} Points`;
-
-  return `Top #${threshold}`;
-}
 
 // TODO: Enable in Future
 /** Parse the response coming from Epic Games to the format we want before storing in the database */
@@ -592,143 +446,10 @@ function tournamentPrizeType(type: string, threshold: number): string {
 //   });
 // }
 
-function parseTournamentConfig(rawData: TTournamentExtraDetails) {
-  const keysToIgnore: string[] = [
-    'conversion_config',
-    // This key exists at the root, distinct from the nested ones
-    'tournament_info',
-    '_title',
-    '_noIndex',
-    '_activeDate',
-    'lastModified',
-    '_locale',
-    '_templateName',
-    '_suggestedPrefetch',
-  ];
-
-  return Object.entries(rawData).reduce((acc: ITournamentDisplayInfo[], [key, value]) => {
-    if (
-      keysToIgnore.includes(key) ||
-      typeof value !== 'object' ||
-      value === null ||
-      !('tournament_info' in value) ||
-      typeof value.tournament_info !== 'object' ||
-      value.tournament_info === null
-    ) {
-      return acc; // Skip this entry
-    }
-
-    // 2. MAP: At this point, we have a valid tournament entry.
-    // We cast it to our partial type for safe access.
-    const info = value.tournament_info as ITournamentInfo;
-
-    const cleanTournament: ITournamentDisplayInfo = {
-      display_id: info.tournament_display_id.toLowerCase(),
-      name: generateTournamentName(info.title_line_1, info.title_line_2, info.short_format_title),
-      details_description: info.details_description,
-      playlist_tile_image: info.playlist_tile_image,
-    };
-
-    // Add the clean object to our accumulator array
-    acc.push(cleanTournament);
-
-    return acc;
-  }, []);
-}
-
-function searchTournamentByDisplayId(
-  data: ITournamentDisplayInfo[],
-  displayId: string
-): ITournamentDisplayInfo {
-  displayId = displayId.toLowerCase();
-
-  const defaultResponse: ITournamentDisplayInfo = {
-    display_id: displayId,
-    name: null,
-    details_description: null,
-    playlist_tile_image: null,
-  };
-
-  return data.find((d) => d.display_id.toLowerCase() === displayId) || defaultResponse;
-}
-
-function generateTournamentName(
-  title_line_1: string | null,
-  title_line_2: string | null,
-  short_format_title: string | null
-): string | null {
-  // Priority 1: Use short_format_title if it has a value
-  if (short_format_title) {
-    return short_format_title;
-  }
-
-  // Priority 2: Combine title_line_1 and title_line_2
-  if (title_line_1 && title_line_2) {
-    return `${title_line_1} ${title_line_2}`; // Uses a template literal to add a space
-  }
-
-  // Priority 3: Use title_line_1 if it's the only one
-  if (title_line_1) {
-    return title_line_1;
-  }
-
-  // Priority 4: Use title_line_2 if it's the only one
-  if (title_line_2) {
-    return title_line_2;
-  }
-
-  // Fallback: If all are null/empty, return an empty string
-  return null;
-}
-
-function generateTournamentSessionName(
-  id: string,
-  index: number
-): { name: string; group: string | null } {
-  const regex = /Event(\d+)(Group(\d+))?Round(\d+)/i;
-
-  const match = id.match(regex);
-
-  let name: string;
-  let groupString: string | null = null;
-
-  if (!match) {
-    // If the pattern doesn't match, use the fallback name
-    name = `Session ${index + 1}`;
-  } else {
-    const sessionNumber = match[1];
-    const groupDigits = match[3]; // undefined if no group exists
-    const roundNumber = match[4];
-
-    // Combine Session and Round into the Name
-    name = `Session ${sessionNumber} Round ${roundNumber}`;
-
-    // Conditionally format the Group string
-    groupString = groupDigits ? `Group ${groupDigits}` : null;
-  }
-
-  return {
-    name: name,
-    group: groupString,
-  };
-
-  // const match = id.match(/Event(\d+)Round(\d+)/i);
-
-  // if (match === null) {
-  //   return `Session ${index + 1}`;
-  // }
-
-  // // Must have the front comma if not it will get from the ID
-  // const [, event, round] = match;
-
-  // return `Session ${event} Round ${round}`;
-}
-
-function getTournamentStatus(startTime: Date, endTime: Date) {
+function getTournamentStatus(startTime: Date, endTime: Date): TTournamentStatus {
   const now = new Date();
 
   if (now < new Date(startTime)) return 'upcoming';
-
   if (now > new Date(endTime)) return 'ended';
 
   return 'live';
@@ -775,19 +496,4 @@ async function fetchAccountsInBatches(accountIds: string[], access_token: string
   console.log('Available: ', allResults.length);
 
   return allResults;
-}
-
-function getGroupNumberForIds(windowIds: string[]): string | null {
-  const ids = windowIds
-    .map((id) => {
-      const regex = /Group(\d+)/i;
-
-      const match = id.match(regex);
-
-      if (match) return match[1];
-      return null;
-    })
-    .filter((id) => id !== null);
-
-  return ids.length > 0 ? `Group ${ids[0]}` : null;
 }

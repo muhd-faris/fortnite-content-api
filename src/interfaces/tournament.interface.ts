@@ -22,9 +22,9 @@ export interface ITournamentEventSession {
 }
 
 export interface ITournamentSessionFE {
+  session_id: string;
+  name: string;
   status: TTournamentStatus;
   start_time: Date;
   end_time: Date;
-  session_id: string;
-  session_name: string;
 }

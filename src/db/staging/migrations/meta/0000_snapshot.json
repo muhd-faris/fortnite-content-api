@@ -1,5 +1,5 @@
 {
-  "id": "7620c5f1-760f-42d5-ac9b-c4b917b5df1d",
+  "id": "55b22173-82f8-4d6d-bc40-66cdb27b06c8",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -207,8 +207,14 @@
           "notNull": true,
           "default": "gen_random_uuid()"
         },
-        "window_id": {
-          "name": "window_id",
+        "session_id": {
+          "name": "session_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true
@@ -216,12 +222,6 @@
         "event_id": {
           "name": "event_id",
           "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "countdown_starts_at": {
-          "name": "countdown_starts_at",
-          "type": "timestamp",
           "primaryKey": false,
           "notNull": true
         },
@@ -241,13 +241,13 @@
           "name": "epic_score_id",
           "type": "varchar",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "epic_payout_id": {
           "name": "epic_payout_id",
           "type": "varchar",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "created_at": {
           "name": "created_at",
@@ -334,6 +334,12 @@
           "primaryKey": false,
           "notNull": true
         },
+        "minimum_account_level": {
+          "name": "minimum_account_level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
         "name": {
           "name": "name",
           "type": "varchar(255)",
@@ -342,7 +348,7 @@
         },
         "details_description": {
           "name": "details_description",
-          "type": "varchar(500)",
+          "type": "varchar(2000)",
           "primaryKey": false,
           "notNull": false
         },
