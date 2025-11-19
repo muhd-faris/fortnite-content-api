@@ -102,8 +102,7 @@ export const tournamentEventParser = async (
   };
 };
 
-// Internal Functions
-function parseTournamentConfig(data: TTournamentExtraDetails) {
+export const tournamentInfoParser = (data: TTournamentExtraDetails): ITournamentDisplayInfo[] => {
   const keysToIgnore: string[] = [
     'conversion_config',
     // This key exists at the root, distinct from the nested ones
@@ -126,11 +125,9 @@ function parseTournamentConfig(data: TTournamentExtraDetails) {
       typeof value.tournament_info !== 'object' ||
       value.tournament_info === null
     ) {
-      return acc; // Skip this entry
+      return acc;
     }
 
-    // 2. MAP: At this point, we have a valid tournament entry.
-    // We cast it to our partial type for safe access.
     const info = value.tournament_info as ITournamentInfo;
 
     const cleanTournament: ITournamentDisplayInfo = {
@@ -140,13 +137,13 @@ function parseTournamentConfig(data: TTournamentExtraDetails) {
       playlist_tile_image: info.playlist_tile_image,
     };
 
-    // Add the clean object to our accumulator array
     acc.push(cleanTournament);
 
     return acc;
   }, []);
-}
+};
 
+// Internal Functions
 function searchTournamentByDisplayId(
   data: ITournamentDisplayInfo[],
   displayId: string
