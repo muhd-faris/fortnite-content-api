@@ -77,7 +77,8 @@ export const getLiveTournamentsV1 = async (c: TCFContext) => {
     where: ({ start_time, end_time }, { and, lte, gte }) =>
       and(lte(start_time, new Date()), gte(end_time, new Date())),
     columns: {
-      window_id: true,
+      session_id: true,
+      name: true,
       start_time: true,
       end_time: true,
     },
@@ -124,7 +125,6 @@ export const getTournamentDetailsV1 = async (c: TCFContext) => {
       sessions: {
         columns: {
           id: false,
-          countdown_starts_at: false,
           created_at: false,
           updated_at: false,
         },
@@ -164,9 +164,9 @@ export const getTournamentWindowDetailsV1 = async (c: TCFContext) => {
 
   const db = getDrizzle();
   const sessionInDb = await db.query.FortniteTournamentSessionTable.findFirst({
-    where: ({ window_id }, { eq }) => eq(window_id, body.window_id),
+    where: ({ session_id }, { eq }) => eq(session_id, body.window_id),
     columns: {
-      window_id: true,
+      session_id: true,
       event_id: true,
       start_time: true,
       end_time: true,

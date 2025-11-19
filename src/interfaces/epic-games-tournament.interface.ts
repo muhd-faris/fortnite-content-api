@@ -47,7 +47,7 @@ interface IPayoutTableRankPayout {
 // End Payout Table Interface
 
 // Start Event Interface
-interface IRootEvent {
+export interface IRootEvent {
   gameId: string;
   eventId: string;
   beginTime: string;

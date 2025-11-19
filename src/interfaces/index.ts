@@ -28,6 +28,7 @@ export {
   IParsedTournamentScoringResponse,
   IParsedTournamentScoringRules,
   ITournamentInfo,
+  IRootEvent,
 } from './epic-games-tournament.interface';
 export { IRootInstrumentListing } from './instrument-listing';
 export { IRootRecentCosmetic } from './recent-cosmetic.interface';
