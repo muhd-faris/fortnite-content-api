@@ -1,9 +1,11 @@
 import { getDrizzle } from '../lib';
 import { TCFContext, TSupportedRegion, TTournamentExtraDetails, TTournamentStatus } from '../types';
 import {
+  ILeaderboardFE,
   IRootAccountLookup,
   IRootEpicGamesTournament,
   IRootEpicGamesTournamentWindowDetails,
+  ISessionDetailsFE,
   ITournamentSessionFE,
 } from '../interfaces';
 import { chunkArray, CustomException, getEGAccountAccessToken } from '../helpers';
@@ -45,15 +47,12 @@ export const getTournamentsV1 = async (c: TCFContext) => {
   const tournaments = tournamentsInDb.map((t) => {
     const { sessions, ...excludeSession } = t;
 
-    const sessionWithStatus = sessions.map((s) => ({
-      ...s,
-      status: getTournamentStatus(s.start_time, s.end_time),
-    }));
-    const nextSession = getNextSession(sessionWithStatus);
+    const formattedSessions = sessionWithStatus(sessions);
+    const nextSession = getNextSession(formattedSessions);
 
     return {
       ...excludeSession,
-      sessions: sessionWithStatus,
+      sessions: formattedSessions,
       next_session: nextSession,
       current_status: nextSession !== null ? nextSession.status : 'ended',
     };
@@ -129,16 +128,13 @@ export const getTournamentDetailsV1 = async (c: TCFContext) => {
     throw new CustomException('No tournaments matching with that ID', 404);
   }
 
-  const sessionWithStatus: ITournamentSessionFE[] = tournamentDetailsInDb.sessions.map((s) => ({
-    ...s,
-    status: getTournamentStatus(s.start_time, s.end_time),
-  }));
-  const nextSession = getNextSession(sessionWithStatus);
+  const formattedSessions = sessionWithStatus(tournamentDetailsInDb.sessions);
+  const nextSession = getNextSession(formattedSessions);
 
   const { sessions, ...excludeSession } = tournamentDetailsInDb;
   const response = {
     ...excludeSession,
-    sessions: sessionWithStatus,
+    sessions: formattedSessions,
     next_session: nextSession,
     current_status: nextSession !== null ? nextSession.status : 'ended',
   };
@@ -171,10 +167,9 @@ export const getTournamentWindowDetailsV1 = async (c: TCFContext) => {
     );
   }
 
-  // TODO: Enforce interface type
-  const sessionDetails: any = {
-    ...sessionInDb,
-    status: getTournamentStatus(sessionInDb.start_time, sessionInDb.end_time),
+  const formattedSession = sessionWithStatus(sessionInDb);
+  const sessionDetails: ISessionDetailsFE = {
+    ...formattedSession,
     leaderboard: [],
   };
 
@@ -182,8 +177,7 @@ export const getTournamentWindowDetailsV1 = async (c: TCFContext) => {
     return c.json(sessionDetails);
   }
 
-  const leaderboardParams = new URLSearchParams();
-  const endpoint: string = `Fortnite/${body.event_id}/${body.window_id}/${accountId}?${leaderboardParams.toString()}`;
+  const endpoint: string = `Fortnite/${body.event_id}/${body.window_id}/${accountId}`;
   const windowDetailUrl: string = `${EGTournamentWindowEndpoint}/${endpoint}`;
   const windowDetailsReponse = await fetch(windowDetailUrl, {
     method: 'GET',
@@ -213,8 +207,8 @@ export const getTournamentWindowDetailsV1 = async (c: TCFContext) => {
     {} as Record<string, string>
   );
 
-  const leaderboard = windowDetailsJsonReponse.entries.map((e) => {
-    const sessionHistory = e.sessionHistory.map((s) => ({
+  const leaderboard: ILeaderboardFE[] = windowDetailsJsonReponse.entries.map((e) => {
+    const gameHistory = e.sessionHistory.map((s) => ({
       placements: s.trackedStats.PLACEMENT_STAT_INDEX,
       eliminations: s.trackedStats.TEAM_ELIMS_STAT_INDEX,
     }));
@@ -246,7 +240,7 @@ export const getTournamentWindowDetailsV1 = async (c: TCFContext) => {
         placements: totalPlacementPoints,
         eliminations: totalEliminationPoints,
       },
-      session_history: sessionHistory,
+      game_history: gameHistory,
     };
   });
 
@@ -445,6 +439,32 @@ export const syncTournamentToDatabaseV1 = async (c: TCFContext) => {
 //     };
 //   });
 // }
+
+/** Format Session data to include current status */
+function sessionWithStatus<
+  T extends Omit<ITournamentSessionFE, 'status'> | Omit<ITournamentSessionFE, 'status'>[],
+>(
+  session: T
+): T extends Omit<ITournamentSessionFE, 'status'>[]
+  ? ITournamentSessionFE[]
+  : ITournamentSessionFE {
+  const apply = (session: Omit<ITournamentSessionFE, 'status'>): ITournamentSessionFE => ({
+    ...session,
+    status: getTournamentStatus(session.start_time, session.end_time),
+  });
+
+  if (Array.isArray(session)) {
+    const result: ITournamentSessionFE[] = new Array(session.length);
+
+    for (let i = 0; i < session.length; i++) {
+      result[i] = apply(session[i]);
+    }
+
+    return result as any;
+  }
+
+  return apply(session) as any;
+}
 
 function getTournamentStatus(startTime: Date, endTime: Date): TTournamentStatus {
   const now = new Date();

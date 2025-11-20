@@ -38,5 +38,7 @@ export {
   ITournamentEvent,
   ITournamentEventSession,
   ITournamentSessionFE,
+  ISessionDetailsFE,
+  ILeaderboardFE,
 } from './tournament.interface';
 export { IRootTrackListing } from './track-listing';

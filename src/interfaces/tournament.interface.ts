@@ -28,3 +28,30 @@ export interface ITournamentSessionFE {
   start_time: Date;
   end_time: Date;
 }
+
+export interface ISessionDetailsFE extends ITournamentSessionFE {
+  leaderboard: ILeaderboardFE[];
+}
+
+export interface ILeaderboardFE {
+  rank: number;
+  players: ILeaderboardPlayerFE[];
+  total_points_earned: number;
+  points_breakdown: ILeaderboardPointBreakdown;
+  game_history: ILeaderboardGameHistory[];
+}
+
+interface ILeaderboardPlayerFE {
+  id: string;
+  display_name: string;
+}
+
+interface ILeaderboardPointBreakdown {
+  placements: number;
+  eliminations: number;
+}
+
+interface ILeaderboardGameHistory {
+  placements: number;
+  eliminations: number;
+}
