@@ -7,4 +7,5 @@ export {
   formatBrListingResponse,
   titleCasePreserveAcronyms,
   chunkArray,
+  uniqueStringArray,
 } from './utilities';

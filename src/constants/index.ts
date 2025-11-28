@@ -13,4 +13,5 @@ export {
   EGTokenEndpoint,
   EGTournamentWindowEndpoint,
   EGAccountIdLookupEndpoint,
+  EGShopBestSellerEndpoint,
 } from './endpoint';

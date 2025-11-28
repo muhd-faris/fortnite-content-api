@@ -49,3 +49,9 @@ export const chunkArray = <T>(arr: T[], size: number): T[][] => {
 
   return chunks;
 };
+
+export const uniqueStringArray = (data: string[]): string[] => {
+  return [...new Set(data)];
+};
+
+export const fallbackColor = (data: string | null | undefined) => {};

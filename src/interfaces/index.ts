@@ -35,6 +35,14 @@ export { IRootRecentCosmetic } from './recent-cosmetic.interface';
 export { ISeasonListFE, ISeasonByChapterFE } from './season-history.interface';
 export { IRootSeasonPasses, IPassData } from './season-passes.interface';
 export {
+  IRootBestSellerShop,
+  IRootShop,
+  IShopEntry,
+  IBanner,
+  INewDisplayAsset,
+  IGrantedFE,
+} from './shop.interface';
+export {
   ITournamentEvent,
   ITournamentEventSession,
   ITournamentSessionFE,
