@@ -1,4 +1,13 @@
-import { IGrantedFE, IRootShop } from '../interfaces';
+import { GetBrItemSeriesDetails, GetBrItemTypeDetails } from '../constants';
+import {
+  IBanner,
+  IGrantedFE,
+  INewDisplayAsset,
+  IRootShop,
+  IShopEntry,
+  IOfferTag,
+  IShopImage,
+} from '../interfaces';
 import { CustomException } from './app-error';
 import { uniqueStringArray } from './utilities';
 
@@ -29,77 +38,8 @@ export const ItemShopFormatter = (data: IRootShop) => {
       };
       const supportedModes = uniqueStringArray(images.map((img) => img.game_mode));
 
-      const grantedItems: IGrantedFE[] = [];
-      const foundItem = getShopGrantedItem(s);
-
-      if (s.tracks) {
-        for (const track of s.tracks) {
-          grantedItems.push({
-            id: track.id,
-            type: track.artist,
-            name: track.title,
-            rarity: null,
-            image_without_bg: track.albumArt,
-            lego_image_without_bg: null,
-            fallguys_image_without_bg: null,
-          });
-          break;
-        }
-      }
-
-      if (s.brItems) {
-        for (const br of s.brItems) {
-          grantedItems.push({
-            id: br.id,
-            type: br.type.displayValue,
-            name: br.name,
-            rarity: {
-              name: br.rarity.displayValue,
-              color: '',
-            },
-            image_without_bg: br.images?.icon || null,
-            lego_image_without_bg: br.images.lego?.large || null,
-            fallguys_image_without_bg: br.images.bean?.large || null,
-          });
-          break;
-        }
-      }
-
-      if (s.cars) {
-        for (const c of s.cars) {
-          grantedItems.push({
-            id: c.id,
-            type: c.type.displayValue,
-            name: c.name,
-            rarity: {
-              name: c.rarity.displayValue,
-              color: '',
-            },
-            image_without_bg: c.images?.large || null,
-            lego_image_without_bg: null,
-            fallguys_image_without_bg: null,
-          });
-          break;
-        }
-      }
-
-      if (s.instruments) {
-        for (const instrument of s.instruments) {
-          grantedItems.push({
-            id: instrument.id,
-            type: instrument.type.displayValue,
-            name: instrument.name,
-            rarity: {
-              name: instrument.rarity.displayValue,
-              color: '',
-            },
-            image_without_bg: instrument.images?.large || null,
-            lego_image_without_bg: null,
-            fallguys_image_without_bg: null,
-          });
-          break;
-        }
-      }
+      const grantedItems: IGrantedFE[] = getShopGrantedItems(s);
+      const foundItem = grantedItems[0];
 
       return {
         offer_id: s.offerId,
@@ -108,16 +48,120 @@ export const ItemShopFormatter = (data: IRootShop) => {
         main_id: s.newDisplayAsset?.cosmeticId || s.newDisplayAsset?.id || null,
         name: s.bundle?.name.toUpperCase() || foundItem.name.toUpperCase(),
         description: foundItem.description,
-        display_type: getCosmeticType(foundItem.type),
+        display_type: GetBrItemTypeDetails(foundItem.type),
         availability,
         color_config: colorConfig,
         images,
         price,
-        series: getSeriesDetails(foundItem.series ?? undefined),
+        series: GetBrItemSeriesDetails(foundItem.series ?? ''),
         section,
         supported_modes: supportedModes,
         granted: grantedItems,
       };
     })
-    .filter((c) => c.display_type !== 'Unknown Type');
+    .filter((c) => c.display_type !== null);
+};
+
+const getShopCosmeticImages = (data: INewDisplayAsset | undefined): IShopImage[] => {
+  if (data === undefined) return [];
+
+  return data.renderImages
+    .filter((da) => da.productTag)
+    .map((da) => {
+      const modeKey: { [mode: string]: string } = {
+        ['br']: 'Battle Royale',
+        ['juno']: 'Lego',
+        ['delmar']: 'Rocket Racing',
+        ['sparks']: 'Fortnite Festival',
+      };
+      const tag = da.productTag.toLowerCase().replace('product.', '');
+      const mode = modeKey[tag];
+
+      return {
+        game_mode: mode,
+        image_without_bg: da.image,
+      };
+    });
+};
+
+const getShopGrantedItems = (data: IShopEntry) => {
+  const { tracks, brItems, cars, instruments } = data;
+  const grantedItems: IGrantedFE[] = [];
+
+  for (const track of tracks ?? []) {
+    grantedItems.push({
+      id: track.id,
+      type: track.artist,
+      name: track.title,
+      description: null,
+      series: null,
+      rarity: null,
+      image_without_bg: track.albumArt,
+      lego_image_without_bg: null,
+      fallguys_image_without_bg: null,
+    });
+  }
+
+  for (const br of brItems ?? []) {
+    grantedItems.push({
+      id: br.id,
+      type: br.type.displayValue,
+      name: br.name,
+      description: br.description,
+      series: br.series?.value || null,
+      rarity: {
+        name: br.rarity.displayValue,
+        color: '',
+      },
+      image_without_bg: br.images?.icon ?? null,
+      lego_image_without_bg: br.images?.lego?.large ?? null,
+      fallguys_image_without_bg: br.images?.bean?.large ?? null,
+    });
+  }
+
+  for (const c of cars ?? []) {
+    grantedItems.push({
+      id: c.id,
+      type: c.type.displayValue,
+      name: c.name,
+      description: c.description,
+      series: c.series?.value || null,
+      rarity: {
+        name: c.rarity.displayValue,
+        color: '',
+      },
+      image_without_bg: c.images?.large ?? null,
+      lego_image_without_bg: null,
+      fallguys_image_without_bg: null,
+    });
+  }
+
+  for (const instrument of instruments ?? []) {
+    grantedItems.push({
+      id: instrument.id,
+      type: instrument.type.displayValue,
+      name: instrument.name,
+      description: instrument.description,
+      series: instrument.series?.value || null,
+      rarity: {
+        name: instrument.rarity.displayValue,
+        color: '',
+      },
+      image_without_bg: instrument.images?.large ?? null,
+      lego_image_without_bg: null,
+      fallguys_image_without_bg: null,
+    });
+  }
+
+  return grantedItems;
+};
+
+const itemShopOffer = (data?: IBanner, offerTag?: IOfferTag): string | null => {
+  if (data === undefined || offerTag === undefined) return null;
+
+  if (data.backendValue.toLowerCase().includes('new')) return 'new';
+  if (data.backendValue.toLowerCase().includes('amountoff')) return 'discount';
+  if (offerTag?.text.toLowerCase().includes('reactive')) return 'reactive';
+
+  return null;
 };

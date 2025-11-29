@@ -41,6 +41,8 @@ export {
   IBanner,
   INewDisplayAsset,
   IGrantedFE,
+  IOfferTag,
+  IShopImage,
 } from './shop.interface';
 export {
   ITournamentEvent,

@@ -15,3 +15,5 @@ export const EGAccountIdLookupEndpoint: string =
 
 export const EGShopBestSellerEndpoint: string =
   'https://cdn2.unrealengine.com/fn_bsdata/ebb74910-dd35-44b8-b826-d58dc16c6456.json';
+
+export const ItemShopEndpoint: string = 'https://fortnite-api.com/v2/shop';

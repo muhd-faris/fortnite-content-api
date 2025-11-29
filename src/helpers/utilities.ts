@@ -55,3 +55,11 @@ export const uniqueStringArray = (data: string[]): string[] => {
 };
 
 export const fallbackColor = (data: string | null | undefined) => {};
+
+export const convertLocalToUtcTime = (date: Date): Date => {
+  const utcOffsetMinutes = date.getTimezoneOffset();
+  const utcTimestamp = date.getTime() + utcOffsetMinutes * 60 * 1000;
+  const utcDate = new Date(utcTimestamp);
+
+  return utcDate;
+};
