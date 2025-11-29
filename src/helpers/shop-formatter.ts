@@ -48,7 +48,7 @@ export const ItemShopFormatter = (data: IRootShop) => {
         main_id: s.newDisplayAsset?.cosmeticId || s.newDisplayAsset?.id || null,
         name: s.bundle?.name.toUpperCase() || foundItem.name.toUpperCase(),
         description: foundItem.description,
-        display_type: GetBrItemTypeDetails(foundItem.type),
+        display_type: GetBrItemTypeDetails(foundItem.type)?.name || null,
         availability,
         color_config: colorConfig,
         images,
