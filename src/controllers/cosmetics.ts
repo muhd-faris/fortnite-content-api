@@ -368,7 +368,6 @@ export const getCosmeticsBySeriesV1 = async (c: TCFContext) => {
   return c.json(data);
 };
 
-// TODO: Implement
 export const getBrCosmeticByIdsV1 = async (c: TCFContext) => {
   const { cosmetic_ids } = BrCosmeticIdsValidationSchema.parse(await c.req.json());
 
@@ -376,6 +375,29 @@ export const getBrCosmeticByIdsV1 = async (c: TCFContext) => {
     // Just return empty array rather then error
     return c.json([]);
   }
+
+  const params = new URLSearchParams();
+  cosmetic_ids.forEach((cid) => params.append('id', cid));
+
+  const fetchedCosmeticListing = await fetch(
+    `https://fortnite-api.com/v2/cosmetics/br/search/ids?${params}`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+
+  const responseData = (await fetchedCosmeticListing.json()) as IRootCosmeticListing;
+
+  if (responseData.status !== 200) {
+    throw new CustomException('Unable to get complete Cosmetic data', 500);
+  }
+
+  const data = formatBrListingResponse(responseData.data);
+
+  return c.json(data);
 };
 
 function generateItemStyles(images: IBRImages, variants: IVariant[]): IBRStyleFE[] {
