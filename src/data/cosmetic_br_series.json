@@ -1,46 +1,57 @@
 [
   {
     "backend_value": "CrewSeries",
-    "display_name": "Crew Series"
+    "display_name": "Crew Series",
+    "main_color": "bacaf2ff"
   },
   {
     "backend_value": "CUBESeries",
-    "display_name": "Dark Series"
+    "display_name": "Dark Series",
+    "main_color": "ff4fc5ff"
   },
   {
     "backend_value": "DCUSeries",
-    "display_name": "DC Series"
+    "display_name": "DC Series",
+    "main_color": "007af1ff"
   },
   {
     "backend_value": "FrozenSeries",
-    "display_name": "Frozen Series"
+    "display_name": "Frozen Series",
+    "main_color": "d8edffff"
   },
   {
     "backend_value": "PlatformSeries",
-    "display_name": "Gaming Legends Series"
+    "display_name": "Gaming Legends Series",
+    "main_color": "8078ffff"
   },
   {
     "backend_value": "CreatorCollabSeries",
-    "display_name": "Icon Series"
+    "display_name": "Icon Series",
+    "main_color": "5cf2f3ff"
   },
   {
     "backend_value": "LavaSeries",
-    "display_name": "Lava Series"
+    "display_name": "Lava Series",
+    "main_color": "face36ff"
   },
   {
     "backend_value": "MarvelSeries",
-    "display_name": "Marvel Series"
+    "display_name": "Marvel Series",
+    "main_color": "ed1c24ff"
   },
   {
     "backend_value": "ShadowSeries",
-    "display_name": "Shadow Series"
+    "display_name": "Shadow Series",
+    "main_color": "ffffffff"
   },
   {
     "backend_value": "SlurpSeries",
-    "display_name": "Slurp Series"
+    "display_name": "Slurp Series",
+    "main_color": "1df9f7ff"
   },
   {
     "backend_value": "ColumbusSeries",
-    "display_name": "Star Wars Series"
+    "display_name": "Star Wars Series",
+    "main_color": "ffd800ff"
   }
 ]

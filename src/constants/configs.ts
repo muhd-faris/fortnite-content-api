@@ -53,3 +53,33 @@ export const SupportedItemTypesVal: string[] = [
 ];
 
 export const SupportedRegionVal: string[] = SupportedRegion.map((r) => r.value);
+
+export const GetBrItemSeriesDetails = (value: string) => {
+  value = value.toLowerCase();
+
+  if (!value) return null;
+
+  const foundSeries = brSeriesData.find((s) => s.backend_value.toLowerCase() === value) ?? null;
+
+  if (foundSeries === null) return null;
+
+  return {
+    name: foundSeries.display_name,
+    color: `#${foundSeries.main_color}`,
+  };
+};
+
+export const GetBrItemTypeDetails = (value: string) => {
+  value = value.toLowerCase();
+
+  if (!value) return null;
+
+  const foundType = brCosmeticTypesData.find((t) => t.value.toLowerCase() === value) ?? null;
+
+  if (foundType === null) return null;
+
+  return {
+    id: foundType.value,
+    name: foundType.display_name,
+  };
+};

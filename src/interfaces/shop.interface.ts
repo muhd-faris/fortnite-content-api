@@ -232,6 +232,8 @@ export interface IGrantedFE {
   id: string;
   type: string;
   name: string;
+  description: string | null;
+  series: string | null;
   /** @deprecated - Fortnite no longer uses this */
   rarity: IRarityFE | null;
   image_without_bg: string | null;
@@ -242,4 +244,9 @@ export interface IGrantedFE {
 interface IRarityFE {
   name: string;
   color: string;
+}
+
+export interface IShopImage {
+  game_mode: string;
+  image_without_bg: string;
 }

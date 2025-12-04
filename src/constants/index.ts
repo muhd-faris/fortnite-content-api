@@ -6,6 +6,8 @@ export {
   SupportedItemTypesVal,
   SupportedRegion,
   SupportedRegionVal,
+  GetBrItemSeriesDetails,
+  GetBrItemTypeDetails,
 } from './configs';
 export {
   EGTournamentListingEndpoint,
@@ -14,4 +16,5 @@ export {
   EGTournamentWindowEndpoint,
   EGAccountIdLookupEndpoint,
   EGShopBestSellerEndpoint,
+  ItemShopEndpoint,
 } from './endpoint';
