@@ -40,10 +40,12 @@ export const ItemShopFormatter = (data: IRootShop) => {
 
       const grantedItems: IGrantedFE[] = getShopGrantedItems(s);
       const foundItem = grantedItems[0];
+      const mainImage =
+        images?.[0]?.image_without_bg ?? grantedItems?.[0]?.image_without_bg ?? null;
 
       return {
         offer_id: s.offerId,
-        main_image: images[0]?.image_without_bg || null,
+        main_image: mainImage,
         special_offer: itemShopOffer(s.banner),
         main_id: s.newDisplayAsset?.cosmeticId || s.newDisplayAsset?.id || null,
         name: s.bundle?.name.toUpperCase() || foundItem.name.toUpperCase(),
