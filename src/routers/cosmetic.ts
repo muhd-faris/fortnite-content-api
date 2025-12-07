@@ -8,6 +8,7 @@ import {
   getFestivalListingV1,
   getRecentlyAddedCosmeticsV1,
   getRocketRacingListingV1,
+  searchBrCosmeticsByTypeV1,
   searchBrCosmeticsV1,
 } from '../controllers/cosmetics';
 import { asyncHandler } from '../helpers';
@@ -23,5 +24,6 @@ app.post(`${v1BaseName}/rocket-racing`, asyncHandler(getRocketRacingListingV1));
 app.post(`${v1BaseName}/festival`, asyncHandler(getFestivalListingV1));
 app.post(`${v1BaseName}/recent-items`, asyncHandler(getRecentlyAddedCosmeticsV1));
 app.post(`${v1BaseName}/search-cosmetic-by-ids`, asyncHandler(getBrCosmeticByIdsV1));
+app.post(`${v1BaseName}/search-cosmetic-by-type`, asyncHandler(searchBrCosmeticsByTypeV1));
 
 export default app;

@@ -32,3 +32,15 @@ export const SeriesValidationSchema = z.object({
 export const BrCosmeticIdsValidationSchema = z.object({
   cosmetic_ids: z.string().toLowerCase().array(),
 });
+
+export const SearchCosmeticByTypeValidationSchema = z.object({
+  name: z
+    .string({ error: 'Name is required to search' })
+    .min(3, { error: 'Minimum 3 characters is needed.' })
+    .trim()
+    .toLowerCase()
+    .optional(),
+  item_type: z.enum([...SupportedItemTypesVal], {
+    error: `Cosmetic types supported are ${SupportedItemTypesVal.join(', ')}`,
+  }),
+});
