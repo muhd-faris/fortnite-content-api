@@ -19,6 +19,7 @@ import { TCFContext, TRootCosmeticDetails } from '../types';
 import {
   BrCosmeticIdsValidationSchema,
   ExperienceValidationSchema,
+  SearchCosmeticByTypeValidationSchema,
   SearchCosmeticValidationSchema,
   SeriesValidationSchema,
 } from '../validations';
@@ -396,6 +397,58 @@ export const getBrCosmeticByIdsV1 = async (c: TCFContext) => {
   }
 
   const data = formatBrListingResponse(responseData.data);
+
+  return c.json(data);
+};
+
+export const searchBrCosmeticsByTypeV1 = async (c: TCFContext) => {
+  const { name, item_type } = SearchCosmeticByTypeValidationSchema.parse(await c.req.json());
+
+  if (name && name.length > 3) {
+    const params = new URLSearchParams();
+    params.append('name', name);
+    params.append('matchMethod', 'contains');
+    params.append('type', item_type);
+
+    const url: string = `${FortniteComBaseUrl}/v2/cosmetics/br/search/all?${params.toString()}`;
+    const fetchedCosmeticListing = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const cosmeticListingJson = (await fetchedCosmeticListing.json()) as IRootCosmeticListing;
+
+    if (cosmeticListingJson.status !== 200) {
+      throw new CustomException(
+        'Error occured from the server. Sorry about that please try again shortly.',
+        500
+      );
+    }
+
+    const data = formatBrListingResponse(cosmeticListingJson.data);
+
+    return c.json(data);
+  }
+
+  const fetchedCosmeticListing = await fetch(`${FortniteComBaseUrl}/v2/cosmetics/new`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const cosmeticListingJson = (await fetchedCosmeticListing.json()) as IRootRecentCosmetic;
+
+  if (cosmeticListingJson.status !== 200) {
+    throw new CustomException(
+      'Error occured from the server. Sorry about that please try again shortly.',
+      500
+    );
+  }
+
+  const data = formatBrListingResponse(cosmeticListingJson.data.items.br).filter(
+    (item) => item.item_type.id === item_type
+  );
 
   return c.json(data);
 };

@@ -14,7 +14,7 @@ export const formatBrListingResponse = (data: ICosmeticListingData[]): IFECosmet
       .filter((d) => SupportedBrItemTypesVal.includes(d.type.value))
       .map((d) => ({
         id: d.id,
-        name: d.name,
+        name: d.name.toUpperCase(),
         item_type: {
           id: d.type.value,
           name: d.type.displayValue,
@@ -24,6 +24,8 @@ export const formatBrListingResponse = (data: ICosmeticListingData[]): IFECosmet
         overlay_bg_color: 'linear-gradient(0deg, rgb(51, 0, 22) 0%, rgba(0, 0, 0, 0) 100%)',
         transparent_image: d.images?.featured ?? d.images?.icon ?? d.images.smallIcon,
       }))
+      // Remove Placeholder Items
+      .filter((s) => !s.name.toLowerCase().includes('tbd'))
   );
 };
 
