@@ -18,3 +18,4 @@ export {
   EGShopBestSellerEndpoint,
   ItemShopEndpoint,
 } from './endpoint';
+export * from './prompts';
