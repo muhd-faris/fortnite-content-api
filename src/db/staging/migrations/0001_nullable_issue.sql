@@ -1,0 +1,1 @@
+ALTER TABLE "fortnite_tournament_sessions" ALTER COLUMN "event_id" DROP NOT NULL;

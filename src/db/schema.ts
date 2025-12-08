@@ -65,11 +65,12 @@ export const FortniteTournamentSessionTable = pgTable('fortnite_tournament_sessi
   id: uuid('id').primaryKey().defaultRandom(),
   session_id: varchar('session_id', { length: 255 }).notNull(),
   name: varchar('name', { length: 255 }).notNull(),
-  event_id: varchar('event_id', { length: 255 })
-    .notNull()
-    .references(() => FortniteTournamentTable.event_id, {
+  event_id: varchar('event_id', { length: 255 }).references(
+    () => FortniteTournamentTable.event_id,
+    {
       onDelete: 'set null',
-    }),
+    }
+  ),
   start_time: timestamp('start_time').notNull(),
   end_time: timestamp('end_time').notNull(),
   epic_score_id: varchar('epic_score_id').references(

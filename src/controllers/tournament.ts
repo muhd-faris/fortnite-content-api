@@ -85,14 +85,14 @@ export const getLiveTournamentsV1 = async (c: TCFContext) => {
     },
   });
   const tournaments = tournamentsInDb
-    .filter((t) => t.tournament.region === userRegion)
+    .filter((t) => t.tournament?.region === userRegion)
     .map((t) => {
       const { tournament, ...excludeTournamentObj } = t;
-      const { region, ...excludeRegion } = tournament;
 
       return {
+        tournament_name: tournament?.name ?? null,
+        platforms: tournament?.platforms ?? [],
         ...excludeTournamentObj,
-        ...excludeRegion,
       };
     });
 
