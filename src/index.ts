@@ -8,6 +8,7 @@ import GameRoutes from './routers/game';
 import CrewRoutes from './routers/crew';
 import TournamentRoutes from './routers/tournament';
 import ShopRoutes from './routers/shop.route';
+import SummariseRoutes from './routers/summarise.route';
 
 const app = new Hono<TDefaultContext>();
 
@@ -45,5 +46,6 @@ app.route('/', GameRoutes);
 app.route('/', CrewRoutes);
 app.route('/', TournamentRoutes);
 app.route('/', ShopRoutes);
+app.route('/', SummariseRoutes);
 
 export default app;
