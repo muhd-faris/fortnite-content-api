@@ -77,6 +77,7 @@ export const getLiveTournamentsV1 = async (c: TCFContext) => {
     with: {
       tournament: {
         columns: {
+          event_id: true,
           name: true,
           region: true,
           platforms: true,
@@ -90,11 +91,13 @@ export const getLiveTournamentsV1 = async (c: TCFContext) => {
       const { tournament, ...excludeTournamentObj } = t;
 
       return {
+        event_id: tournament?.event_id ?? null,
         tournament_name: tournament?.name ?? null,
         platforms: tournament?.platforms ?? [],
         ...excludeTournamentObj,
       };
-    });
+    })
+    .filter((t) => t.event_id !== null);
 
   return c.json(tournaments);
 };
