@@ -16,3 +16,7 @@ export const ItemShopPrompt = (value: string) => {};
 export const TournamentDetailsPrompt = (value: string) => {
   return ``;
 };
+
+export const CosmeticDetailsPrompt = (value: string) => {
+  return ``;
+};

@@ -45,4 +45,5 @@ export const CosmeticDetailSummaryValidationSchema = z.object({
   shop_history_count: z.number(),
   last_show_appearance: z.string(),
   styles_count: z.number(),
+  styles_by_mode: z.string(),
 });
