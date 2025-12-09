@@ -4,23 +4,26 @@ import { getGeminiConfig } from '../lib';
 import { TCFContext } from '../types';
 import {
   CosmeticDetailSummaryValidationSchema,
-  ShopSummaryValidationSchema,
+  ShopDetailSummaryValidationSchema,
   TournamentDetailsSummaryValidationSchema,
 } from '../validations';
-import {
-  CosmeticDetailsPrompt,
-  ItemShopDetailsPrompt,
-  TournamentDetailsPrompt,
-} from '../constants';
 
 export const summariseShopDetailsV1 = async (c: TCFContext) => {
-  const body = ShopSummaryValidationSchema.parse(await c.req.json());
+  const body = ShopDetailSummaryValidationSchema.parse(await c.req.json());
   const stringifyValue = JSON.stringify(replaceNulls(body));
 
   const google = getGeminiConfig().languageModel('gemini-2.5-flash');
   const { text } = await generateText({
     model: google,
-    prompt: ItemShopDetailsPrompt(stringifyValue),
+    system: `
+      You are a strict data summarizer for a Fortnite application.
+      Rules:
+      1. Convert the provided JSON data into a single, continuous paragraph of plain text.
+      2. Do NOT use Markdown, HTML, bullet points, or newlines.
+      3. Do NOT add information not present in the data.
+      4. Use a natural, engaging tone suitable for gamers.
+    `,
+    prompt: `Here is the data to summarize: ${stringifyValue}`,
   });
 
   const response = {
@@ -34,12 +37,20 @@ export const summariseShopDetailsV1 = async (c: TCFContext) => {
 
 export const summariseTournamentDetailsV1 = async (c: TCFContext) => {
   const body = TournamentDetailsSummaryValidationSchema.parse(await c.req.json());
-  const stringifyValue = JSON.stringify(body);
+  const stringifyValue = JSON.stringify(replaceNulls(body));
 
   const google = getGeminiConfig().languageModel('gemini-2.5-flash');
   const { text } = await generateText({
     model: google,
-    prompt: TournamentDetailsPrompt(stringifyValue),
+    system: `
+      You are a strict data summarizer for a Fortnite application.
+      Rules:
+      1. Convert the provided JSON data into a single, continuous paragraph of plain text.
+      2. Do NOT use Markdown, HTML, bullet points, or newlines.
+      3. Do NOT add information not present in the data.
+      4. Use a natural, engaging tone suitable for gamers.
+    `,
+    prompt: `Here is the data to summarize: ${stringifyValue}`,
   });
 
   const response = {
@@ -53,12 +64,20 @@ export const summariseTournamentDetailsV1 = async (c: TCFContext) => {
 
 export const summariseCosmeticDetailsV1 = async (c: TCFContext) => {
   const body = CosmeticDetailSummaryValidationSchema.parse(await c.req.json());
-  const stringifyValue = JSON.stringify(body);
+  const stringifyValue = JSON.stringify(replaceNulls(body));
 
   const google = getGeminiConfig().languageModel('gemini-2.5-flash');
   const { text } = await generateText({
     model: google,
-    prompt: CosmeticDetailsPrompt(stringifyValue),
+    system: `
+      You are a strict data summarizer for a Fortnite game.
+      Rules:
+      1. Convert the provided JSON data into a single, continuous paragraph of plain text.
+      2. Do NOT use Markdown, HTML, bullet points, or newlines.
+      3. Do NOT add information not present in the data.
+      4. Use a natural, engaging tone suitable for gamers.
+    `,
+    prompt: `Here is the data to summarize: ${stringifyValue}`,
   });
 
   const response = {
