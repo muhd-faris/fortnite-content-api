@@ -27,7 +27,7 @@ export const summariseShopDetailsV1 = async (c: TCFContext) => {
   });
 
   const response = {
-    type: 'item_shop',
+    type: 'item_shop_detail',
     value: text,
     stored_at: new Date(),
   };
