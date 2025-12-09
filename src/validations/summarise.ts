@@ -7,14 +7,14 @@ const ShopDetailGranted = z.object({
 });
 
 export const ShopDetailSummaryValidationSchema = z.object({
-  special_offer: z.string(),
+  special_offer: z.string().nullable(),
   name: z.string(),
   display_type: z.string(),
   available_from: z.date(),
   available_until: z.date(),
   normal_price: z.number(),
   final_price: z.number(),
-  series: z.string(),
+  series: z.string().nullable(),
   section_name: z.string(),
   supported_modes: z.string().array(),
   granted: z.array(ShopDetailGranted).default([]),

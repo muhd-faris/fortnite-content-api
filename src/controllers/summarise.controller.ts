@@ -10,7 +10,7 @@ import { ItemShopDetailsPrompt, TournamentDetailsPrompt } from '../constants';
 
 export const summariseShopDetailsV1 = async (c: TCFContext) => {
   const body = ShopSummaryValidationSchema.parse(await c.req.json());
-  const stringifyValue = JSON.stringify(body);
+  const stringifyValue = JSON.stringify(replaceNulls(body));
 
   const google = getGeminiConfig().languageModel('gemini-2.5-flash');
   const { text } = await generateText({
@@ -47,3 +47,16 @@ export const summariseTournamentDetailsV1 = async (c: TCFContext) => {
 };
 
 export const summariseCosmeticDetailsV1 = (c: TCFContext) => {};
+
+type ReplaceNullWith<T, R> = {
+  [K in keyof T]: T[K] extends null ? R : T[K];
+};
+// TODO: Test Implementation
+function replaceNulls<T extends object>(
+  obj: T,
+  replacement: string = 'Not Available'
+): ReplaceNullWith<T, string> {
+  return Object.fromEntries(
+    Object.entries(obj).map(([k, v]) => [k, v === null ? replacement : v])
+  ) as ReplaceNullWith<T, string>;
+}
