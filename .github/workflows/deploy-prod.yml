@@ -1,0 +1,37 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [production]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npm install -g wrangler
+
+      - name: Upload production secrets
+        run: |
+          echo "${{ secrets.DATABASE_PROD_URL }}" | wrangler secret put DATABASE_URL --env production
+          echo "${{ secrets.EPIC_GAMES_ACCOUNT_ID }}" | wrangler secret put EPIC_GAMES_ACCOUNT_ID --env production
+          echo "${{ secrets.EPIC_GAMES_DEVICE_ID }}" | wrangler secret put EPIC_GAMES_DEVICE_ID --env production
+          echo "${{ secrets.EPIC_GAMES_DEVICE_ID_SECRET }}" | wrangler secret put EPIC_GAMES_DEVICE_ID_SECRET --env production
+          echo "${{ secrets.GEMINI_PROD_API_KEY }}" | wrangler secret put GEMINI_API_KEY --env production
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+
+      - name: Deploy (Production)
+        run: wrangler deploy --env production --minify
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
