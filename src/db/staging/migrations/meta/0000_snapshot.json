@@ -1,5 +1,5 @@
 {
-  "id": "55b22173-82f8-4d6d-bc40-66cdb27b06c8",
+  "id": "3789204e-8acf-43df-9751-73a156231d8e",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -223,7 +223,7 @@
           "name": "event_id",
           "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "start_time": {
           "name": "start_time",

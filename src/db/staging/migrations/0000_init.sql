@@ -35,7 +35,7 @@ CREATE TABLE "fortnite_tournament_sessions" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"session_id" varchar(255) NOT NULL,
 	"name" varchar(255) NOT NULL,
-	"event_id" varchar(255) NOT NULL,
+	"event_id" varchar(255),
 	"start_time" timestamp NOT NULL,
 	"end_time" timestamp NOT NULL,
 	"epic_score_id" varchar,
